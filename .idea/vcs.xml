@@ -3,6 +3,6 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/react18-app" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/react18-test" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/react18-learn" vcs="Git" />
   </component>
 </project>
