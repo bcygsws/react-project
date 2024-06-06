@@ -23,6 +23,7 @@
         color: #18191c;
         font-weight: 500;
       }
+
       .total-reply {
         margin: 0 36px 0 6px;
         color: #9499a0;
@@ -47,6 +48,7 @@
         &:last-child::after {
           display: none;
         }
+
         &::after {
           content: ' ';
           display: inline-block;
@@ -67,6 +69,7 @@
 .reply-wrap {
   position: relative;
 }
+
 .box-normal {
   display: flex;
   transition: 0.2s;
@@ -95,7 +98,9 @@
       background-color: #f1f2f3;
       border: 1px solid #f1f2f3;
       border-radius: 6px;
+      /*去掉获取焦点时，黑色框*/
       outline: none;
+      /*textarea尺寸的更改*/
       resize: none;
       transition: 0.2s;
 
@@ -103,6 +108,8 @@
         color: #9499a0;
         font-size: 12px;
       }
+
+      /*textarea获取焦点后，height变成60px,动画过渡时间0.2s,transition样式控制它*/
       &:focus {
         height: 60px;
         background-color: #fff;
@@ -120,6 +127,7 @@
     margin-left: 10px;
     border-radius: 4px;
     cursor: pointer;
+    /*伪元素::after作为背景的变化，使用伪元素，content属性是必须设置的，不需要内容，content为空即可*/
     transition: 0.2s;
 
     & .send-text {
@@ -128,6 +136,7 @@
       color: #fff;
       font-size: 16px;
     }
+
     &::after {
       position: absolute;
       width: 100%;
@@ -137,11 +146,14 @@
       opacity: 0.5;
       content: '';
     }
+
+    /*伪类：:link、:hover、:active和:visited，为了达到预期的效果，一般:hover位于:link和:visited之后*/
     &:hover::after {
       opacity: 1;
     }
   }
 }
+
 .bili-avatar {
   position: relative;
   display: block;
@@ -151,6 +163,7 @@
   padding: 0;
   border-radius: 50%;
 }
+
 .bili-avatar-img {
   position: absolute;
   top: 50%;
@@ -169,8 +182,10 @@
 .reply-list {
   margin-top: 14px;
 }
+
 .reply-item {
   padding: 22px 0 0 80px;
+
   .root-reply-avatar {
     position: absolute;
     left: 0;
@@ -214,6 +229,7 @@
       color: #181931;
       font-size: 15px;
       line-height: 24px;
+
       .reply-info {
         position: relative;
         display: flex;
@@ -226,6 +242,7 @@
           width: 86px;
           margin-right: 20px;
         }
+
         .reply-like {
           display: flex;
           align-items: center;
@@ -237,32 +254,40 @@
             margin-right: 5px;
             color: #9499a0;
             background-position: -153px -25px;
+
             &:hover {
               background-position: -218px -25px;
             }
           }
+
           .like-icon.liked {
             background-position: -154px -89px;
           }
         }
+
         .reply-dislike {
           display: flex;
           align-items: center;
           margin-right: 19px;
+
           .dislike-icon {
             width: 16px;
             height: 16px;
             background-position: -153px -153px;
+
             &:hover {
               background-position: -217px -153px;
             }
           }
+
           .dislike-icon.disliked {
             background-position: -154px -217px;
           }
         }
+
         .delete-btn {
           cursor: pointer;
+
           &:hover {
             color: #00aeec;
           }
