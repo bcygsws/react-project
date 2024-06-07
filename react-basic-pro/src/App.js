@@ -7,6 +7,10 @@ import TimeFormat from './utils/timeFormat';
 import {v4 as uuidv4} from 'uuid';
 // 引入比较大小回调函数
 import comFn from "./utils/ComFn";
+// 引入ctime都转化为时间戳的函数
+import ArrayConverting from './utils/ArrayConverting';
+// 类名工具,classNames()是一个函数，语法：classNames("类名1"，{类名2:逻辑值（条件）})
+import classNames from 'classnames';
 
 /**
  * 评论列表的渲染和操作
@@ -16,6 +20,7 @@ import comFn from "./utils/ComFn";
  */
 
 // 评论列表数据
+// 注：在html中不渲染它，而是渲染list,defaultList作为list的初始值
 const defaultList = [
 	{
 		// 评论id
@@ -82,7 +87,9 @@ const tabs = [
 const App = () => {
 	const [textVal, setTextVal] = useState("");
 	// 注意：在html模板中渲染的一定是list,数组它是个变量；而defaultList只是一个初始值
-	const [list, setList] = useState(defaultList);
+	const [list, setList] = useState(defaultList.sort(comFn("like")));
+	// 维护状态变量type,来表征当前状态
+	const [type, setType] = useState("hot");
 	/**
 	 * @name：inputHandler
 	 * @description:textarea框onChange事件
@@ -112,8 +119,14 @@ const App = () => {
 			ctime: Date.now(),
 			like: Math.floor(Math.random() * 100)
 		};
+		/**
+		 * @上面用type状态变量，表示：当前是按照 最热或者是最新排序的
+		 *
+		 * */
+		type === 'hot' ? setList([newItem, ...list].sort(comFn("like"))) :
+			setList([newItem, ...list].map(val => ArrayConverting(val)).sort(comFn('ctime')));
 		// 1.1.展开符，达到unshift的效果
-		setList([newItem, ...list]);
+		// setList([newItem, ...list]);
 		// 1.2.清空输入文本域textarea,方便下一次输入
 		setTextVal("");
 		// console.log(list);
@@ -121,48 +134,72 @@ const App = () => {
 	}
 	/**
 	 * @name: sortItem
-	 * @description:点击处理事件，按照时间排序、按照点赞数多少排序
+	 * @description:
+	 * 功能一、tab选择【最热】时，为此时的标签加上一个active类样式
+	 * tab选择【最新】时，为此时的标签加上一个active类样式
+	 * 解决：维护一个转态变量type，来表征当前是"最新"还是"最热"
+	 *
+	 * 功能二、点击处理事件，按照时间排序、按照点赞数多少排序
+	 * 方式一：对于对象数组，为了避免出现更改原数组的bug,通常先对数组进行一层浅拷贝，
+	 * newArr.slice(),然后，使用sort(cb)方法排序
+	 *
+	 * 方式二：或者借助第三方插件，lodash来实现对象数组的排序
+	 * import _ from lodash;
+	 * lodash有一个对象数组的排序方法
+	 * _.orderBy(数组名，属性名，方式)
+	 *例如：
+	 * _.orderBy(newArr,'like','desc')
 	 *
 	 * */
 	const sortItem = (item) => {
-		let newArr = [...list].slice();
+		let newArr = [...list].slice();// 得到list数组的一个浅拷贝，因为sort排序，会影响源数组
 		if (item.type === 'hot') {
+			setType("hot");
 			// newArr调用sort排序后，影响了源数组newArray,所以不用将排序后的结果在赋值给newArr
 			newArr.sort(comFn('like'));
 			setList(newArr);
 
 		} else if (item.type === 'time') {
+			setType("time");
 			// newArray中ctime数据有的是字符串，有的是数字，需要统一处理成时间戳，方便比较
-			newArr = newArr.map((val) => ({
-				rpid: val.rpid,
-				user: {
-					uid: val.user.uid,
-					avatar: val.user.avatar,
-					uname: val.user.uname
-				},
-				content: val.content,
-				ctime: (new Date(TimeFormat(val.ctime))).getTime(),// new Date("2012-12-12 10:11").getTime()可以转化为数字
-				like: val.like
-			}));
-			newArr.sort(comFn('ctime'));
-			setList(newArr);
+			setList(newArr.map((val) => (ArrayConverting(val))).sort(comFn('ctime')));
+
 		}
 	}
 	/**
 	 * @name：delItem
-	 * @description:
+	 * @description:关于删除功能，有两种做法：
+	 * 方法1.构建新数组newArr,使用splice方法（会改变原数组newArr），删除传入id对应的那个元素
+	 * 方法2.使用filter方法(不会改变原数组)，留下不等于rpid的那些项组成的数组,更改list
+	 *
+	 * 逻辑上，只有自己的评论，才能开放【删除】功能
+	 * 当前用户，使用user变量模拟
+	 * const user = {
+	 * 	// 用户id
+	 * 	uid: '30009257',
+	 * 	// 用户头像
+	 * 	avatar,
+	 * 	// 用户昵称
+	 * 	uname: '黑马前端',
+	 * }
+	 * user的uid和list中的uid匹配，才开放【删除】功能
+	 *
 	 *
 	 * */
 	const delItem = ({rpid}) => {
-		let newArr = [...list];
-		newArr.some((val, index) => {
-			if (val.rpid === rpid) {
-				newArr.splice(index, 1);
-				return true;
-			}
-		});
-		// 更新list
-		setList(newArr);
+		// 方式一：splice方法会改变newArr
+		// let newArr = [...list];
+		// newArr.some((val, index) => {
+		// 	if (val.rpid === rpid) {
+		// 		newArr.splice(index, 1);
+		// 		return true;
+		// 	}
+		// });
+		// // 更新list
+		// setList(newArr);
+
+		// 方式二:filter方法，不会改变源数组，可以直接调用list的filter方法，只保留数组中那些不等于rpid的项
+		setList(list.filter(val => val.rpid !== rpid));
 
 	}
 	return (
@@ -178,8 +215,16 @@ const App = () => {
 					<li className="nav-sort">
 						{/* 高亮类名： active */}
 						{/*渲染最新、最热*/}
-						{tabs.map((item) => <span className="nav-item" key={item.type}
-						                          onClick={() => sortItem(item)}>{item.text}</span>)}
+						{/*	这种拼接，className={`nav-item ${item.type === type ? 'active' : ''}`}，局限性：当类名多起来极容易出错*/}
+						{/*优化：使用classnames插件 */}
+						{tabs.map((item) =>
+							<span
+								// className={`nav-item ${item.type === type ? 'active' : ''}`}
+								className={classNames("nav-item", {active: item.type === type})}
+								key={item.type}
+								onClick={() => sortItem(item)}>
+								{item.text}
+							</span>)}
 					</li>
 				</ul>
 			</div>
@@ -238,7 +283,9 @@ const App = () => {
 										<span className="reply-time">{TimeFormat(item.ctime)}</span>
 										{/* 评论数量 */}
 										<span className="reply-time">点赞数:{item.like}</span>
-										<span className="delete-btn" onClick={() => delItem(item)}>删除</span>
+										{/*<span className="delete-btn" onClick={() => delItem(item)}>删除</span>*/}
+										{user.uid === item.user.uid &&
+											<span className="delete-btn" onClick={() => delItem(item)}>删除</span>}
 
 									</div>
 								</div>
