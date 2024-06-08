@@ -1,4 +1,4 @@
-import TimeFormat from "./timeFormat";
+import TimeFormat from "./TimeFormat";
 
 /**
  * @name:ArrayConverting

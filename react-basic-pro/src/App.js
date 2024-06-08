@@ -1,16 +1,19 @@
 import './App.scss'
 import avatar from './images/bozai.png'
-import {useState} from "react";
-// 引入时间格式化
-import TimeFormat from './utils/timeFormat';
+import {useRef, useState, useEffect} from "react";
 // 引入uuid模块
 import {v4 as uuidv4} from 'uuid';
-// 引入比较大小回调函数
+// 引入工具类-sort方法排序时的回调函数
 import comFn from "./utils/ComFn";
-// 引入ctime都转化为时间戳的函数
+// 引入工具类-时间格式化
+import TimeFormat from './utils/TimeFormat';
+// 引入工具类-ctime都转化为时间戳的函数
 import ArrayConverting from './utils/ArrayConverting';
+// 引入工具类-产生随机名
+import RandomName from "./utils/RandomName";
 // 类名工具,classNames()是一个函数，语法：classNames("类名1"，{类名2:逻辑值（条件）})
 import classNames from 'classnames';
+
 
 /**
  * 评论列表的渲染和操作
@@ -85,11 +88,15 @@ const tabs = [
 ]
 
 const App = () => {
+// 获取文本域dom对象
+	const textareaRef = useRef(null);
 	const [textVal, setTextVal] = useState("");
 	// 注意：在html模板中渲染的一定是list,数组它是个变量；而defaultList只是一个初始值
 	const [list, setList] = useState(defaultList.sort(comFn("like")));
 	// 维护状态变量type,来表征当前状态
 	const [type, setType] = useState("hot");
+	// 维护状态变量count,评论条数
+	const [count, setCount] = useState(0);
 	/**
 	 * @name：inputHandler
 	 * @description:textarea框onChange事件
@@ -104,6 +111,9 @@ const App = () => {
 	/**
 	 * @name：clickHandler
 	 * @description:1.评论内容提交事件
+	 * 更新列表
+	 * 清空文本域
+	 * 获取焦点
 	 *
 	 * */
 	const clickHandler = () => {
@@ -112,8 +122,8 @@ const App = () => {
 			rpid: Date.now(),
 			user: {
 				uid: uuidv4(),
-				avatar: "",
-				uname: "科技树"
+				avatar,
+				uname: RandomName("微博用户", 8)
 			},
 			content: textVal,
 			ctime: Date.now(),
@@ -130,7 +140,8 @@ const App = () => {
 		// 1.2.清空输入文本域textarea,方便下一次输入
 		setTextVal("");
 		// console.log(list);
-
+		// 1.3.textarea获得焦点
+		textareaRef.current.focus();
 	}
 	/**
 	 * @name: sortItem
@@ -202,6 +213,15 @@ const App = () => {
 		setList(list.filter(val => val.rpid !== rpid));
 
 	}
+	/**
+	 *@评论条数的监听
+	 * useEffect
+	 * useEffect(cb[,依赖项])
+	 *
+	 * */
+	useEffect(() => {
+		setCount(list.length);
+	}, [list]);
 	return (
 		<div className="app">
 			{/* 导航 Tab */}
@@ -210,7 +230,7 @@ const App = () => {
 					<li className="nav-title">
 						<span className="nav-title-text">评论</span>
 						{/* 评论数量 */}
-						<span className="total-reply">{10}</span>
+						<span className="total-reply">{count}</span>
 					</li>
 					<li className="nav-sort">
 						{/* 高亮类名： active */}
@@ -245,6 +265,7 @@ const App = () => {
 							placeholder="发一条友善的评论"
 							value={textVal}
 							onChange={(e) => inputHandler(e)}
+							ref={textareaRef}
 						/>
 						{/* 发布按钮 */}
 						<div className="reply-box-send">
