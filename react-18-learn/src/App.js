@@ -11,6 +11,7 @@ import MyFatherA from "./components/son_to_fat/MyFatherA";
 import Fat from "./components/sibling/Fat";
 import GrandFat from "./components/communicate_with_context/GrandFat";
 import UsingEffect from "./components/use_effect/UsingEffect";
+import UsingRedux from './components/redux/UsingRedux';
 
 function App() {
 	return (
@@ -35,6 +36,8 @@ function App() {
 				<GrandFat></GrandFat>
 				{/*十、React的useEffect的用法 */}
 				<UsingEffect></UsingEffect>
+				{/*	十一、使用redux集中状态管理器*/}
+				<UsingRedux></UsingRedux>
 
 			</header>
 		</div>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>88-redux独立于框架使用</title>
+    <!-- 引入redux的js文件,uppkg是静态npm的CDN服务-->
+    <style>
+        .container {
+            width: 600px;
+            height: 300px;
+            background-color: #eee;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .container .mg {
+            margin: auto 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <button id="plus" class="mg">+</button>
+    <span id="sp" class="mg">0</span>
+    <button id="minus" class="mg">-</button>
+</div>
+
+<script src="https://cdn.bootcdn.net/ajax/libs/redux/4.2.0/redux.min.js"></script>
+<script>
+	// 1.定义reducer函数
+	// 两种行为actions
+	// const increment = {
+	// 	type: "inc"
+	// };
+	// const decrement = {
+	// 	type: "dec"
+	// };
+	// 初始值
+	const initState = {
+		count: 0
+	};
+
+	/**
+	 * @ 注意
+	 * 1.1.在reducer函数中，我们并直接对state中的count变量直接做运算，类似于useState中【变量不可变】的原则；例如：count+1,count-1
+	 * 1.2.而是根据分支，返回不同规则下的state,
+	 * 对应：store.dispatch(increment)或者store.dispatch(decrement)
+	 *
+	 *
+	 * */
+	function reducer(state = initState, action) {
+		// {type:"inc"}是一个action
+		switch (action.type) {
+			case "inc":
+				return {
+					count: state.count + 1
+				}
+			// 	{type:"dec"}是另外一个action
+			case "dec":
+				return {
+					count: state.count - 1
+				}
+			default:
+				return state;
+		}
+
+	}
+
+	// 2.通过传入reducer函数，创建store变量
+	// createStore被弃用了，变成了 legacy_createStore
+	const store = Redux.legacy_createStore(reducer);
+	console.log(store);
+	// 3.store.subscribe(cb)方法，订阅这种变化；每当count值变化时，这个cb就会执行；类似监听器或者vuex中的getters的作用
+	store.subscribe(() => {
+		document.getElementById("sp").innerHTML = store.getState().count;
+	})
+
+	// 4.提交action
+	document.getElementById("plus").addEventListener("click", () => {
+		store.dispatch({type: "inc"});
+	})
+	document.getElementById("minus").addEventListener("click", () => {
+		store.dispatch({type: "dec"});
+	});
+
+
+</script>
+
+</body>
+</html>
