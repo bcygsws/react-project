@@ -1,16 +1,35 @@
+/**
+ * @name:index.js
+ * @description:react项目的入口文件
+ * */
+// react项目的两个最基本的包：react和react-dom
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
+// 项目的根组件
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+/**
+ * useEffect在react 18版本中，会出现副作用函数cb里代码执行两次的问题，
+ * 参考文档：https://www.jb51.net/javascript/292183sdn.htm
+ * 1.这是react 18有意为之的
+ * 2.仅仅在开发模式+使用了严格模式 的情形下，执行两次；在生产环境中还是执行一次的
+ * 3.之所以，执行两次，是为了模拟立即卸载组件和重新挂载组件
+ * 4.为了后续react 18退出新功能做铺垫
+ *
+ *
+ * */
 
+root.render(
+	<React.StrictMode>
+		<App/>
+	</React.StrictMode>
+);
+// root.render(
+// 		<App/>
+// );
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
