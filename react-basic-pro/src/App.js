@@ -1,14 +1,13 @@
-import './App.scss'
-import avatar from './images/bozai.png'
+import './App.scss';
+import avatar from './images/bozai.png';
 import {useRef, useState, useEffect} from "react";
-// import axios from 'axios';
 import useGettingList from "./utils/hook/useGettingList";
 // 引入uuid模块
 import {v4 as uuidv4} from 'uuid';
 // 引入工具类-sort方法排序时的回调函数
 import comFn from "./utils/ComFn";
 // 引入工具类-时间格式化
-import TimeFormat from './utils/TimeFormat';
+// import TimeFormat from './utils/TimeFormat';
 // 引入工具类-ctime都转化为时间戳的函数
 import ArrayConverting from './utils/ArrayConverting';
 // 引入工具类-产生随机名

@@ -1,6 +1,6 @@
 import TimeFormat from "../utils/TimeFormat";
 
-export default function ({item, delItem, user}) {
+export default function Item({item, delItem, user}) {
 	return (
 		<div className="reply-item" key={item.rpid}>
 			{/* 头像 */}
