@@ -1,5 +1,5 @@
 /**
- *@sass/scss的默认支持+css模块化
+ *@脚手架工具create-react-app 对sass/scss的默认支持+css模块化
  * 1.关于sass/scss的支持：只需要在create-react-app脚手架创建的项目中，安装sass包，无需其他任何配置，就可以使用sass/scss预处理样式了
  * 2.关于css模块化
  * 2.1 需要将.scss或者.sass文件名，改造成 文件名.module.scss 或者 文件名.module.sass的形式
