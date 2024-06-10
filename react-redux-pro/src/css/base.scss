@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+  width: 500px;
+  height: 150px;
+  margin: 0 auto;
+  flex-flow: column nowrap;
+  align-items: center;
+
+  .title {
+    flex: 1;
+    line-height: 50px;
+    font-weight: 700;
+    font-size: 20px;
+  }
+
+  .main {
+    flex: 2;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    button, span {
+      margin: 0 5px;
+    }
+
+    .btn {
+      box-sizing: border-box;
+      width: 60px;
+      height: 60px;
+      font-size: 25px;
+      border-radius: 50%;
+    }
+
+  }
+}
