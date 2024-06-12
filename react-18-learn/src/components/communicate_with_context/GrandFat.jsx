@@ -1,14 +1,9 @@
-import {createContext, useState} from "react";
-import Son from "./Son";
-
-
 /**
  * @使用context机制：实现跨层级组件通信
  *
- *
- *
  * */
-
+import {createContext, useState} from "react";
+import Son from "./Son";
 export const GrandContext = createContext(null);
 export default function GrandFat() {
 	const [theme, setTheme] = useState("red");

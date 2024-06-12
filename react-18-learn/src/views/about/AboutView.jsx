@@ -1,6 +1,6 @@
-import GrandFat from "../components/communicate_with_context/GrandFat";
-import UsingEffect from "../components/use_effect/UsingEffect";
-import UsingRedux from "../components/redux/UsingRedux";
+import GrandFat from "../../components/communicate_with_context/GrandFat";
+import UsingEffect from "../../components/use_effect/UsingEffect";
+import UsingRedux from "../../components/redux/UsingRedux";
 import {Link, Outlet, useLocation, useNavigate, useParams, useSearchParams} from "react-router-dom";
 
 export default function AboutView() {
@@ -30,7 +30,9 @@ export default function AboutView() {
 		{/*	<li>tag:{location.state.tag}</li>*/}
 		{/*	<li>name:{location.state.name}</li>*/}
 		{/*</ul>*/}
-		<Link to="1">二级路由，去往UsingRouter组件</Link>
+		<Link to="1">二级路由，去往UsingRouter组件</Link><br/>
+		{/*不需要点击二级路由，直接显示二级路由的内容：实现方式：在routes路由规则中，使用index:true；代替path:":id"*/}
+		<Link to="2">二级路由，去往UsingRouter2组件；进入About后，不需要点击二级路由，直接显示二级路由内容</Link>
 		{/*这个Outlet组件，用以声明二级路由的出口，必须写*/}
 		<Outlet/>
 

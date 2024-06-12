@@ -6,32 +6,45 @@
  * */
 
 // 路由配置
-import {createBrowserRouter} from "react-router-dom";
 import HomeView from "../views/HomeView";
-import AboutView from "../views/AboutView";
-import App from '../App';
+import AboutView from "../views/about/AboutView";
+import NotFound from '../views/NotFound';
+import {Navigate} from "react-router-dom";
+import UsingRouter from "../views/about/use_router/UsingRouter";
+import UsingRouter2 from "../views/about/use_router/UsingRouter2";
+// import {Navigate} from "react-router-dom";
 // 创建路由对象实例
-const router = createBrowserRouter([
+const routes = [
+	{
+		path: '/',
+		element: <Navigate to="/home" replace={true}/>
+		// element: <App/>
+	},
+	{
+		path: '/home',
+		element: <HomeView/>,
 
-		{
-			path: '/',
-			element: <App/>,
-			routes: [
-				{
-					path: '/home',
-					element: <HomeView/>,
-
-				},
-				{
-					path: '/about',
-					element: <AboutView/>
-				},
-				{
-					path: '/think',
-					element: <div>这是think</div>
-				}
-			]
-		}
-	]
-);
-export default router;
+	},
+	{
+		path: '/about',
+		element: <AboutView/>,
+		children: [
+			// 二级路由在哪里用，就使用<Outlet/>设置路由的出口
+			// 它匹配了id=1
+			{
+				path: ":id",
+				element: <UsingRouter/>
+			},
+			// 它匹配了id=2
+			{
+				index: true,// index:true取代了path后，不需要点二级路由，二级路由的内容就能够立即展示
+				element: <UsingRouter2/>
+			}
+		]
+	},
+	{ // 404错误页面
+		path: '*',
+		element: <NotFound/>
+	}
+];
+export default routes;

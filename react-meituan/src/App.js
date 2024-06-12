@@ -1,6 +1,6 @@
 import NavBar from './components/NavBar'
 import Menu from './components/Menu'
-import Cart from './components/Cart'
+import Cart from './components/Cart/index';
 import FoodsCategory from './components/FoodsCategory';
 import {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
@@ -70,7 +70,7 @@ const App = () => {
 	const dispatch = useDispatch();
 	useEffect(() => {
 		dispatch(getFoodList());
-	}, []);
+	}, [dispatch]);
 	const {foodsList, activeIndex} = useSelector(state => state.food);
 	return (
 		<div className="home">
