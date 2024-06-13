@@ -14,14 +14,20 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  /*background-color: #282c34;*/
+  /*min-height: 100vh;*/
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: black;
+
+  a {
+    margin: 0 20px;
+    text-decoration: none;
+    font-size: 18px;
+  }
 }
 
 .App-link {
@@ -35,4 +41,9 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.news {
+  display: flex;
+  flex-flow: column nowrap;
 }
