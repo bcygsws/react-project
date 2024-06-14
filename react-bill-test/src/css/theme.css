@@ -1,0 +1,10 @@
+/*主题颜色，全局生效*/
+:root:root {
+    --adm-color-primary: rgba(105, 174, 120);
+
+}
+
+/*主题颜色，局部生效*/
+/*.primary-color {*/
+/*    --adm-color-primary: #a062d4;*/
+/*}*/
