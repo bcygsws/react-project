@@ -1,0 +1,36 @@
+.monthly-bill {
+  height: 165px;
+  display: flex;
+  flex-flow: column nowrap;
+
+  .header {
+
+  }
+
+  .content {
+    height: 120px;
+    display: flex;
+    flex-flow: column nowrap;
+
+    .time {
+      flex: 1;
+    }
+
+    .data {
+      flex: 2;
+      display: flex;
+      flex-flow: row nowrap;
+
+      .item {
+        flex: 1;
+        display: flex;
+        flex-flow: column nowrap;
+        padding: 20px;
+        span{
+          margin: 5px 0;
+        }
+
+      }
+    }
+  }
+}
