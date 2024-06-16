@@ -1,49 +1,10 @@
+import {NavBar} from "antd-mobile";
+
 export default function YearBill() {
-	return (<div>
-		<h3>这是YearBill</h3>
-		<h3>这是YearBill</h3>
-		<h3>这是YearBill</h3>
-		<h3>这是YearBill</h3>
-		<h3>这是YearBill</h3>
-		<h3>这是YearBill</h3>
-		<h3>这是YearBill</h3>
-		<h3>这是YearBill</h3>
-		<h3>这是YearBill</h3>
-		<h3>这是YearBill</h3>
-		<h3>这是YearBill</h3>
-		<h3>这是YearBill</h3>
-		<h3>这是YearBill</h3>
-		<h3>这是YearBill</h3>
-		<h3>这是YearBill</h3>
-		<h3>这是YearBill</h3>
-		<h3>这是YearBill</h3>
-		<h3>这是YearBill</h3>
-		<h3>这是YearBill</h3>
-		<h3>这是YearBill</h3>
-		<h3>这是YearBill</h3>
-		<h3>这是YearBill</h3>
-		<h3>这是YearBill</h3>
-		<h3>这是YearBill</h3>
-		<h3>这是YearBill</h3>
-		<h3>这是YearBill</h3>
-		<h3>这是YearBill</h3>
-		<h3>这是YearBill</h3>
-		<h3>这是YearBill</h3>
-		<h3>这是YearBill</h3>
-		<h3>这是YearBill</h3>
-		<h3>这是YearBill</h3>
-		<h3>这是YearBill</h3>
-		<h3>这是YearBill</h3>
-		<h3>这是YearBill</h3>
-		<h3>这是YearBill</h3>
-		<h3>这是YearBill</h3>
-		<h3>这是YearBill</h3>
-		<h3>这是YearBill</h3>
-		<h3>这是YearBill</h3>
-		<h3>这是YearBill</h3>
-		<h3>这是YearBill</h3>
-		<h3>这是YearBill</h3>
-		<h3>这是YearBill</h3>
+	return (<div className="year-bill">
+		<div className="header">
+			<NavBar backArrow={false}>年度账单</NavBar>
+		</div>
 	</div>);
 
 }
