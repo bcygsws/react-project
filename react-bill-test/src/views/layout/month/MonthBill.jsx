@@ -2,17 +2,21 @@ import {DatePicker, NavBar, Toast} from "antd-mobile"
 import "./month.scss";
 import {useState} from "react";
 // 时间格式化工具dayjs
-import dayjs from "dayjs";
+import {genFormat} from "../../../utils/TimeFormat";
 // css类格式化工具classnames
 import classNames from "classnames";
 
 export default function MonthBill() {
 	const [visible, setVisible] = useState(false);
 	const [dateVisible, setDateVisible] = useState(false);
-	const [currentDate, setCurrentDate] = useState(() => {
-			return dayjs(new Date()).format("YYYY-MM")
-		}
-	);
+	// currentDate上默认显示的时间，总是当时的 年份-月份
+	const [currentDate, setCurrentDate] = useState(genFormat(new Date()));
+	// 时间选择器切换时间
+	const confirmHandler = (val) => {
+		// Toast.show(val.toDateString());
+		// 存储当前选择的时间数组
+		setCurrentDate(genFormat(val));
+	}
 	// 获取当前时间
 	const now = new Date();
 	return (<div className="monthly-bill">
@@ -24,8 +28,10 @@ export default function MonthBill() {
 			<div className="time" onClick={() => {
 				setDateVisible(true)
 			}}>
-				<span>{currentDate + ''}月账单</span>
-				<span className={classNames("arrow", dateVisible && "expand")}></span>
+				<span onClick={() => {
+					setVisible(true)
+				}}>{currentDate + ''}月账单</span>
+				<span className={classNames("arrow", visible && "expand")}></span>
 			</div>
 			<div className="data">
 				<div className="item">
@@ -49,9 +55,7 @@ export default function MonthBill() {
 				setVisible(false)
 			}}
 			max={now}
-			onConfirm={val => {
-				Toast.show(val.toDateString())
-			}}
+			onConfirm={val => confirmHandler(val)}
 		/>
 	</div>);
 

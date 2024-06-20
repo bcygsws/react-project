@@ -3,7 +3,7 @@
   display: flex;
   flex-flow: column nowrap;
 
-    /* header样式 */
+  /* header样式 */
   .header {
 
   }
@@ -19,37 +19,35 @@
 
     .time {
       flex: 1;
-      display: flex;
-      flex-flow: row nowrap;
       margin-bottom: 25px;
-      font-size: 16px;
+      font-size: 14px;
+      padding: 5px;
 
       span {
         &:first-child {
-          flex: 2;
+          width: 100px;
+          padding-left: 40px;
           text-align: center;
         }
 
-        &:last-child {
-          flex: 1;
-        }
       }
 
       .arrow {
+        position: absolute;
+        left: 148px;
+        top: 54px;
         display: inline-block;
         width: 7px;
         height: 7px;
-        margin-top: -44px;
-        margin-left: 9px;
         border-top: 2px solid #121826;
         border-left: 2px solid #121826;
-        transform: rotate(225deg);
+        transform: rotate(225deg) scale(0.5);
         transform-origin: center;
         transition: all 0.3s;
       }
 
       .arrow.expand {
-        transform: translate(0, 2px) rotate(45deg);
+        transform: translate(0, 3px) rotate(45deg) scale(0.5);
       }
     }
 
@@ -62,7 +60,7 @@
         flex: 1;
         display: flex;
         flex-flow: column nowrap;
-        padding: 20px;
+        padding: 10px;
 
         span {
           margin: 5px 0;
