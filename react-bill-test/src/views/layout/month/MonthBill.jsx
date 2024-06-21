@@ -29,6 +29,7 @@ export default function MonthBill() {
 			<div className="time" onClick={() => {
 				setDateVisible(true)
 			}}>
+				{/*注意："" 拼接成字符串的目的是，react的规则，对象不能直接渲染*/}
 				<span>{currentDate + ''}月账单</span>
 				<span className={classNames("arrow", dateVisible && "expand")}></span>
 			</div>
