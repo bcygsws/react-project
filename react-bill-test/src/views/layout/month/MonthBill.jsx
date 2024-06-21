@@ -8,6 +8,7 @@ import classNames from "classnames";
 
 export default function MonthBill() {
 	const [visible, setVisible] = useState(false);
+	// 时间选择器，状态变量：true，打开；false,关闭
 	const [dateVisible, setDateVisible] = useState(false);
 	// currentDate上默认显示的时间，总是当时的 年份-月份
 	const [currentDate, setCurrentDate] = useState(genFormat(new Date()));
@@ -28,31 +29,30 @@ export default function MonthBill() {
 			<div className="time" onClick={() => {
 				setDateVisible(true)
 			}}>
-				<span onClick={() => {
-					setVisible(true)
-				}}>{currentDate + ''}月账单</span>
-				<span className={classNames("arrow", visible && "expand")}></span>
+				<span>{currentDate + ''}月账单</span>
+				<span className={classNames("arrow", dateVisible && "expand")}></span>
 			</div>
 			<div className="data">
 				<div className="item">
+					<span>0.00</span>
 					<span>支出</span>
-					<span>0.00</span>
 				</div>
 				<div className="item">
+					<span>0.00</span>
 					<span>收入</span>
-					<span>0.00</span>
 				</div>
 				<div className="item">
-					<span>结余</span>
 					<span>0.00</span>
+					<span>结余</span>
 				</div>
 			</div>
 		</div>
+		{/*时间选择器，使用dateVisible控制打开和关闭状态*/}
 		<DatePicker
 			title='时间选择'
-			visible={visible}
+			visible={dateVisible}
 			onClose={() => {
-				setVisible(false)
+				setDateVisible(false)
 			}}
 			max={now}
 			onConfirm={val => confirmHandler(val)}

@@ -12,14 +12,13 @@
     height: 120px;
     display: flex;
     flex-flow: column nowrap;
-    background-image: url("https://s1.imagehub.cc/images/2024/06/16/ffe4812a028ccc1421eb315c6268e14f.jpeg");
+    background-image: url("https://s1.imagehub.cc/images/2024/06/21/5836d3d95b14f68ada215fb259775c91.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
 
     .time {
       flex: 1;
-      margin-bottom: 25px;
       font-size: 14px;
       padding: 5px;
 
@@ -52,7 +51,7 @@
     }
 
     .data {
-      flex: 2;
+      flex: 3;
       display: flex;
       flex-flow: row nowrap;
 
@@ -64,6 +63,14 @@
 
         span {
           margin: 5px 0;
+
+          &:first-child {
+            font-size: 16px;
+          }
+
+          &:last-child {
+            font-size: 12px;
+          }
         }
 
       }
