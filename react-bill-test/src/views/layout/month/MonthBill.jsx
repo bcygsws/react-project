@@ -18,7 +18,7 @@ export default function MonthBill() {
 		// 存储当前选择的时间数组
 		setCurrentDate(genFormat(val));
 	}
-	// 获取当前时间
+	// 变量now,获取当前时间
 	const now = new Date();
 	return (<div className="monthly-bill">
 		<div className="header">
