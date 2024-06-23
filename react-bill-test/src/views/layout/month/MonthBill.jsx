@@ -10,7 +10,6 @@ import {useSelector} from "react-redux";
 import _ from "lodash";
 
 export default function MonthBill() {
-	const [visible, setVisible] = useState(false);
 	// 时间选择器，状态变量：true，打开；false,关闭
 	const [dateVisible, setDateVisible] = useState(false);
 	// currentDate上默认显示的时间，总是当时的 年份-月份
@@ -59,12 +58,13 @@ export default function MonthBill() {
 	}, [currentMonthList]);
 	/**
 	 * @默认月账单，打开显示当前月份的支出、收入和结余
+	 * currentMonthList数组修改了，useMemo计算而得到的monthResult也就会重新计算了
 	 *
 	 * */
-	useEffect(()=>{
-		
-	},[]);
-
+	useEffect(() => {
+		// currentMonthList数组修改了，useMemo计算而得到的monthResult也就会重新计算了
+		setCurrentMonthList(MonthGroup[TimeFormat(now)] ? MonthGroup[TimeFormat(now)] : []);
+	}, [MonthGroup]);
 
 
 	return (<div className="monthly-bill">
