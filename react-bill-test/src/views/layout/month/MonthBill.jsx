@@ -8,6 +8,8 @@ import classNames from "classnames";
 import {useSelector} from "react-redux";
 // lodash工具，groupBy方法
 import _ from "lodash";
+import DailyBill from "./components/DailyBill";
+import dayjs from "dayjs";
 
 export default function MonthBill() {
 	// 时间选择器，状态变量：true，打开；false,关闭
@@ -65,6 +67,18 @@ export default function MonthBill() {
 		// currentMonthList数组修改了，useMemo计算而得到的monthResult也就会重新计算了
 		setCurrentMonthList(MonthGroup[TimeFormat(now)] ? MonthGroup[TimeFormat(now)] : []);
 	}, [MonthGroup]);
+	/**
+	 * @当前月的数据currentMonthList，按照日期分组，拿到日期数组和每日的收入、支出信息数组
+	 *
+	 * */
+	const DailyGroup = useMemo(() => {
+		const dailyList = _.groupBy(currentMonthList, (item) => dayjs(item.date).format("YYYY-MM-DD"));
+		const keys = Object.keys(dailyList);
+		return {
+			dailyList,
+			keys
+		}
+	}, [currentMonthList]);
 
 
 	return (<div className="monthly-bill">
@@ -105,6 +119,14 @@ export default function MonthBill() {
 			max={now}
 			onConfirm={val => confirmHandler(val)}
 		/>
+		<div className="day-list">
+			{
+				DailyGroup.keys.map((key) => <DailyBill
+					key={key}
+					date={key}
+					dailyList={DailyGroup.dailyList[key]}/>)
+			}
+		</div>
 	</div>);
 
 }
