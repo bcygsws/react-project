@@ -4,12 +4,12 @@
   position: absolute;
   top: 165px;
   left: 0;
-  padding-top: 10px;
+  padding-top: 5px;
   background-color: #dddddd;
 
   .day-bill {
-    height: 80px;
-    margin-bottom: 10px;
+    //height: 80px;
+    margin-bottom: 5px;
     border-radius: 10px;
     background-color: #fff;
 
@@ -26,12 +26,31 @@
         display: flex;
         flex-flow: row nowrap;
         justify-content: space-between;
+
+        .date {
+          font-size: 15px;
+          font-weight: 700;
+        }
+
+        .arrow {
+          width: 7px;
+          height: 7px;
+          border-top: 2px solid black;
+          border-left: 2px solid black;
+          transform: rotate(45deg) scale(0.6);
+          transition: all 0.2s;
+
+          &.expand {
+            transform: rotate(225deg) scale(0.6);
+          }
+        }
       }
 
       .oneLineOverview {
         display: flex;
         flex-flow: row nowrap;
         color: #99a2aa;
+        margin: 5px 0;
 
         .item {
           span {
@@ -48,6 +67,8 @@
         }
 
         .balance {
+          text-align: right;
+
           & :first-child {
             color: #18191c;
             font-weight: 700;
@@ -59,6 +80,32 @@
           flex: 1;
         }
       }
+
+      .detail {
+        border-top: 1px solid #dddddd;
+        margin: 5px 0;
+        padding: 5px 0;
+      }
     }
+  }
+}
+
+/*DailyBill子组件DailyItem的样式*/
+ul.daily-item {
+  margin: 5px 0 0;
+  padding: 0;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+
+  li {
+    list-style: none;
+    font-size: 14px;
+  }
+  .color-green{
+    color: green;
+  }
+  .color-orange{
+    color:coral;
   }
 }
