@@ -73,10 +73,14 @@ export default function MonthBill() {
 	 * */
 	const DailyGroup = useMemo(() => {
 		const dailyList = _.groupBy(currentMonthList, (item) => dayjs(item.date).format("YYYY-MM-DD"));
-		const keys = Object.keys(dailyList);
+		let key1 = Object.keys(dailyList).map(item => Number(new Date(item)));
+		// key1数组中元素（时间戳）按倒序排列
+		key1.sort((a, b) => b - a);// 排序sort方法返回原始数组的引用，因此改变原数组
+		key1 = key1.map(item => dayjs(item).format("YYYY-MM-DD"));
+		// console.log(key1);
 		return {
 			dailyList,
-			keys
+			keys: key1
 		}
 	}, [currentMonthList]);
 
@@ -119,14 +123,17 @@ export default function MonthBill() {
 			max={now}
 			onConfirm={val => confirmHandler(val)}
 		/>
-		<div className="day-list">
-			{
-				DailyGroup.keys.map((key) => <DailyBill
-					key={key}
-					date={key}
-					dailyList={DailyGroup.dailyList[key]}/>)
-			}
+		<div className="day-container">
+			<div className="day-list">
+				{
+					DailyGroup.keys.map((key) => <DailyBill
+						key={key}
+						date={key}
+						dailyList={DailyGroup.dailyList[key]}/>)
+				}
+			</div>
 		</div>
+
 	</div>);
 
 }

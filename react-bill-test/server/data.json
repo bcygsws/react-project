@@ -125,6 +125,27 @@
       "date": "2024-06-01T16:00:00.000Z",
       "useFor": "food",
       "id": 25
+    },
+    {
+      "type": "income",
+      "money": 102,
+      "date": "2024-06-03T16:00:00.000Z",
+      "useFor": "bonus",
+      "id": 26
+    },
+    {
+      "type": "pay",
+      "money": -101,
+      "date": "2024-06-03T16:00:00.000Z",
+      "useFor": "game",
+      "id": 27
+    },
+    {
+      "type": "income",
+      "money": 888,
+      "date": "2024-06-03T16:00:00.000Z",
+      "useFor": "cashgift",
+      "id": 28
     }
   ]
 }
