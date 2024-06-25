@@ -1,0 +1,116 @@
+.footer-container {
+  .card-header {
+    width: 100vw;
+    height: 142px;
+    background-color: #D4EFDB;
+
+    .btn {
+      text-align: center;
+
+      button {
+        margin: 0 5px;
+        background-color: #eeeeee;
+        border: 0;
+
+        span {
+          color: #282c34;
+          font-size: 14px;
+        }
+      }
+
+      button.active {
+        background-color: #282c34;
+
+        span {
+          color: #eeeeee;
+        }
+      }
+    }
+
+    .text-input {
+      width: 100%;
+      margin-top: 15px;
+      position: relative;
+
+      .time {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        position: absolute;
+        top: 50%;
+        left: 10vw;
+        transform: translateY(-50%);
+        z-index: 10000000;
+
+        > span {
+          margin-left: 4px;
+          font-size: 12px;
+        }
+      }
+
+      > div.adm-input {
+        width: 80%;
+        margin: 0 auto;
+        outline: none;
+
+        input {
+          display: block;
+          outline: none;
+          border-radius: 10px;
+          height: 40px;
+          line-height: 40px;
+          text-align: right;
+          margin: 0 auto;
+          padding: 0 20px 0 48px;
+          background-color: #fff;
+
+          &:focus {
+            box-shadow: 0 0 5px #999999;
+          }
+        }
+
+        &::after {
+          content: '¥';
+          display: block;
+          color: #666666;
+          font-weight: 700;
+          width: 10px;
+          height: 10px;
+          position: absolute;
+          right: 10vw;
+          top: 12px;
+          box-sizing: border-box;
+          z-index: 9999;
+        }
+
+
+      }
+
+    }
+
+  }
+
+  /* 控制添加页部分屏滚动条*/
+  .main-fat {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 142px;
+    overflow: auto;
+
+    .main-content {
+      overflow-x: hidden;
+      overflow-y: scroll;
+      padding: 5px;
+    }
+  }
+
+  .new-footer {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+}

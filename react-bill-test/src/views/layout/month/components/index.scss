@@ -116,17 +116,8 @@
         justify-content: center;
         align-items: center;
 
-        .icon-container {
-          width: 25px;
-          height: 25px;
-          position: relative;
-
-          img {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-          }
+        > span {
+          margin-left: 5px;
         }
       }
     }
