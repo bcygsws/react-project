@@ -7,8 +7,16 @@ import {billListData} from "../../constant";
 import Category from "./components/Category";
 
 export default function NewAdd() {
-	const [value, setValue] = useState();
+	/**
+	 * @控制按钮选中 支出 或者 收入
+	 * 状态变量：type
+	 *
+	 * */
+	const [type, setType] = useState("pay");
+	const [money, setMoney] = useState();
 	const [dateVisible, setDateVisible] = useState(false);
+	// 当前支出或者消费的一种类型，状态变量useFor
+	const [useFor, setUseFor] = useState("");
 	// 限定时间选择器的最晚时间边界-当前时间，变量now
 	const now = new Date();
 	const back = () =>
@@ -24,37 +32,44 @@ export default function NewAdd() {
 	const handleClick = () => {
 		setDateVisible(true);
 	}
+
 	/**
-	 * @name: btnHandle处理
-	 * @description:控制按钮的显示
+	 * @name:saveBill
+	 * @description:表单数据收集
+	 * 点击"保存"按钮，将数据收集到
 	 *
 	 * */
-	const btnHandler = (type) => {
-		console.log(type);
-		if (type === "pay") {
-			setType("pay");
-		} else {
-			setType("income");
+	const saveBill = () => {
+		const billData = {
+			type,
+			money: type === "pay" ? -money : +money,
+			date: new Date(),
+			useFor: useFor
 		}
+		console.log(billData);
 	}
 	/**
-	 * @控制按钮选中 支出 或者 收入
-	 * 状态变量：type
+	 * @name:handlerSonClick
+	 * @params: type,描述一种支出 或者 收入 的类型
+	 * @description:传给子组件Category的方法，每一个
 	 *
 	 * */
-	const [type, setType] = useState("pay");
-	const btnInfo = [{type: "pay", name: "支出"}, {type: "income", name: "收入"}];
+	const handlerSonClick = (type) => {
+		console.log(type);
+		setUseFor(type);
+	}
 	return (<div className="footer-container">
 		<div className="card-header">
 			{/*	导航栏 */}
 			<NavBar onBack={back}>记一笔</NavBar>
 			{/*	导航按钮支出、收入*/}
 			<div className="btn">
-				{btnInfo.map((item, index) => {
-					return <Button block={false} shape='rounded' color='primary' key={index}
-					               className={classNames(type === item.type && "active")}
-					               onClick={() => btnHandler(item.type)}>{item.name}</Button>
-				})}
+				<Button block={false} shape='rounded' color='primary'
+				        className={classNames(type === "pay" && "active")}
+				        onClick={() => setType("pay")}>支出</Button>
+				<Button block={false} shape='rounded' color='primary'
+				        className={classNames(type === "income" && "active")}
+				        onClick={() => setType("income")}>收入</Button>
 			</div>
 			{/*	输入文本框 */}
 			<div className="text-input">
@@ -64,9 +79,9 @@ export default function NewAdd() {
 				</div>
 				<Input
 					placeholder='0.00'
-					value={value}
+					value={money}
 					onChange={val => {
-						setValue(val)
+						setMoney(val)
 					}}
 				/>
 			</div>
@@ -87,14 +102,14 @@ export default function NewAdd() {
 			<div className="main-content">
 				{
 					billListData[type].map((bill, ind) => {
-						return <Category name={bill.name} list={bill.list} key={ind}/>
+						return <Category name={bill.name} list={bill.list} key={ind} handlerSonClick={handlerSonClick}/>
 
 					})
 				}
 			</div>
 		</div>
 		<div className="new-footer">
-			<Button block color='primary' size='small'>保存</Button>
+			<Button block color='primary' size='small' onClick={saveBill}>保存</Button>
 		</div>
 	</div>)
 }
