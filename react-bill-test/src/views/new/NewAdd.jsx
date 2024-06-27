@@ -5,6 +5,11 @@ import {useState} from "react";
 import IconItem from "../layout/month/components/IconItem";
 import {billListData} from "../../constant";
 import Category from "./components/Category";
+import {useDispatch} from "react-redux";
+import {asyncAddBillList} from "../../store/modules/billStore";
+import {v4 as uuidv4} from "uuid";
+import {WholeTimeFormat} from "../../utils/TimeFormat";
+import {useNavigate} from "react-router-dom";
 
 export default function NewAdd() {
 	/**
@@ -19,6 +24,7 @@ export default function NewAdd() {
 	const [useFor, setUseFor] = useState("");
 	// 限定时间选择器的最晚时间边界-当前时间，变量now
 	const now = new Date();
+	const dispatch = useDispatch();
 	const back = () =>
 		Toast.show({
 			content: '点击了返回区域',
@@ -39,14 +45,19 @@ export default function NewAdd() {
 	 * 点击"保存"按钮，将数据收集到
 	 *
 	 * */
+	const navigate = useNavigate();
 	const saveBill = () => {
 		const billData = {
+			id: uuidv4(),
 			type,
 			money: type === "pay" ? -money : +money,
-			date: new Date(),
+			date: WholeTimeFormat(new Date()),
 			useFor: useFor
 		}
 		console.log(billData);
+		dispatch(asyncAddBillList(billData));
+
+		navigate("/");
 	}
 	/**
 	 * @name:handlerSonClick
@@ -101,8 +112,9 @@ export default function NewAdd() {
 		<div className="main-fat">
 			<div className="main-content">
 				{
-					billListData[type].map((bill, ind) => {
-						return <Category name={bill.name} list={bill.list} key={ind} handlerSonClick={handlerSonClick}/>
+					billListData[type].map((bill) => {
+						return <Category name={bill.name} list={bill.list} key={bill.type}
+						                 handlerSonClick={handlerSonClick}/>
 
 					})
 				}

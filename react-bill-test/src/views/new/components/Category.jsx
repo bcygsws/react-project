@@ -6,8 +6,8 @@ const Category = ({name, list, handlerSonClick}) => {
 		<div className="title">{name}</div>
 		<div className="cat-fat">
 			{
-				list.map((item, index) => {
-					return <div className="list" key={index} onClick={() => handlerSonClick(item.type)}>
+				list.map((item) => {
+					return <div className="list" key={item.type} onClick={() => handlerSonClick(item.type)}>
 						<IconItem type={item.type}/>
 						<div className="cat-footer">{item.name}</div>
 					</div>

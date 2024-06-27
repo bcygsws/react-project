@@ -2,7 +2,7 @@ import {DatePicker, NavBar} from "antd-mobile"
 import "./month.scss";
 import {useEffect, useMemo, useState} from "react";
 // 时间格式化工具dayjs
-import TimeFormat from "../../../utils/TimeFormat";
+import {TimeFormat} from "../../../utils/TimeFormat";
 // css类格式化工具classnames
 import classNames from "classnames";
 import {useSelector} from "react-redux";

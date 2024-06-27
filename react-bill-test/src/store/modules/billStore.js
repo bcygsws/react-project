@@ -9,12 +9,16 @@ const billStore = createSlice({
 	reducers: {
 		setBillList: (state, action) => {
 			state.billList = action.payload;
+		},
+		addBillList: (state, action) => {
+			state.billList.push(action.payload);
 		}
 	}
 });
 
 const reducer = billStore.reducer;
-const {setBillList} = billStore.actions;
+console.log(reducer);
+const {setBillList, addBillList} = billStore.actions;
 // setBillList是异步action,需要进一步封装
 const getBillList = () => {
 	const URL = "http://localhost:8888/ka";
@@ -24,5 +28,15 @@ const getBillList = () => {
 		dispatch(setBillList(result.data));
 	}
 }
-export {getBillList};
+// 向服务器添加表单数据，post
+const asyncAddBillList = (data) => {
+	const URL = "http://localhost:8888/ka";
+	return async (dispatch) => {
+		const result = await axios.post(URL, data);
+		console.log(result.data);
+		dispatch(addBillList(result.data));
+	}
+
+}
+export {getBillList, asyncAddBillList};
 export default reducer;
