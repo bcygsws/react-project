@@ -3,18 +3,9 @@ import {Outlet} from "react-router-dom";
 // 导入定制主题样式文件
 import "./css/theme.css";
 import "./css/layout.scss";
-import {useDispatch, useSelector} from "react-redux";
-import {useEffect} from "react";
-import {getBillList} from "./store/modules/billStore";
 import NavFooter from "./component/NavFooter";
 
 function App() {
-	const dispatch = useDispatch();
-	useEffect(() => {
-		dispatch(getBillList());
-	}, [dispatch]);
-	const {billList} = useSelector(state => state.bill)
-	console.log(billList);
 
 	return (<div className="container">
 		<div className="main">

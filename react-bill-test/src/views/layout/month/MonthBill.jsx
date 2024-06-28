@@ -5,11 +5,12 @@ import {useEffect, useMemo, useState} from "react";
 import {TimeFormat} from "../../../utils/TimeFormat";
 // css类格式化工具classnames
 import classNames from "classnames";
-import {useSelector} from "react-redux";
+import {useSelector, useDispatch} from "react-redux";
 // lodash工具，groupBy方法
 import _ from "lodash";
 import DailyBill from "./components/DailyBill";
 import dayjs from "dayjs";
+import {getBillList} from "../../../store/modules/billStore";
 
 export default function MonthBill() {
 	// 时间选择器，状态变量：true，打开；false,关闭
@@ -17,6 +18,10 @@ export default function MonthBill() {
 	// currentDate上默认显示的时间，总是当时的 年份-月份
 	const [currentDate, setCurrentDate] = useState(TimeFormat(new Date()));
 	const [currentMonthList, setCurrentMonthList] = useState([]);
+	const dispatch = useDispatch();
+	useEffect(() => {
+		dispatch(getBillList());
+	}, [dispatch])
 	// 时间选择器切换时间
 	const confirmHandler = (val) => {
 		// Toast.show(val.toDateString());
@@ -34,7 +39,7 @@ export default function MonthBill() {
 	 *
 	 * */
 	const {billList} = useSelector(state => state.bill);
-	console.log(billList);
+	console.log("test", billList);
 	const MonthGroup = useMemo(() => {
 		return _.groupBy(billList, (item) => TimeFormat(item.date));
 	}, [billList]);

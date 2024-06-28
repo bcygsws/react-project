@@ -5,12 +5,14 @@
  *
  * */
 const IconItem = ({
-	                  type, onClick = () => {
+	                  type, clickHandler = () => {
 	}
                   }) => {
 	return (
 		<img src={"https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/reactbase/ka/" + type + ".svg"}
-		     style={{width: "20px", height: "20px"}} alt="" onClick={onClick}/>
+		     style={{width: "20px", height: "20px"}} alt="" onClick={() =>
+			clickHandler(type)
+		}/>
 	)
 }
 export default IconItem;

@@ -41,6 +41,7 @@
         left: 10vw;
         transform: translateY(-50%);
         z-index: 10000000;
+        background-color: #D4EFDB;
 
         > span {
           margin-left: 4px;
@@ -112,5 +113,37 @@
     left: 50%;
     transform: translateX(-50%);
   }
+
+}
+
+.cat-container {
+  .title {
+    padding: 0 15px;
+    font-size: 16px;
+
+  }
+
+  .cat-fat {
+    display: flex;
+    flex-flow: row wrap;
+
+    .list {
+      width: 80px;
+      height: 80px;
+      //background-color: pink;
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* 当前被选中时的样式 */
+    .selected {
+      background-color: #D4EFDB;
+      border: 1px solid #9499a0;
+      border-radius: 5px;
+    }
+  }
+
 
 }

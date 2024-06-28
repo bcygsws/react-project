@@ -1,14 +1,13 @@
 import "./newAdd.scss";
 import {Button, DatePicker, Input, NavBar, Toast} from "antd-mobile";
-import classNames from "classnames";
 import {useState} from "react";
 import IconItem from "../layout/month/components/IconItem";
 import {billListData} from "../../constant";
-import Category from "./components/Category";
 import {useDispatch} from "react-redux";
 import {asyncAddBillList} from "../../store/modules/billStore";
-import {v4 as uuidv4} from "uuid";
+// import {v4 as uuidv4} from "uuid";
 import {WholeTimeFormat} from "../../utils/TimeFormat";
+import classNames from "classnames";
 import {useNavigate} from "react-router-dom";
 
 export default function NewAdd() {
@@ -24,12 +23,14 @@ export default function NewAdd() {
 	const [useFor, setUseFor] = useState("");
 	// 限定时间选择器的最晚时间边界-当前时间，变量now
 	const now = new Date();
+	// 存储时间的变量
+	const [date, setDate] = useState(WholeTimeFormat(now));
+	// 定义一个状态量，维护图标的选中状态
 	const dispatch = useDispatch();
+	// 路由编程式导航
+	const navigate = useNavigate();
 	const back = () =>
-		Toast.show({
-			content: '点击了返回区域',
-			duration: 1000,
-		});
+		navigate(-1);
 	/**
 	 * @name:handleClick
 	 * @description:控制时间选择器DatePicker显示或隐藏
@@ -38,26 +39,35 @@ export default function NewAdd() {
 	const handleClick = () => {
 		setDateVisible(true);
 	}
+	/**
+	 * @name:dateHandler
+	 * @description:DatePicker选中后的时间，存入date状态变量
+	 *
+	 * */
+	const dateHandler = (val) => {
+		console.log(val);
+		setDate(WholeTimeFormat(val));
+	}
 
 	/**
 	 * @name:saveBill
 	 * @description:表单数据收集
 	 * 点击"保存"按钮，将数据收集到
+	 * 注：id可以用uuid插件处理
+	 * 在json-server中，内部会为前端请求，增加一个随机的id;因此，id也可以不处理
 	 *
 	 * */
-	const navigate = useNavigate();
 	const saveBill = () => {
-		const billData = {
-			id: uuidv4(),
+		let billData = {
+			// id: uuidv4(),
 			type,
 			money: type === "pay" ? -money : +money,
-			date: WholeTimeFormat(new Date()),
+			date: date,
 			useFor: useFor
 		}
 		console.log(billData);
 		dispatch(asyncAddBillList(billData));
-
-		navigate("/");
+		asyncAddBillList(billData);
 	}
 	/**
 	 * @name:handlerSonClick
@@ -66,9 +76,11 @@ export default function NewAdd() {
 	 *
 	 * */
 	const handlerSonClick = (type) => {
+		type = type ? type : "food";
 		console.log(type);
 		setUseFor(type);
 	}
+
 	return (<div className="footer-container">
 		<div className="card-header">
 			{/*	导航栏 */}
@@ -85,8 +97,10 @@ export default function NewAdd() {
 			{/*	输入文本框 */}
 			<div className="text-input">
 				<div className="time">
-					<IconItem type="calendar" onClick={handleClick}/>
-					<span onClick={() => setDateVisible(true)}>今天</span>
+					<IconItem type="calendar"/>
+					{/*<span onClick={handleClick}>今天</span>*/}
+					{/*选好的时间，渲染在今天这个位置*/}
+					<span onClick={handleClick}>{date + ""}</span>
 				</div>
 				<Input
 					placeholder='0.00'
@@ -104,18 +118,29 @@ export default function NewAdd() {
 					setDateVisible(false)
 				}}
 				max={now}
-				onConfirm={val => {
-					Toast.show(val.toDateString())
-				}}
+				onConfirm={dateHandler}
 			/>
 		</div>
 		<div className="main-fat">
 			<div className="main-content">
 				{
-					billListData[type].map((bill) => {
-						return <Category name={bill.name} list={bill.list} key={bill.type}
-						                 handlerSonClick={handlerSonClick}/>
+					billListData[type].map((bill, index) => {
+						return <div className="cat-container" key={index}>
+							<div className="title">{bill.name}</div>
+							<div className="cat-fat">
+								{
+									bill.list.map((item, _index) => {
+										return <div key={_index}
+										            className={classNames("list", item.type === useFor && "selected")}>
+											<IconItem type={item.type} clickHandler={handlerSonClick}/>
+											<div className="cat-footer">{item.name}</div>
+										</div>
 
+									})
+								}
+							</div>
+
+						</div>
 					})
 				}
 			</div>
