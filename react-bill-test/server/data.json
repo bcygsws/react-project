@@ -200,8 +200,71 @@
       "id": "e409",
       "type": "income",
       "money": 18888,
-      "date": "2024-06-29",
+      "date": "2023-06-29",
       "useFor": "salary"
+    },
+    {
+      "id": "dd64",
+      "type": "pay",
+      "money": -1999.99,
+      "date": "2023-04-28",
+      "useFor": "drinks"
+    },
+    {
+      "id": "e509",
+      "type": "income",
+      "money": 12,
+      "date": "2023-03-29",
+      "useFor": "salary"
+    },
+    {
+      "id": "df610",
+      "type": "pay",
+      "money": -1999.99,
+      "date": "2023-02-28",
+      "useFor": "drinks"
+    },
+    {
+      "id": "e410affaf",
+      "type": "income",
+      "money": 10,
+      "date": "2023-01-29",
+      "useFor": "salary"
+    },
+    {
+      "id": "df610afa",
+      "type": "pay",
+      "money": -19.99,
+      "date": "2023-09-28",
+      "useFor": "drinks"
+    },
+    {
+      "id": "e410afd",
+      "type": "income",
+      "money": 10,
+      "date": "2023-10-29",
+      "useFor": "salary"
+    },
+    {
+      "id": "dffasf10",
+      "type": "pay",
+      "money": -199.99,
+      "date": "2023-12-28",
+      "useFor": "drinks"
+    },
+    {
+      "id": "eaf410",
+      "type": "income",
+      "money": 10,
+      "date": "2023-11-29",
+      "useFor": "salary"
+    },
+    {
+      "id": "2285",
+      "type": "pay",
+      "money": -88.88,
+      "date": "2024-06-30",
+      "useFor": "dessert"
     }
   ]
 }
