@@ -267,32 +267,25 @@
       "useFor": "dessert"
     },
     {
-      "id": "ebea",
+      "id": "e0e0",
       "type": "pay",
-      "money": null,
-      "date": "2024-06-29",
-      "useFor": ""
+      "money": -99.99,
+      "date": "2024-03-30",
+      "useFor": "game"
     },
     {
-      "id": "43ad",
+      "id": "6d89",
       "type": "pay",
-      "money": null,
-      "date": "2024-06-29",
-      "useFor": ""
+      "money": -6.68,
+      "date": "2024-06-30",
+      "useFor": "drinks"
     },
     {
-      "id": "4491",
+      "id": "65ba",
       "type": "pay",
-      "money": null,
-      "date": "2024-06-29",
-      "useFor": ""
-    },
-    {
-      "id": "524d",
-      "type": "pay",
-      "money": null,
-      "date": "2024-06-29",
-      "useFor": ""
+      "money": -10,
+      "date": "2024-06-30",
+      "useFor": "drinks"
     }
   ]
 }

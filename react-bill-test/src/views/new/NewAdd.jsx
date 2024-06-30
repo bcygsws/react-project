@@ -1,5 +1,5 @@
 import "./newAdd.scss";
-import {Button, DatePicker, Input, NavBar, Toast} from "antd-mobile";
+import {Button, DatePicker, Input, NavBar} from "antd-mobile";
 import {useState} from "react";
 import IconItem from "../layout/month/components/IconItem";
 import {billListData} from "../../constant";
@@ -56,12 +56,17 @@ export default function NewAdd() {
 	 * 注：id可以用uuid插件处理
 	 * 在json-server中，内部会为前端请求，增加一个随机的id;因此，id也可以不处理
 	 *
+	 * 表单数据；未传值时的兼容
+	 * type：没传值时，设为 "food"
+	 * money:没传值时，设为0;如：(type==="pay"?-money:+money)||0
+	 * date:在useState声明时，就传入了默认值；没有切换DatePicker，就使用默认值
+	 *
 	 * */
 	const saveBill = () => {
 		let billData = {
 			// id: uuidv4(),
 			type,
-			money: type === "pay" ? -money : +money,
+			money: (type === "pay" ? -money : +money) || 0,
 			date: date,
 			useFor: useFor
 		}
