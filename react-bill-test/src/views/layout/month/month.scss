@@ -29,20 +29,20 @@
 
       .arrow {
         position: absolute;
-        left: 148px;
+        left: 140px;
         top: 54px;
         display: inline-block;
         width: 7px;
         height: 7px;
         border-top: 2px solid #121826;
         border-left: 2px solid #121826;
-        transform: rotate(225deg) scale(0.8);
+        transform: rotate(225deg) scale(0.6);
         transform-origin: center;
         transition: all 0.3s;
       }
 
       .arrow.expand {
-        transform: translate(0, 3px) rotate(45deg) scale(0.8);
+        transform: translate(0, 3px) rotate(45deg) scale(0.6);
       }
     }
 

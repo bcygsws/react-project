@@ -265,6 +265,34 @@
       "money": -88.88,
       "date": "2024-06-30",
       "useFor": "dessert"
+    },
+    {
+      "id": "ebea",
+      "type": "pay",
+      "money": null,
+      "date": "2024-06-29",
+      "useFor": ""
+    },
+    {
+      "id": "43ad",
+      "type": "pay",
+      "money": null,
+      "date": "2024-06-29",
+      "useFor": ""
+    },
+    {
+      "id": "4491",
+      "type": "pay",
+      "money": null,
+      "date": "2024-06-29",
+      "useFor": ""
+    },
+    {
+      "id": "524d",
+      "type": "pay",
+      "money": null,
+      "date": "2024-06-29",
+      "useFor": ""
     }
   ]
 }

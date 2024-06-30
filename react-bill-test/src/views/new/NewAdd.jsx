@@ -82,71 +82,73 @@ export default function NewAdd() {
 	}
 
 	return (<div className="footer-container">
-		<div className="card-header">
-			{/*	导航栏 */}
-			<NavBar onBack={back}>记一笔</NavBar>
-			{/*	导航按钮支出、收入*/}
-			<div className="btn">
-				<Button block={false} shape='rounded' color='primary'
-				        className={classNames(type === "pay" && "active")}
-				        onClick={() => setType("pay")}>支出</Button>
-				<Button block={false} shape='rounded' color='primary'
-				        className={classNames(type === "income" && "active")}
-				        onClick={() => setType("income")}>收入</Button>
-			</div>
-			{/*	输入文本框 */}
-			<div className="text-input">
-				<div className="time">
-					<IconItem type="calendar"/>
-					{/*<span onClick={handleClick}>今天</span>*/}
-					{/*选好的时间，渲染在今天这个位置*/}
-					<span onClick={handleClick}>{date + ""}</span>
+			<div className="card-header">
+				{/*	导航栏 */}
+				<NavBar onBack={back}>记一笔</NavBar>
+				{/*	导航按钮支出、收入*/}
+				<div className="btn">
+					<Button block={false} shape='rounded' color='primary'
+					        className={classNames(type === "pay" && "active")}
+					        onClick={() => setType("pay")}>支出</Button>
+					<Button block={false} shape='rounded' color='primary'
+					        className={classNames(type === "income" && "active")}
+					        onClick={() => setType("income")}>收入</Button>
 				</div>
-				<Input
-					placeholder='0.00'
-					value={money}
-					onChange={val => {
-						setMoney(val)
+				{/*	输入文本框 */}
+				<div className="text-input">
+					<div className="time">
+						<IconItem type="calendar"/>
+						{/*<span onClick={handleClick}>今天</span>*/}
+						{/*选好的时间，渲染在今天这个位置*/}
+						<span
+							onClick={handleClick}>{WholeTimeFormat(now) === WholeTimeFormat(date) ? "今天" : date + ""}</span>
+					</div>
+					<Input
+						placeholder='0.00'
+						value={money}
+						onChange={val => {
+							setMoney(val)
+						}}
+					/>
+				</div>
+				{/*	时间选择器 */}
+				<DatePicker
+					title='时间选择'
+					visible={dateVisible}
+					onClose={() => {
+						setDateVisible(false)
 					}}
+					max={now}
+					onConfirm={dateHandler}
 				/>
 			</div>
-			{/*	时间选择器 */}
-			<DatePicker
-				title='时间选择'
-				visible={dateVisible}
-				onClose={() => {
-					setDateVisible(false)
-				}}
-				max={now}
-				onConfirm={dateHandler}
-			/>
-		</div>
-		<div className="main-fat">
-			<div className="main-content">
-				{
-					billListData[type].map((bill, index) => {
-						return <div className="cat-container" key={index}>
-							<div className="title">{bill.name}</div>
-							<div className="cat-fat">
-								{
-									bill.list.map((item, _index) => {
-										return <div key={_index}
-										            className={classNames("list", item.type === useFor && "selected")}>
-											<IconItem type={item.type} clickHandler={handlerSonClick}/>
-											<div className="cat-footer">{item.name}</div>
-										</div>
+			<div className="main-fat">
+				<div className="main-content">
+					{
+						billListData[type].map((bill, index) => {
+							return <div className="cat-container" key={index}>
+								<div className="title">{bill.name}</div>
+								<div className="cat-fat">
+									{
+										bill.list.map((item, _index) => {
+											return <div key={_index}
+											            className={classNames("list", item.type === useFor && "selected")}>
+												<IconItem type={item.type} clickHandler={handlerSonClick}/>
+												<div className="cat-footer">{item.name}</div>
+											</div>
 
-									})
-								}
+										})
+									}
+								</div>
+
 							</div>
-
-						</div>
-					})
-				}
+						})
+					}
+				</div>
+			</div>
+			<div className="new-footer">
+				<Button block color='primary' size='small' onClick={saveBill}>保存</Button>
 			</div>
 		</div>
-		<div className="new-footer">
-			<Button block color='primary' size='small' onClick={saveBill}>保存</Button>
-		</div>
-	</div>)
+	)
 }
