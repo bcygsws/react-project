@@ -4,6 +4,20 @@
     height: 142px;
     background-color: #D4EFDB;
 
+    .adm-nav-bar {
+      .adm-nav-bar-title {
+        font-size: 14px;
+      }
+
+      .adm-nav-bar-left {
+        .adm-nav-bar-back {
+          .adm-nav-bar-back-arrow {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+
     .btn {
       text-align: center;
 

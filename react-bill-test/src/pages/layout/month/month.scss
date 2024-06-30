@@ -3,6 +3,14 @@
   display: flex;
   flex-flow: column nowrap;
 
+  .header {
+    .adm-nav-bar {
+      .adm-nav-bar-title {
+        font-size: 14px;
+      }
+    }
+  }
+
 
   .content {
     height: 120px;

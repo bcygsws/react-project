@@ -1,4 +1,3 @@
-import './App.css';
 import {Outlet} from "react-router-dom";
 // 导入定制主题样式文件
 import "./css/theme.css";
