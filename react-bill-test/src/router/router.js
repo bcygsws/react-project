@@ -1,7 +1,7 @@
-import NewAdd from "../views/new/NewAdd";
-import MonthBill from "../views/layout/month/MonthBill";
+import NewAdd from "../pages/new/NewAdd";
+import MonthBill from "../pages/layout/month/MonthBill";
 import App from "../App";
-import YearBill from "../views/layout/year/YearBill";
+import YearBill from "../pages/layout/year/YearBill";
 
 /**
  *@路由配置文件
