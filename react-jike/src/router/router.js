@@ -8,7 +8,7 @@ import {createBrowserRouter} from "react-router-dom";
 // import Login from "../pages/Login";
 // import Layout from "../pages/Layout";
 // 配置了 根路径下src路径的别名@
-import Login from "@/pages/Login";
+import Login from "@/pages/login/Login";
 import Layout from "@/pages/Layout";
 
 const router = createBrowserRouter(
