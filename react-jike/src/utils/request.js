@@ -9,14 +9,26 @@
  *
  * */
 import axios from "axios";
+import {getToken} from "./index";
 
 const request = axios.create({
 	baseURL: "http://geek.itheima.net/v1_0",
 	timeout: 5000
 });
 // 在请求发送之前，拦截一下，插入一些自定义配置-参数处理
+// 2xx状态码都会触发该函数
+/**
+ * @将token加入到请求头，向后端发送请求时，需要验证token字段，才能获得响应数据
+ *
+ * */
 request.interceptors.request.use((config) => {
-	// 2xx状态码都会触发该函数
+	// 1.获取token
+	const token = getToken();
+	// 2.token有值，就为请求头添加token值
+	// 3.在layout组件中测试
+	if (token) {// 注：token的拼接方式，要遵循后端的要求
+		config.headers.Authorization = `Bearer ${token}`;
+	}
 	return config;
 }, (error) => {
 	// 非2xx状态码都会触发该函数，错误处理

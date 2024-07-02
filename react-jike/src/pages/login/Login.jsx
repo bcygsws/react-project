@@ -7,8 +7,8 @@ import {useNavigate} from "react-router-dom";
 const Login = () => {
 	const [form] = Form.useForm();
 	const dispatch = useDispatch();
-	const {token} = useSelector(state => state.user);
-	console.log(token);
+	// const token = useSelector(state => state.token);
+	console.log("test",useSelector(state => state.user.token));
 	const navigate = useNavigate();
 
 	/**
@@ -17,8 +17,10 @@ const Login = () => {
 	 * 时间函数的参数value,就能拿到表单数据对象
 	 *
 	 * 测试：表单输入一个正确的值： {mobile: '13800000002', code: '246810'}
-	 * 就会拿到异步请求，获取的token
-	 *
+	 * 1.就会拿到异步请求，获取的token
+	 * 2.redux是基于浏览器内存的存储方式，刷新时状态恢复为初始值。因此，刷新
+	 * 页面，token恢复为初始值
+	 * 解决；将token,在redux和localStorage中都存一份
 	 *
 	 *
 	 * */

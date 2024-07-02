@@ -5,12 +5,13 @@
  *
  * */
 import {createBrowserRouter} from "react-router-dom";
-// import Login from "../pages/Login";
-// import Layout from "../pages/Layout";
+// import Login from "../pages/login/Login";
+// import HomeView from "../pages/layout/HomeView";
 // 配置了 根路径下src路径的别名@
 import Login from "@/pages/login/Login";
-import Layout from "@/pages/Layout";
+import HomeView from "@/pages/layout/HomeView";
 import App from "@/App";
+import AuthRoute from "@/components/AuthRoute";
 
 const router = createBrowserRouter(
 	[
@@ -24,7 +25,8 @@ const router = createBrowserRouter(
 				},
 				{
 					path: "/layout",
-					element: <Layout/>
+					// 传入Layout，Layout组件，就会在AuthRoute高阶组件（HOC）中以参数children的形式注入
+					element: <AuthRoute><HomeView/></AuthRoute>
 				}
 			]
 		}
