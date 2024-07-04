@@ -61,7 +61,7 @@ request.interceptors.response.use((res) => {
 	if(error.response.status===401){
 		// 清除token
 		removeToken();
-		// 跳转至登录页
+		// 跳转至登录页(全局的跳转，类似vue中beforeEach)
 		router.navigate("/");
 		// 刷新一些浏览器页面后，才会跳转至登录页
 		window.location.reload();
