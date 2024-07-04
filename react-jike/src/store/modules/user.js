@@ -1,6 +1,8 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {removeToken, request} from "../../utils";
 import {getToken, setToken} from "../../utils";
+// 获取封装的axios请求API
+import {loginAPI, getUserAPI} from "../../apis/user";
 
 const userStore = createSlice({
 	name: "user",
@@ -31,14 +33,14 @@ const {setTokenKey, setUserInfo, clearUserInfo} = userStore.actions;
 const fetchLogin = (loginForm) => {
 // 导入二次封装过的axios模块request
 	return async (dispatch) => {
-		const res = await request.post("/authorizations", loginForm);
+		const res = await loginAPI(loginForm);
 		dispatch(setTokenKey(res.data.token));
 	}
 }
 // 封装获取用户信息异步action
 const fetchUserInfo = () => {
 	return async (dispatch) => {
-		const res = await request.get("/user/profile");
+		const res = await getUserAPI();
 		dispatch(setUserInfo(res.data));
 	}
 }
