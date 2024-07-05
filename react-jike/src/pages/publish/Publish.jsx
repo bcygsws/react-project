@@ -34,6 +34,8 @@ const Publish = () => {
 	const [value, setValue] = useState("");
 	const [channelList, setChannelList] = useState([]);
 	useEffect(() => {
+		// 处理后端请求时，通常要封装成函数，随后调用它
+		// a.封装函数
 		async function getList() {
 			const result = await getChannelAPI();
 			console.log(result.data);
@@ -42,8 +44,26 @@ const Publish = () => {
 
 		}
 
+		// b.调用函数
 		getList();
 	}, []);
+	const handlerChange = (val) => {
+		// 注：val值，是options中的value,是item.id
+		console.log(val);
+	}
+	/**
+	 * @name:handlerClick
+	 * @description:【发布文章】按钮，事件处理函数
+	 * 注：收集表单数据
+	 *
+	 * */
+	const handlerSubmit = () => {
+		const formData = {
+			title: "",
+			channel: "",
+			content: value
+		};
+	}
 	return (<div>
 		<Breadcrumb
 			items={[
@@ -87,7 +107,10 @@ const Publish = () => {
 						},
 					]}
 				>
-					<Select/>
+					<Select defaultValue={0} onChange={handlerChange} options={channelList.map((item) => ({
+						value: item.id,
+						label: item.name
+					}))}/>
 				</Form.Item>
 				<Form.Item
 					label="内容"
@@ -114,7 +137,7 @@ const Publish = () => {
 						span: 16,
 					}}
 				>
-					<Button type="primary" htmlType="submit">
+					<Button type="primary" htmlType="submit" onClclick={handlerSubmit}>
 						发布文章
 					</Button>
 				</Form.Item>
