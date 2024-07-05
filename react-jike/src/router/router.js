@@ -1,10 +1,10 @@
+import {createBrowserRouter} from "react-router-dom";
 /**
  *
  * @name:路由配置文件router.js
  * 导出router
  *
  * */
-import {createBrowserRouter} from "react-router-dom";
 // import Login from "../pages/login/Login";
 // import HomeView from "../pages/layout/HomeView";
 // 配置了 根路径下src路径的别名@

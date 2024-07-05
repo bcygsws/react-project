@@ -1,3 +1,9 @@
 .form-container {
   margin-top: 20px;
+
+  .publish-quill {
+    .ql-container {
+      min-height: 300px;
+    }
+  }
 }

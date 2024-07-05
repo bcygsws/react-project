@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import "./index.scss";
 import {
 	Breadcrumb,
@@ -7,6 +7,10 @@ import {
 	Input,
 	Select,
 } from 'antd';
+import {NavLink} from "react-router-dom"
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import {getChannelAPI} from "../../apis/article";
 
 const formItemLayout = {
 	labelCol: {
@@ -22,16 +26,29 @@ const formItemLayout = {
 			span: 24,
 		},
 		sm: {
-			span: 18,
+			span: 20,
 		},
 	},
 };
 const Publish = () => {
+	const [value, setValue] = useState("");
+	const [channelList, setChannelList] = useState([]);
+	useEffect(() => {
+		async function getList() {
+			const result = await getChannelAPI();
+			console.log(result.data);
+			const {channels} = result.data;
+			setChannelList(channels);
+
+		}
+
+		getList();
+	}, []);
 	return (<div>
 		<Breadcrumb
 			items={[
 				{
-					title: '首页',
+					title: <NavLink to="/layout">首页</NavLink>,
 				},
 				{
 					title: '发布文章',
@@ -82,11 +99,18 @@ const Publish = () => {
 						},
 					]}
 				>
-					<Input.TextArea/>
+					{/*富文本编辑器*/}
+					<ReactQuill
+						theme="snow"
+						value={value}
+						onChange={setValue}
+						placeholder="请输入文本内容"
+						className="publish-quill"
+					/>
 				</Form.Item>
 				<Form.Item
 					wrapperCol={{
-						offset: 6,
+						offset: 10,
 						span: 16,
 					}}
 				>
