@@ -6,11 +6,20 @@
  *
  * */
 import {request} from "../utils";
-
+// 1.渲染下拉框列表
 const getChannelAPI = () => {
 	return request({
 		method: "GET",
 		url: "/channels"
 	});
 }
-export {getChannelAPI};
+// 2.提交文章表单
+const createArticleAPI = (data) => {
+	return request({
+		url: "/mp/articles?draft=false",
+		method: "POST",
+		data
+	});
+}
+
+export {getChannelAPI, createArticleAPI};

@@ -1,16 +1,19 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import "./index.scss";
 import {
 	Breadcrumb,
 	Button,
 	Form,
-	Input,
-	Select,
+	Input, Radio,
+	Select, Upload,
 } from 'antd';
 import {NavLink} from "react-router-dom"
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import {getChannelAPI} from "../../apis/article";
+import {createArticleAPI, getChannelAPI} from "../../apis/article";
+import {
+	PlusOutlined
+} from '@ant-design/icons';
 
 const formItemLayout = {
 	labelCol: {
@@ -32,7 +35,10 @@ const formItemLayout = {
 };
 const Publish = () => {
 	const [value, setValue] = useState("");
-	const [channelList, setChannelList] = useState([]);
+
+	const [channelList, setChannelList] = useState([])
+	// 上传图片时，onChange事件处理函数，返回的的数据对象{file:"",fileList:[]}
+	const [imageList, setImageList] = useState([]);
 	useEffect(() => {
 		// 处理后端请求时，通常要封装成函数，随后调用它
 		// a.封装函数
@@ -53,16 +59,50 @@ const Publish = () => {
 	}
 	/**
 	 * @name:handlerClick
-	 * @description:【发布文章】按钮，事件处理函数
-	 * 注：收集表单数据
+	 * @description:【发布文章】按钮，onFinish事件处理函数
+	 * 注：收集表单数据，一定要确保，Form.Item中name字段，和后端请求参数名称一致
 	 *
 	 * */
-	const handlerSubmit = () => {
+	const handlerSubmit = async (val) => {
+		console.log(val);// val就直接收集到了表单对象
+		// 表单数据对象匹配
 		const formData = {
-			title: "",
-			channel: "",
-			content: value
-		};
+			channel_id: val.channel,
+			title: val.title,
+			content: val.content,
+			cover: {// 封面对象
+				type: 0,
+				images: []
+			}
+		}
+		const res = await createArticleAPI(formData);
+		console.log(res);// {data:{id:""},message:"OK"}
+	}
+	/**
+	 * @name: radioChange
+	 * @description: 选择上面图片的数量
+	 * 单图、三图和无图
+	 *
+	 * */
+		// 接上，控制上传图片的数量，维护单选框radVal
+	const [radVal, setRadVal] = useState(0);
+	const radioChange = (val) => {
+		console.log(val.target.value);
+		setRadVal(val.target.value);
+
+	}
+	/**
+	 * @name:uploadChangeHandler
+	 * @description:上传文件改变时的回调
+	 *
+	 * */
+	const uploadChangeHandler = (imgInfo) => {
+		// console.log("正在上传中……");
+		// 打印一下，图片上传过程中，返回的对象参数imgInfo
+		// {file:当前正在上传的图片信息，fileList:[{之前已经上传的图片信息},{当前图片信息}]
+		console.log(imgInfo)
+		setImageList(imgInfo.fileList);
+
 	}
 	return (<div>
 		<Breadcrumb
@@ -82,10 +122,11 @@ const Publish = () => {
 				style={{
 					maxWidth: 800,
 				}}
+				onFinish={handlerSubmit}
 			>
 				<Form.Item
 					label="标题"
-					name="Input"
+					name="title"
 					rules={[
 						{
 							required: true,
@@ -99,7 +140,7 @@ const Publish = () => {
 
 				<Form.Item
 					label="频道"
-					name="Select"
+					name="channel_id"
 					rules={[
 						{
 							required: true,
@@ -112,9 +153,42 @@ const Publish = () => {
 						label: item.name
 					}))}/>
 				</Form.Item>
+				{/* 上传封面 */}
+				<Form.Item label="封面">
+					<Form.Item name="type">
+						<Radio.Group defaultValue={0} onChange={radioChange} value={radVal}>
+							<Radio value={1}>单图</Radio>
+							<Radio value={3}>三图</Radio>
+							<Radio value={0}>无图</Radio>
+						</Radio.Group>
+					</Form.Item>
+					{/*listType：上传列表的内建样式，picture-card是方形的，picture-circle是圆形*/}
+					{/*showUploadList: true表示显示上传列表,一般设置为true;以方便观察此前的上传图片*/}
+					{/*action：上传的地址，注意：此处的请求地址：要写全名；在utils中为axios统一配置
+					的baseURL已经不再生效*/}
+					{/*name: 发到后台的文件参数名*/}
+					{/*onChange： 上传文件改变时的回调*/}
+					{/*maxCount: 上传图片的数量*/}
+					{
+						(radVal !== 0) && <Upload
+							listType="picture-card"
+							showUploadList
+							action="http://geek.itheima.net/v1_0/upload"
+							name="image"
+							onChange={uploadChangeHandler}
+							maxCount={radVal}
+						>
+							<div style={{marginTop: 8}}>
+								<PlusOutlined/>
+							</div>
+						</Upload>
+					}
+
+
+				</Form.Item>
 				<Form.Item
 					label="内容"
-					name="TextArea"
+					name="content"
 					rules={[
 						{
 							required: true,
@@ -137,7 +211,7 @@ const Publish = () => {
 						span: 16,
 					}}
 				>
-					<Button type="primary" htmlType="submit" onClclick={handlerSubmit}>
+					<Button type="primary" htmlType="submit">
 						发布文章
 					</Button>
 				</Form.Item>
