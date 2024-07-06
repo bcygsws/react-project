@@ -100,7 +100,7 @@ const Publish = () => {
 		// console.log("正在上传中……");
 		// 打印一下，图片上传过程中，返回的对象参数imgInfo
 		// {file:当前正在上传的图片信息，fileList:[{之前已经上传的图片信息},{当前图片信息}]
-		console.log(imgInfo)
+		console.log(imgInfo);
 		setImageList(imgInfo.fileList);
 
 	}
