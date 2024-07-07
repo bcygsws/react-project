@@ -4,7 +4,7 @@ import {
 	Breadcrumb,
 	Button,
 	Form,
-	Input, Radio,
+	Input, message, Radio,
 	Select, Upload,
 } from 'antd';
 import {NavLink} from "react-router-dom"
@@ -35,7 +35,9 @@ const formItemLayout = {
 };
 const Publish = () => {
 	const [value, setValue] = useState("");
-
+	// 控制上传图片的数量，维护单选框radVal
+	const [radVal, setRadVal] = useState(0);
+	// 下拉框频道的选项组成的数组
 	const [channelList, setChannelList] = useState([])
 	// 上传图片时，onChange事件处理函数，返回的的数据对象{file:"",fileList:[]}
 	const [imageList, setImageList] = useState([]);
@@ -62,21 +64,39 @@ const Publish = () => {
 	 * @description:【发布文章】按钮，onFinish事件处理函数
 	 * 注：收集表单数据，一定要确保，Form.Item中name字段，和后端请求参数名称一致
 	 *
+	 * cover:{
+	 *     type:0,
+	 *     images:[]
+	 * }
+	 * 在开发上传图片功能前，置空
+	 * 参考后端文档：type参数直接使用radVal就可以，而images数组，需要imageList数组改造获得
+	 * images:["图片url地址1""图片url地址2"，"图片url地址3"]
+	 *
+	 *
 	 * */
 	const handlerSubmit = async (val) => {
 		console.log(val);// val就直接收集到了表单对象
+		// 解构val,拿到channel_id,title和content
+		const {channel_id, title, content} = val;
 		// 表单数据对象匹配
 		const formData = {
-			channel_id: val.channel,
-			title: val.title,
-			content: val.content,
+			channel_id: channel_id,
+			title: title,
+			content: content,
 			cover: {// 封面对象
-				type: 0,
-				images: []
+				type: radVal,
+				images: imageList.map(item => item.response.data.url)
 			}
 		}
-		const res = await createArticleAPI(formData);
-		console.log(res);// {data:{id:""},message:"OK"}
+		console.log(formData);
+		// 做一个校验当imageList的数组长度（表示上传图片的数量）和cover.type相等时，才发出请求
+		if (imageList.length !== radVal) {
+			message.warning("封面类型和图片数量不匹配");
+		} else {
+			const res = await createArticleAPI(formData);
+			console.log(res);// {data:{id:""},message:"OK"}
+
+		}
 	}
 	/**
 	 * @name: radioChange
@@ -84,8 +104,7 @@ const Publish = () => {
 	 * 单图、三图和无图
 	 *
 	 * */
-		// 接上，控制上传图片的数量，维护单选框radVal
-	const [radVal, setRadVal] = useState(0);
+
 	const radioChange = (val) => {
 		console.log(val.target.value);
 		setRadVal(val.target.value);
