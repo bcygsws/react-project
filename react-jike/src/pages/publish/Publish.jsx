@@ -14,6 +14,7 @@ import {createArticleAPI, getChannelAPI} from "../../apis/article";
 import {
 	PlusOutlined
 } from '@ant-design/icons';
+import useChannels from "../../hooks/useChannels";
 
 const formItemLayout = {
 	labelCol: {
@@ -37,24 +38,25 @@ const Publish = () => {
 	const [value, setValue] = useState("");
 	// 控制上传图片的数量，维护单选框radVal
 	const [radVal, setRadVal] = useState(0);
-	// 下拉框频道的选项组成的数组
-	const [channelList, setChannelList] = useState([])
 	// 上传图片时，onChange事件处理函数，返回的的数据对象{file:"",fileList:[]}
 	const [imageList, setImageList] = useState([]);
-	useEffect(() => {
-		// 处理后端请求时，通常要封装成函数，随后调用它
-		// a.封装函数
-		async function getList() {
-			const result = await getChannelAPI();
-			console.log(result.data);
-			const {channels} = result.data;
-			setChannelList(channels);
-
-		}
-
-		// b.调用函数
-		getList();
-	}, []);
+	// 下拉框频道的选项组成的数组
+	// const [channelList, setChannelList] = useState([]);
+	// useEffect(() => {
+	// 	// 处理后端请求时，通常要封装成函数，随后调用它
+	// 	// a.封装函数
+	// 	async function getList() {
+	// 		const result = await getChannelAPI();
+	// 		console.log(result.data);
+	// 		const {channels} = result.data;
+	// 		setChannelList(channels);
+	//
+	// 	}
+	//
+	// 	// b.调用函数
+	// 	getList();
+	// }, []);
+	const channelList = useChannels();
 	const handlerChange = (val) => {
 		// 注：val值，是options中的value,是item.id
 		console.log(val);

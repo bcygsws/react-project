@@ -21,5 +21,14 @@ const createArticleAPI = (data) => {
 		data
 	});
 }
+// 3.获取文章列表API
+const getArticleListAPI = (params) => {
+	return request({
+		url: "/mp/articles",
+		method: "GET",
+		// 传递query参数
+		params
+	});
 
-export {getChannelAPI, createArticleAPI};
+}
+export {getChannelAPI, createArticleAPI, getArticleListAPI};
