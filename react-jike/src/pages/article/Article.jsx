@@ -1,5 +1,5 @@
-import {Breadcrumb, Card, Radio, Space, Table, Tag} from "antd";
-import {NavLink} from "react-router-dom";
+import {Breadcrumb, Card, message, Popconfirm, Radio, Space, Table, Tag} from "antd";
+import {NavLink, useNavigate} from "react-router-dom";
 import {
 	Button,
 	DatePicker,
@@ -7,7 +7,7 @@ import {
 	Select,
 } from 'antd';
 import {useEffect, useMemo, useState} from "react";
-import {getArticleListAPI} from "../../apis/article";
+import {deleteArtByIdAPI, getArticleListAPI} from "../../apis/article";
 import {EditOutlined, DeleteOutlined} from '@ant-design/icons';
 import img404 from '@/assets/error.png';
 import useChannels from "../../hooks/useChannels";
@@ -32,63 +32,7 @@ const formItemLayout = {
 	},
 };
 
-const columns = [
-	{
-		title: '封面',
-		dataIndex: 'cover',
-		width: 120,
-		render: cover => {
-			return <img src={cover.images[0] || img404} width={80} height={60} alt=""/>
-		}
-	},
-	{
-		title: '标题',
-		dataIndex: 'title',
-		width: 220
-	},
-	{
-		title: '状态',
-		dataIndex: 'status',
-		render: (status) => {
-			// console.log(status);
-			const color = status === 2 ? "success" : "warning";
-			const txt = status === 2 ? "审核通过" : "待审核";
-			return (<Tag color={color}>{txt}</Tag>);
-		}
-	},
-	{
-		title: '发布时间',
-		dataIndex: 'pubdate'
-	},
-	{
-		title: '阅读数',
-		dataIndex: 'read_count'
-	},
-	{
-		title: '评论数',
-		dataIndex: 'comment_count'
-	},
-	{
-		title: '点赞数',
-		dataIndex: 'like_count'
-	},
-	{
-		title: '操作',
-		render: data => {
-			return (
-				<Space size="middle">
-					<Button type="primary" shape="circle" icon={<EditOutlined/>}/>
-					<Button
-						type="primary"
-						danger
-						shape="circle"
-						icon={<DeleteOutlined/>}
-					/>
-				</Space>
-			)
-		}
-	}
-]
+
 // 测试数据：准备表格body数据，搭建静态结构时使用
 // const data = [
 // 	{
@@ -104,7 +48,79 @@ const columns = [
 // 		title: 'wkwebview离线化加载h5资源解决方案xxxx'
 // 	}
 // ];
+
 const Article = () => {
+	// 路由导航钩子useNavigagte
+	const navigate = useNavigate();
+	const columns = [
+		{
+			title: '封面',
+			dataIndex: 'cover',
+			width: 120,
+			render: cover => {
+				return <img src={cover.images[0] || img404} width={80} height={60} alt=""/>
+			}
+		},
+		{
+			title: '标题',
+			dataIndex: 'title',
+			width: 220
+		},
+		{
+			title: '状态',
+			dataIndex: 'status',
+			render: (status) => {
+				// console.log(status);
+				const color = status === 2 ? "success" : "warning";
+				const txt = status === 2 ? "审核通过" : "待审核";
+				return (<Tag color={color}>{txt}</Tag>);
+			}
+		},
+		{
+			title: '发布时间',
+			dataIndex: 'pubdate'
+		},
+		{
+			title: '阅读数',
+			dataIndex: 'read_count'
+		},
+		{
+			title: '评论数',
+			dataIndex: 'comment_count'
+		},
+		{
+			title: '点赞数',
+			dataIndex: 'like_count'
+		},
+		{
+			title: '操作',
+			render: data => {
+				return (
+					<Space size="middle">
+						{/*点击按钮，跳转至【创建文章】路由，并携带id参数*/}
+						<Button type="primary" shape="circle" icon={<EditOutlined/>}
+						        onClick={() => clickHandler(data)}/>
+						{/*为删除和修改，添加一个【气泡确认框】PopConfirm,包裹要加弹框的组件*/}
+						<Popconfirm
+							title="删除文章"
+							description="你确定删除这篇文章吗?"
+							onConfirm={() => confirmHandler(data)}
+							okText="确认"
+							cancelText="取消"
+						>
+							<Button
+								type="primary"
+								danger
+								shape="circle"
+								icon={<DeleteOutlined/>}
+							/>
+						</Popconfirm>
+
+					</Space>
+				)
+			}
+		}
+	];
 	// radVal：表示单选框组的默认值，设为0；会默认选中全部
 	const [radVal, setRadVal] = useState(0);
 	// 获取文章列表
@@ -221,7 +237,7 @@ const Article = () => {
 		setFormData({...formData, page, per_page: pageSize});
 	}
 	/**
-	 * @name:
+	 * @name:计算属性curPageInfo
 	 * @description:监听当前页码和每页容量的变化
 	 * useMemo
 	 *
@@ -232,6 +248,35 @@ const Article = () => {
 			per_page: pageInfo['per_page']
 		};
 	}, [pageInfo]);
+	/**
+	 * @name:confirmHandler
+	 * @description:根据id删除当前文章的事件处理函数
+	 * 注：当前columns在组件Article外声明的变量，confirmHandler方法，
+	 * 也必须声明在组件之外，访问不到该事件处理函数;将columns变量声明在Article组件内部
+	 *
+	 * */
+	const confirmHandler = async (data) => {
+		console.log(data);
+		const res = await deleteArtByIdAPI(data);
+		console.log(res);
+		if (res.message === "OK") {
+			// 1.使用message提示删除成功
+			message.success("删除成功");
+			// 2.重新请求数据，更新界面
+			setFormData({...formData});
+		}
+
+	}
+	/**
+	 * @name:clickHandler
+	 * @description:点击"修改"，跳转值Publish,并携带id参数
+	 *
+	 * */
+	const clickHandler = (data) => {
+		// 加了查询参数后，不影响匹配到/layout/publish对应的Publish组件
+		navigate(`/layout/publish?id=${data.id}`);
+
+	}
 	return (
 		<div>
 			<Card

@@ -31,4 +31,25 @@ const getArticleListAPI = (params) => {
 	});
 
 }
-export {getChannelAPI, createArticleAPI, getArticleListAPI};
+// 4.删除文章，根据id
+const deleteArtByIdAPI = (data) => {
+	return request({
+		url: `/mp/articles/${data.id}`,
+		method: "DELETE"
+	});
+}
+// 5.根据id,获取文章详情-回显数据
+const getDetailByIdAPI = (id) => {
+	return request({
+		url: `/mp/articles/${id}`,
+		method: "GET"
+	});
+
+}
+export {
+	getChannelAPI,
+	createArticleAPI,
+	getArticleListAPI,
+	deleteArtByIdAPI,
+	getDetailByIdAPI
+};

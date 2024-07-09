@@ -7,10 +7,10 @@ import {
 	Input, message, Radio,
 	Select, Upload,
 } from 'antd';
-import {NavLink} from "react-router-dom"
+import {NavLink, useSearchParams} from "react-router-dom"
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import {createArticleAPI, getChannelAPI} from "../../apis/article";
+import {createArticleAPI, getChannelAPI, getDetailByIdAPI} from "../../apis/article";
 import {
 	PlusOutlined
 } from '@ant-design/icons';
@@ -35,6 +35,12 @@ const formItemLayout = {
 	},
 };
 const Publish = () => {
+	// 获取query查询参数的钩子useSearchPrams()
+	const [params] = useSearchParams();
+	const articleId = params.get('id');
+	// console.log(articleId);
+	// 获取Form组件实例对象，form.setFieldsValue()方法回填数据
+	const [form] = Form.useForm();
 	const [value, setValue] = useState("");
 	// 控制上传图片的数量，维护单选框radVal
 	const [radVal, setRadVal] = useState(0);
@@ -125,6 +131,26 @@ const Publish = () => {
 		setImageList(imgInfo.fileList);
 
 	}
+	/**
+	 * @name:useEffect
+	 * @description:回填参数
+	 * form.setFieldsValue(res.data)回填数据
+	 * 注：封面的回填，需要单独处理
+	 * 
+	 *
+	 * */
+	useEffect(() => {
+		async function getArticleDetail() {
+			const res = await getDetailByIdAPI(articleId);
+			console.log(res);
+			// 调用setFieldsValue方法回填数据
+			form.setFieldsValue(res.data);
+			// 以上，完成了除封面以外的数据回填
+
+		}
+
+		getArticleDetail();
+	}, [articleId, form]);
 	return (<div>
 		<Breadcrumb
 			items={[
@@ -137,6 +163,7 @@ const Publish = () => {
 			]}
 		/>
 		<div className="form-container">
+			{/* form用于获取表单实例对象 const [form]=Form.useForm(); */}
 			<Form
 				{...formItemLayout}
 				variant="filled"
@@ -144,6 +171,7 @@ const Publish = () => {
 					maxWidth: 800,
 				}}
 				onFinish={handlerSubmit}
+				form={form}
 			>
 				<Form.Item
 					label="标题"
