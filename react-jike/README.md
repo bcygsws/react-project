@@ -87,16 +87,23 @@ here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-
 - 装包@craco/craco，npm i @craco/craco -D
 - 在根路径下创建craco.config.js，并配置webpack选项下，alias
 
-### 项目打包
+### 三、项目打包
 
-#### 一、运行打包命令
+#### 1.运行打包命令
 
 - npm run build
 
-#### 二、全局安装serve包
+#### 2.全局安装serve包
 
 - npm install -g serve
 
-#### 三、静态服务器，运行项目
+#### 3.静态服务器，运行项目
 
 - serve -s build
+
+### 四、react路由的懒加载
+
+#### lazy函数+react内置的Suspense组件
+
+- 第一步：使用lazy方法，将路由改为动态导入的方式；const Publish=>lazy(()=>import("@/pages/publish/Publish"));
+- 第二步：使用react的内置Suspense组件包裹路由对应的组件；element:<Suspense><Publish/></Suspense>
