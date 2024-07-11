@@ -3,10 +3,10 @@ import "./index.scss";
 import {
     Breadcrumb, Button, Form, Input, message, Radio, Select, Upload,
 } from 'antd';
-import {NavLink, useSearchParams} from "react-router-dom"
+import {NavLink, useNavigate, useSearchParams} from "react-router-dom"
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import {createArticleAPI, getDetailByIdAPI} from "../../apis/article";
+import {createArticleAPI, editArticleAPI, getDetailByIdAPI} from "../../apis/article";
 import {
     PlusOutlined
 } from '@ant-design/icons';
@@ -28,6 +28,8 @@ const formItemLayout = {
     },
 };
 const Publish = () => {
+    // 编程式导航钩子
+    const navigate = useNavigate();
     // 获取query查询参数的钩子useSearchPrams()
     const [params] = useSearchParams();
     const articleId = params.get('id');
@@ -73,25 +75,49 @@ const Publish = () => {
      * 参考后端文档：type参数直接使用radVal就可以，而images数组，需要imageList数组改造获得
      * images:["图片url地址1""图片url地址2"，"图片url地址3"]
      *
+     * 1.【文章管理】中，编辑文章，复用这个框，使用articleId变量的值，判别是【创建文章】的
+     * 提交，还是【文章管理】的编辑
+     *
      *
      * */
     const handlerSubmit = async (val) => {
         console.log(val);// val就直接收集到了表单对象
         // 解构val,拿到channel_id,title和content
         const {channel_id, title, content} = val;
+        /**
+         * @description:根据是回填显示的图片，还是重新上传的图片，来适配cover的images
+         * 参数
+         *
+         *  */
+        const formatUrl = imageList.map(item => {
+            if (item.response) {// 上传的图片
+                return item.response.data.url;
+            } else {// 回填的图片
+                return item.url;
+
+            }
+        });
         // 表单数据对象匹配
         const formData = {
-            channel_id: channel_id, title: title, content: content, cover: {// 封面对象
-                type: radVal, images: imageList.map(item => item.response.data.url)
+            channel_id: channel_id,
+            title: title,
+            content: content,
+            cover: {// 封面对象
+                type: radVal,
+                images: formatUrl
             }
         }
-        console.log(formData);
-        // 做一个校验当imageList的数组长度（表示上传图片的数量）和cover.type相等时，才发出请求
         if (imageList.length !== radVal) {
             message.warning("封面类型和图片数量不匹配");
         } else {
-            const res = await createArticleAPI(formData);
-            console.log(res);// {data:{id:""},message:"OK"}
+            if (!articleId) {
+                const res = await createArticleAPI(formData);
+                console.log(res);// {data:{id:""},message:"OK"}
+            } else {// 编辑文章时，请求另外一个接口
+                const resEdit = await editArticleAPI(articleId, formData);
+                console.log(resEdit);
+            }
+            navigate("/layout/article");
 
         }
     }

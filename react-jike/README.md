@@ -86,3 +86,17 @@ here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-
 
 - 装包@craco/craco，npm i @craco/craco -D
 - 在根路径下创建craco.config.js，并配置webpack选项下，alias
+
+### 项目打包
+
+#### 一、运行打包命令
+
+- npm run build
+
+#### 二、全局安装serve包
+
+- npm install -g serve
+
+#### 三、静态服务器，运行项目
+
+- serve -s build
