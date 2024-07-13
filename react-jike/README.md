@@ -107,3 +107,24 @@ here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-
 
 - 第一步：使用lazy方法，将路由改为动态导入的方式；const Publish=>lazy(()=>import("@/pages/publish/Publish"));
 - 第二步：使用react的内置Suspense组件包裹路由对应的组件；element:<Suspense><Publish/></Suspense>
+
+### 五、CDN服务
+
+#### 5.1 概念
+
+- CDN：CDN（Content Delivery Network）是一种内容分发网络服务；当用户向网站请求内容时，会由离用户最近的服务器将缓存的内容传递给用户
+
+#### 5.2 哪些资源可以放到CDN服务？
+
+- 体积较大的，需要利用浏览器对CDN的缓存特性，加快加载时间
+- 非业务js代码，不需要经常改动，CDN不需要频繁更新缓存
+
+#### 5.3 具体实施
+
+##### 将react、react-dom等体积大的非业务js代码，使用CDN服务
+
+- 把需要做CDN缓存的react和react-dom排除在打包之外
+- 以CDN的方式重新引入资源（react、react-dom）
+
+##### 5.3.1 在craco.config.js中配置webpack和CDN,将react和react-dom包排除在打包之外
+

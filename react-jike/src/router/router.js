@@ -23,28 +23,28 @@ const Home = lazy(() => import("@/pages/home/Home"));
 const Article = lazy(() => import("@/pages/article/Article"));
 const Publish = lazy(() => import("@/pages/publish/Publish"));
 const router = createBrowserRouter(
-    [
-        {
-            path: "/",
-            element: <App/>,
-            children: [
-                {
-                    index: true,
-                    element: <Login/>
-                },
-                {
-                    path: "/layout",
-                    // 传入Layout，Layout组件，就会在AuthRoute高阶组件（HOC）中以参数children的形式注入
-                    element: <AuthRoute><HomeView/></AuthRoute>,
-                    children: [
-                        {index: true, element: <Suspense><Home/></Suspense>},
-                        {path: "article", element: <Suspense><Article/></Suspense>},
-                        {path: "publish", element: <Suspense><Publish/></Suspense>},
-                    ]
-                }
-            ]
-        }
+	[
+		{
+			path: "/",
+			element: <App/>,
+			children: [
+				{
+					index: true,
+					element: <Login/>
+				},
+				{
+					path: "/layout",
+					// 传入Layout，Layout组件，就会在AuthRoute高阶组件（HOC）中以参数children的形式注入
+					element: <AuthRoute><HomeView/></AuthRoute>,
+					children: [
+						{index: true, element: <Suspense fallback={'加载中……'}><Home/></Suspense>},
+						{path: "article", element: <Suspense fallback={'加载中……'}><Article/></Suspense>},
+						{path: "publish", element: <Suspense fallback={'加载中……'}><Publish/></Suspense>},
+					]
+				}
+			]
+		}
 
-    ]
+	]
 );
 export default router;
