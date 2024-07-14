@@ -6,7 +6,6 @@ import MyFather from "../../components/fat_to_son/MyFather";
 import MyFatherA from "../../components/son_to_fat/MyFatherA";
 import Fat from "../../components/sibling/Fat";
 import {Link, useNavigate} from "react-router-dom";
-import UseReducer from "../../components/use_reducer/UseReducer";
 
 export default function HomeView() {
 	const navigator = useNavigate();
@@ -41,7 +40,6 @@ export default function HomeView() {
 		<MyFatherA></MyFatherA>
 		{/*	七、兄弟组件之间的通信*/}
 		<Fat></Fat>
-		{/*十二、钩子useReducer的使用*/}
-		<UseReducer/>
+
 	</div>);
 }

@@ -27,6 +27,7 @@
     <button id="plus" class="mg">+</button>
     <span id="sp" class="mg">0</span>
     <button id="minus" class="mg">-</button>
+    <button id="up" class="mg">更新</button>
 </div>
 
 <script src="https://cdn.bootcdn.net/ajax/libs/redux/4.2.0/redux.min.js"></script>
@@ -40,9 +41,7 @@
 	// 	type: "dec"
 	// };
 	// 初始值
-	const initState = {
-		count: 0
-	};
+	const initState = 0;
 
 	/**
 	 * @ 注意
@@ -55,15 +54,13 @@
 	function reducer(state = initState, action) {
 		// {type:"inc"}是一个action
 		switch (action.type) {
-			case "inc":
-				return {
-					count: state.count + 1
-				}
+			case "INC":
+				return state + 1;
 			// 	{type:"dec"}是另外一个action
-			case "dec":
-				return {
-					count: state.count - 1
-				}
+			case "DEC":
+				return state - 1;
+			case "UP":
+				return state + action.payload;// 通过action中type匹配类型，通过payload传参
 			default:
 				return state;
 		}
@@ -72,19 +69,22 @@
 
 	// 2.通过传入reducer函数，创建store变量
 	// createStore被弃用了，变成了 legacy_createStore
-	const store = Redux.legacy_createStore(reducer);
+	const store = Redux.createStore(reducer);
 	console.log(store);
 	// 3.store.subscribe(cb)方法，订阅这种变化；每当count值变化时，这个cb就会执行；类似监听器或者vuex中的getters的作用
 	store.subscribe(() => {
-		document.getElementById("sp").innerHTML = store.getState().count;
+		document.getElementById("sp").innerHTML = store.getState();
 	})
 
 	// 4.提交action
 	document.getElementById("plus").addEventListener("click", () => {
-		store.dispatch({type: "inc"});
+		store.dispatch({type: "INC"});
 	})
 	document.getElementById("minus").addEventListener("click", () => {
-		store.dispatch({type: "dec"});
+		store.dispatch({type: "DEC"});
+	});
+	document.getElementById("up").addEventListener("click", () => {
+		store.dispatch({type: "UP", payload: 100});
 	});
 
 

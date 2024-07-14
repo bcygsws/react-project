@@ -1,6 +1,5 @@
 import GrandFat from "../../components/communicate_with_context/GrandFat";
 import UsingEffect from "../../components/use_effect/UsingEffect";
-import UsingRedux from "../../components/redux/UsingRedux";
 import {Link, Outlet, useLocation, useNavigate, useParams, useSearchParams} from "react-router-dom";
 
 export default function AboutView() {
@@ -10,7 +9,7 @@ export default function AboutView() {
 	const location = useLocation();
 	console.log(location);
 
-	return (<div>1
+	return (<div>
 		{/*声明式导航和编程式导航*/}
 		<Link to="/home">跳转至/home页面</Link>
 		<hr/>
@@ -42,9 +41,5 @@ export default function AboutView() {
 		{/*十、React的useEffect的用法 */
 		}
 		<UsingEffect></UsingEffect>
-		{/*	十一、使用redux集中状态管理器*/
-		}
-		<UsingRedux></UsingRedux>
 	</div>)
-		;
 }

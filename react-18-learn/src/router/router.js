@@ -12,6 +12,7 @@ import NotFound from '../pages/NotFound';
 import UsingRouter from "../pages/about/use_router/UsingRouter";
 import UsingRouter2 from "../pages/about/use_router/UsingRouter2";
 import App from "../App";
+import MainView from "../pages/main/MainView";
 // import {Navigate} from "react-router-dom";
 // 创建路由对象实例
 const routes = [
@@ -23,6 +24,10 @@ const routes = [
 				index: true,
 				element: <HomeView/>,
 
+			},
+			{
+				path:'/main',
+				element: <MainView/>,
 			},
 			{
 				path: '/about',
