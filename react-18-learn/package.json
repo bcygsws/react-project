@@ -42,6 +42,7 @@
   },
   "devDependencies": {
     "@craco/craco": "^7.1.0",
+    "classnames": "^2.5.1",
     "craco-css-modules": "^1.0.5",
     "craco-less": "^3.0.1",
     "react-router-dom": "^6.23.1"
