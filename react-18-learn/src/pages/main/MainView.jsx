@@ -1,6 +1,8 @@
 import UseReducer from "../../components/use_reducer/UseReducer";
 import UsingRedux from "../../components/redux/UsingRedux";
 import UseMemo from "../../components/use_memo/UseMemo";
+import MemoPromote from "../../components/memo/MemoPromote";
+import UseCallback from "../../components/use_callback/UseCallback";
 
 const MainView = () => {
 	return (<div>
@@ -10,6 +12,10 @@ const MainView = () => {
 		<UseReducer/>
 		{/*	十三、useMemo计算钩子的使用*/}
 		<UseMemo/>
+		{/*	十四、使用memo方法，节省子组件不必要的跟随渲染*/}
+		<MemoPromote/>
+		{/*	十五、使用useCallback钩子，在组件多次渲染时，缓存函数*/}
+		<UseCallback/>
 	</div>);
 }
 export default MainView;
