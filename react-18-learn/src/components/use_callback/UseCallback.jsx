@@ -42,6 +42,7 @@ const UseCallback = () => {
 		console.log(val);
 	}, []);
 	return (<div className="callback-container">
+		<h2>十五、父组件多次渲染时，使用useCallback钩子缓存函数props</h2>
 		<Input onChange={changeHandler}/>
 		<button onClick={() => setCount(count + 1)}>change count</button>
 		<div>{count}</div>

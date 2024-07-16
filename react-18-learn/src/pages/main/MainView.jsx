@@ -3,6 +3,9 @@ import UsingRedux from "../../components/redux/UsingRedux";
 import UseMemo from "../../components/use_memo/UseMemo";
 import MemoPromote from "../../components/memo/MemoPromote";
 import UseCallback from "../../components/use_callback/UseCallback";
+import ForwardRef from "../../components/forward_ref/ForwardRef";
+import UseImperativeHandle from "../../components/ues_inperative_handle/UseImperativeHandle";
+import ClassComponent from "../../components/class_component/ClassComponent";
 
 const MainView = () => {
 	return (<div>
@@ -16,6 +19,12 @@ const MainView = () => {
 		<MemoPromote/>
 		{/*	十五、使用useCallback钩子，在组件多次渲染时，缓存函数*/}
 		<UseCallback/>
+		{/*	十六、在父组件中获取子组件的dom*/}
+		<ForwardRef/>
+		{/*	十七、子组件的获取焦点的方法 暴露给父组件调用*/}
+		<UseImperativeHandle/>
+		{/*	十八、类组件定义 */}
+		<ClassComponent/>
 	</div>);
 }
 export default MainView;
