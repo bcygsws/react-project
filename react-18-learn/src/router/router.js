@@ -13,6 +13,7 @@ import UsingRouter from "../pages/about/use_router/UsingRouter";
 import UsingRouter2 from "../pages/about/use_router/UsingRouter2";
 import App from "../App";
 import MainView from "../pages/main/MainView";
+import LearnView from "../pages/learn/LearnView";
 // import {Navigate} from "react-router-dom";
 // 创建路由对象实例
 const routes = [
@@ -26,7 +27,7 @@ const routes = [
 
 			},
 			{
-				path:'/main',
+				path: '/main',
 				element: <MainView/>,
 			},
 			{
@@ -46,6 +47,10 @@ const routes = [
 					}
 				]
 			},
+			{
+				path: '/learn',
+				element: <LearnView/>
+			}
 		]
 	},
 

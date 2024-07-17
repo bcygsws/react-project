@@ -25,6 +25,8 @@ function App() {
 				         onClick={() => setFlag({...flag, type: '/about'})}>关于</NavLink>
 				<NavLink to="/main" className={classNames(flag.type === '/main' && 'selected')}
 				         onClick={() => setFlag({...flag, type: '/main'})}>布局</NavLink>
+				<NavLink to="/learn" className={classNames(flag.type === '/learn' && 'selected')}
+				         onClick={() => setFlag({...flag, type: '/learn'})}>学习</NavLink>
 			</header>
 			<div className="content">
 				<Outlet/>
