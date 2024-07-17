@@ -6,6 +6,7 @@ import UseCallback from "../../components/use_callback/UseCallback";
 import ForwardRef from "../../components/forward_ref/ForwardRef";
 import UseImperativeHandle from "../../components/ues_inperative_handle/UseImperativeHandle";
 import ClassComponent from "../../components/class_component/ClassComponent";
+import UsingHook from "../../components/react_hook/UsingHook";
 
 const MainView = () => {
 	return (<div>
@@ -25,6 +26,8 @@ const MainView = () => {
 		<UseImperativeHandle/>
 		{/*	十八、类组件定义 */}
 		<ClassComponent/>
+		{/* 十九、生命周期钩子*/}
+		<UsingHook/>
 	</div>);
 }
 export default MainView;
