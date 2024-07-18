@@ -4,7 +4,8 @@
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
     "skipLibCheck": true,
     "module": "ESNext",
-    "moduleResolution": "bundler",
+    "moduleResolution": "node",
+    /* 解决main.tsx中React和ReactDOM报错的问题*/
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "noEmit": true
