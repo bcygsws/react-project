@@ -1,0 +1,15 @@
+.channel-list {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+
+  li {
+    list-style-type: none;
+    /*最后一个li后面，不添加竖线，需要排除*/
+
+    &:not(li:last-child)::after {
+      content: '|';
+      margin: 0 10px;
+    }
+  }
+}
