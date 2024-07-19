@@ -1,5 +1,5 @@
 /**
- * @name:router.js
+ * @name:router.ts
  * @description:将配置好的modules中的xxxStore.js模块连接起来，导出store
  * 供项目中，多处获得最新的state
  *

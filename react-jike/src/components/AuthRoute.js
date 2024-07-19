@@ -8,7 +8,7 @@ import {Navigate} from "react-router-dom";
  * 解决：使用高阶组件HOC (Higher-Order Component)
  *
  * 规则：有token，让路由通过；没有token,应该返回登录页
- * 将组件写在<AuthRoute><HomeView/></AuthRoute>之间，就可以从当前组件的children参数中，获取它
+ * 将组件写在<AuthRoute><MainView/></AuthRoute>之间，就可以从当前组件的children参数中，获取它
  *
  * */
 const AuthRoute = ({children}) => {

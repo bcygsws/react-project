@@ -6,10 +6,10 @@ import {createBrowserRouter} from "react-router-dom";
  *
  * */
 // import Login from "../pages/login/Login";
-// import HomeView from "../pages/layout/HomeView";
+// import MainView from "../pages/layout/MainView";
 // 配置了 根路径下src路径的别名@
 import Login from "@/pages/login/Login";
-import HomeView from "@/pages/layout/HomeView";
+import HomeView from "@/pages/layout/MainView";
 import App from "@/App";
 import AuthRoute from "@/components/AuthRoute";
 import {lazy, Suspense} from "react";

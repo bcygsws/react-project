@@ -1,5 +1,5 @@
 /**
- * @name:router.js
+ * @name:router.ts
  * @description:react项目的入口文件
  * */
 // react项目的两个最基本的包：react和react-dom
