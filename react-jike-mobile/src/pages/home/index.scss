@@ -23,7 +23,8 @@
     left: 0;
     top: 50px;
     bottom: 0;
-    // 可以滚动
-    overflow: auto;
+    // 垂直方向可以滚动，水平方向禁止滚动
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 }

@@ -53,9 +53,15 @@ const ListItem = (props: Prop) => {
         getArticlesList();
     }, [id]);
     /**
-     * @name:InfiniteScroll组件
-     * @description:
+     * @name:无限滚动组件-InfiniteScroll组件
+     * @description:使用无限滚动，主要是编写loadMore方法里的逻辑，注意数据列表的格式
+     * loadMore方法：
+     * 1.状态量set方法更新：results[...旧列表，...新列表]
+     * 2.渲染数据源为1中更新的results
+     * results.map((item)=>{
      *
+     * })
+     * 3.新列表.length===0了，hasMore置为false,就会出现下拉动画了
      *
      * */
         // 是否还有更多，维护成状态变量hasMore,默认为true,表示还可以加载更多
@@ -79,7 +85,10 @@ const ListItem = (props: Prop) => {
         }
 
     }
+
     /**
+     * @name:goToDetails
+     * @description:点击列表中的一条数据，发起详情页数据请求和路由跳转
      *
      * */
     const navigate = useNavigate();
