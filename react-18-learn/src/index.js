@@ -9,17 +9,17 @@ import './index.css';
 // 项目的根组件
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-// 导入路由文件
 /**
  *
- * @ history和hash模式路由的区别
+ * @desc:history和hash模式路由的区别
  *          路由格式      底层原理           需要后端支持不？
- * history  /login       history+pushState    需要后端的支持
- * hash     /#/login     hashChange事件       不需要后端的支持
+ * history  /login       history+pushState    需要后端的支持     createBrowserRouter
+ * hash     /#/login     hashChange事件       不需要后端的支持   createHashRouter
  * 使用场景：
  * 如果后端能够很好的支持，就使用history;否则就使用hash模式的路由
  *
  * */
+// 导入路由文件
 import {RouterProvider, createBrowserRouter} from 'react-router-dom';
 import routes from "./router/router";
 

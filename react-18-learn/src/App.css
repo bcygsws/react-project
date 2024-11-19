@@ -22,8 +22,9 @@
 
 /*导航按钮 主页或者关于 选中时样式 */
 .App-header a.selected {
-    background-color: pink;
-    color: #ffffff;
+    font-style:italic;
+    font-weight:700;
+    font-size: 24px;
 
 }
 
