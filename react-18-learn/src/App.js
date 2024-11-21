@@ -11,7 +11,7 @@ function App() {
 	// 刷新页面时，App组件，重新完成渲染；useEffect就会执行；将useState中flag值的丢失，重新找回
 	useEffect(() => {
 		setFlag({...flag, type: location.pathname})
-	},[flag, location]);
+	},[]);
 
 	return (
 		<div className="App">

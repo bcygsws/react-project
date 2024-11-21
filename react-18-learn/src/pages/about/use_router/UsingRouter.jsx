@@ -2,9 +2,14 @@ import {useParams} from "react-router-dom";
 
 /**
  *
- * @name：usingRouter.jsx
- * @description:react框架中路由的使用
+ * @name:usingRouter.jsx
+ * @des:react框架中路由的使用
  *
+ * 参考文档：https://blog.csdn.net/weixin_45605541/article/details/127354810
+ *
+ * 路径参数：about/:id useParams()
+ * 查询参数：?name=xxx&id=xxx const [params] =useSearchParams();
+ * 隐式参数：state={{id:1}}   const location=useLocation(); location.state
  *
  * */
 export default function UsingRouter() {

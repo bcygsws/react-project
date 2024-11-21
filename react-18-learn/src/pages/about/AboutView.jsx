@@ -3,9 +3,11 @@ import UsingEffect from "../../components/use_effect/UsingEffect";
 import {Link, Outlet, useLocation, useNavigate, useParams, useSearchParams} from "react-router-dom";
 
 export default function AboutView() {
-	const navigator = useNavigate();
+	// navigate有两种形态：1.navigate() 2. <Route path="/:id" element={<Navigate to="/home" replace={false}/>} />
+	const navigate = useNavigate();
 	// 接收路由参数，并显示在页面中：
-	const [params] = useSearchParams();
+	//注：params和setParams可以自定义名称，类似useState的解构
+	const [params, setParams] = useSearchParams();
 	const location = useLocation();
 	console.log(location);
 
@@ -14,7 +16,7 @@ export default function AboutView() {
 		<Link to="/home">跳转至/home页面</Link>
 		<hr/>
 		<button onClick={() => {
-			navigator("/home")
+			navigate("/home")
 		}}>跳转至/home页面
 		</button>
 		<hr/>
@@ -24,6 +26,11 @@ export default function AboutView() {
 			<li>id:{params.get('id')}
 			</li>
 		</ul>
+		{/*setParams更改查询参数后，以前显示的查询参数值，会跟随这种变化；这是因为useSearchParams()也具备了useState的功能*/}
+		<button onClick={() => {
+			setParams("?name=小红&id=88")
+		}}>更改查询参数
+		</button><br/>
 		{/*获取state隐式参数*/}
 		{/*<ul style={{listStyle: "none"}}>*/}
 		{/*	<li>tag:{location.state.tag}</li>*/}

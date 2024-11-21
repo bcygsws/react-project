@@ -8,16 +8,17 @@ import Fat from "../../components/sibling/Fat";
 import {Link, useNavigate} from "react-router-dom";
 
 export default function HomeView() {
-	const navigator = useNavigate();
+	// 类似vue中useRouter
+	const navigate = useNavigate();
 	return (<div>
 		{/*react导航的两种方式：声明式导航和编程式导航*/}
 		{/*1.声明式导航*/}
-		<Link to="/about">跳转至/about页面</Link>
+		<Link to="/about">声明式导航-跳转至/about页面</Link>
 		<hr/>
 		{/*编程式导航，useNavigator*/}
 		<button onClick={() => {
-			navigator('/about');
-		}}>跳转至/about页面
+			navigate('/about?name=about&id=66');
+		}}>编程式导航-跳转至/about页面
 		</button>
 		<hr/>
 		{/*导航路由携带参数*/}

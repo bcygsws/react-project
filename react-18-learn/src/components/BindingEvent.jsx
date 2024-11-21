@@ -1,7 +1,6 @@
 import {useState} from "react";
 
 /**
- *
  * @React框架绑定事件，注意事项：不像vue中，绑定事件，很灵活@语法
  *
  * 1.react中绑定事件，采用on+事件名的 驼峰命名法；语法：
@@ -49,7 +48,7 @@ function BindingEvent() {
 		console.log("点击时传递的name实参", name);
 	}
 	return (<div>
-		<h2>二、我是绑定事件组件BindingEvent</h2>
+		<h3>二、我是绑定事件组件BindingEvent</h3>
 		{/*点击事件,点击按钮切换*/}
 		<button onClick={clickHandler}>点击切换</button>
 		<br/>

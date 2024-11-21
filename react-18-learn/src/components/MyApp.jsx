@@ -61,13 +61,16 @@ const getArticleContent = () => {
 	}
 }
 export default function MyApp() {
+	// 定义了一个number类型
 	const [count, setCount] = useState(0);
+	// 定义了一个对象类型object
 	const [form, setForm] = useState({name: '张红'});
 	const incCount = () => {
 		setCount(count + 1);
 		setForm({...form, name: "李小红"});
 	}
 	return (<div className="my-app">
+		<h3>一、JSX的基本语法</h3>
 		{/*解析字符串*/}
 		{"this is a good idea!"}
 		{/*解析变量*/}
