@@ -12,6 +12,12 @@ const UsingState = lazy(() => import("@/components/use_state/UsingState.tsx"));
 const UsingRef = lazy(() => import("@/components/use_ref/UsingRef.tsx"));
 const MyFat = lazy(() => import("@/components/fat_to_son/MyFat.tsx"));
 const Fat = lazy(() => import("@/components/son_to_fat/Fat.tsx"));
+const SiblingFat = lazy(() => import("@/components/sibling/MyFat.tsx"));
+const ContextCommu = lazy(() => import("@/components/commu_context/ContextCommu.tsx"));
+const RouterParams = lazy(() => import("@/components/router_params/RouterParams.tsx"));
+const MySonRouter = lazy(() => import("@/components/router_params/SonRouter.tsx"));
+const UsingEffect = lazy(() => import("@/components/use_effect/UsingEffect.tsx"));
+
 
 /**
  * @desc:路由配置
@@ -61,6 +67,28 @@ const routes = [
             {
                 path: "son_to_fat",
                 element: lazyLoad(Fat)
+            },
+            {
+                path: "sibling",
+                element: lazyLoad(SiblingFat)
+            },
+            {
+                path: "context",
+                element: lazyLoad(ContextCommu)
+            },
+            {
+                path: "path_params",
+                element: lazyLoad(RouterParams),
+                children: [
+                    {
+                        path: ":id",
+                        element: lazyLoad(MySonRouter)
+                    }
+                ]
+            },
+            {
+                path: 'use_effect',
+                element: lazyLoad(UsingEffect)
             }
 
         ]

@@ -10,7 +10,7 @@ const Son = ({getValue}: { getValue: (value: number) => void }) => {
         getValue(count);
     }, [count])
     return (
-        <div>
+        <div className="son-to-fat">
             <h6>我是子组件</h6>
             <button onClick={sendToFat}>向父组件Fat传值</button>
             <button onClick={() => setCount(count + 1)}>改变子组件的count值：{count}</button>
