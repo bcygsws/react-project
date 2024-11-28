@@ -17,6 +17,7 @@ const ContextCommu = lazy(() => import("@/components/commu_context/ContextCommu.
 const RouterParams = lazy(() => import("@/components/router_params/RouterParams.tsx"));
 const MySonRouter = lazy(() => import("@/components/router_params/SonRouter.tsx"));
 const UsingEffect = lazy(() => import("@/components/use_effect/UsingEffect.tsx"));
+const UseSingleRedux = lazy(() => import("@/components/redux/UseSingleRedux.tsx"));
 
 
 /**
@@ -89,7 +90,11 @@ const routes = [
             {
                 path: 'use_effect',
                 element: lazyLoad(UsingEffect)
-            }
+            },
+            {
+                path: 'redux',
+                element: lazyLoad(UseSingleRedux)
+            },
 
         ]
 

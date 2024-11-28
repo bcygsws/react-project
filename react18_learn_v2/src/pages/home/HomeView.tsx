@@ -13,6 +13,7 @@ function HomeView() {
         <NavLink to={'/home/context'}>八、context上下文实现各层级组件之间的通信</NavLink>
         <NavLink to={'/home/path_params'} state={{id: 88888888}}>九、参数的传递</NavLink>
         <NavLink to={'/home/use_effect'}>十、useEffect的有、无和空依赖三种使用场景和清除副作用</NavLink>
+        <NavLink to={'/home/redux'}>十一、在react中单独使用redux,实现计数器</NavLink>
         <Outlet/>
 
     </div>
