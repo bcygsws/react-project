@@ -7,25 +7,33 @@ import './index.css';
 // import App from "@/App.tsx";
 import App from "@/App.tsx";
 import {BrowserRouter} from "react-router-dom";
-
+import {Provider} from 'react-redux';
+import store, {persistor} from "@/store";
+// 注：react-redux+@reduxjs/toolkit+redux+redux-persist实现持久化
+import {PersistGate} from 'redux-persist/lib/integration/react';
 // const BaseGrammar = lazy(() => import("@/components/primary_grammar/BaseGrammar.tsx"));
 // const BindEvent = lazy(() => import("@/components/event/BindEvent.tsx"));
 
 createRoot(document.getElementById('root')!).render(
     // <StrictMode>
-        <BrowserRouter>
-            <App/>
-        {/*    <Suspense>*/}
-        {/*        <Routes>*/}
-        {/*            <Route path="/" element={<Navigate to="/home"/>}/>*/}
-        {/*            <Route path="home" element={<HomeView/>}>*/}
-        {/*                <Route path="grammar" element={<BaseGrammar/>}/>*/}
-        {/*                <Route path="bind" element={<BindEvent/>}/>*/}
-        {/*            </Route>*/}
-        {/*            <Route path="about" element={<AboutView/>}/>*/}
-        {/*        </Routes>*/}
-        {/*    </Suspense>*/}
-        </BrowserRouter>
+    <BrowserRouter>
+        <Provider store={store}>
+            <PersistGate loading={null} persistor={persistor}>
+                <App/>
+            </PersistGate>
+
+            {/*    <Suspense>*/}
+            {/*        <Routes>*/}
+            {/*            <Route path="/" element={<Navigate to="/home"/>}/>*/}
+            {/*            <Route path="home" element={<HomeView/>}>*/}
+            {/*                <Route path="grammar" element={<BaseGrammar/>}/>*/}
+            {/*                <Route path="bind" element={<BindEvent/>}/>*/}
+            {/*            </Route>*/}
+            {/*            <Route path="about" element={<AboutView/>}/>*/}
+            {/*        </Routes>*/}
+            {/*    </Suspense>*/}
+        </Provider>
+    </BrowserRouter>
     // </StrictMode>
 )
 

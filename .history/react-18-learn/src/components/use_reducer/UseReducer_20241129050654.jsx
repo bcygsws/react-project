@@ -23,7 +23,7 @@ const UseReducer = () => {
 	// state是统一管理的状态量，useReducer第二个参数是其初始值
 	const [state, dispatch] = useReducer(reducer, 0);
 	return (<div className="reducer-container">
-		<h2>十二、useReducer的使用步骤，简化了store的创建</h2>
+		<h2>十二、useReducer的使用步骤，简化了store的ch</h2>
 		<div className="btn-group">
 			{/*数值+1*/}
 			<button onClick={() => dispatch({type: "INC"})}>+</button>

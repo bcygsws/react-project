@@ -10,19 +10,20 @@
  * https://blog.csdn.net/qq_34202873/article/details/135233645
  *
  * */
-import { useMemo, useState } from 'react';
+import {useMemo, useState} from "react";
 
 // 定义斐波拉切函数
 const f = (n) => {
 	// 斐波拉切函数执行
-	console.log('斐波拉切函数执行了');
+	console.log("斐波拉切函数执行了")
 	if (n === 0) return 1;
 	if (n === 1) return 1;
 	if (n === 2) return 2;
 	if (n > 2) {
 		return f(n - 2) + f(n - 1);
 	}
-};
+
+}
 const UseMemo = () => {
 	// 定义两个状态量，count1和count2
 	const [count1, setCount1] = useState(0);
@@ -41,24 +42,18 @@ const UseMemo = () => {
 	 * 当count2改变时，f函数就不执行了，只有组件渲染了
 	 *
 	 * */
-	// const result = f(count1);
+		const result = f(count1);
 	const result = useMemo(() => {
-		return f(count1);
-	}, [count1]);
+			return f(count1);
+		}, [count1]);
 
 	console.log('重新渲染了');
-	return (
-		<div className="memo-container">
-			<h2>十三、useMomo钩子的使用</h2>
-			<button onClick={() => setCount1(count1 + 1)}>
-				count1值：{count1}
-			</button>
-			<button onClick={() => setCount2(count2 + 1)}>
-				count2值：{count2}
-			</button>
-			{/*当使用useMemo后，count2变化时，result直接从缓存中拿到值，而不是组件更新后得到*/}
-			{result}
-		</div>
-	);
-};
+	return (<div className="memo-container">
+		<h2>十三、useMomo钩子的使用</h2>
+		<button onClick={() => setCount1(count1 + 1)}>count1值：{count1}</button>
+		<button onClick={() => setCount2(count2 + 1)}>count2值：{count2}</button>
+		{/*当使用useMemo后，count2变化时，result直接从缓存中拿到值，而不是组件更新后得到*/}
+		{result}
+	</div>);
+}
 export default UseMemo;

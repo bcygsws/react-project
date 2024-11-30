@@ -14,6 +14,8 @@ function HomeView() {
         <NavLink to={'/home/path_params'} state={{id: 88888888}}>九、参数的传递</NavLink>
         <NavLink to={'/home/use_effect'}>十、useEffect的有、无和空依赖三种使用场景和清除副作用</NavLink>
         <NavLink to={'/home/redux'}>十一、在react中单独使用redux,实现计数器</NavLink>
+        <NavLink to={'/home/use_reducer'}>十二、在react中使用useReducer钩子,实现计数器</NavLink>
+        <NavLink to={'/home/react_redux'}>十三、在react中使用react-redux+RTK,实现计数器</NavLink>
         <Outlet/>
 
     </div>

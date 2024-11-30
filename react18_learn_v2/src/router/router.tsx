@@ -18,6 +18,8 @@ const RouterParams = lazy(() => import("@/components/router_params/RouterParams.
 const MySonRouter = lazy(() => import("@/components/router_params/SonRouter.tsx"));
 const UsingEffect = lazy(() => import("@/components/use_effect/UsingEffect.tsx"));
 const UseSingleRedux = lazy(() => import("@/components/redux/UseSingleRedux.tsx"));
+const UseReducer = lazy(() => import("@/components/use_reducer/UseReducer.tsx"));
+const ReactRedux = lazy(() => import("@/components/react_redux/ReactRedux.tsx"));
 
 
 /**
@@ -95,6 +97,14 @@ const routes = [
                 path: 'redux',
                 element: lazyLoad(UseSingleRedux)
             },
+            {
+                path: 'use_reducer',
+                element: lazyLoad(UseReducer)
+            },
+            {
+                path: 'react_redux',
+                element: lazyLoad(ReactRedux)
+            }
 
         ]
 
