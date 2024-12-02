@@ -74,6 +74,10 @@ import ReduxPersist from "@/components/react_redux/ReduxPersist";
  *    </PersistGate>
  * </Provider>
  *
+ * 四、类型断言
+ * 参考：https://cn.redux.js.org/tutorials/typescript-quick-start
+ *
+ *
  * */
 const ReactRedux = () => {
     const dispatch = useDispatch();
