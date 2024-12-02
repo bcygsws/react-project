@@ -16,6 +16,7 @@ function HomeView() {
         <NavLink to={'/home/redux'}>十一、在react中单独使用redux,实现计数器</NavLink>
         <NavLink to={'/home/use_reducer'}>十二、在react中使用useReducer钩子,实现计数器</NavLink>
         <NavLink to={'/home/react_redux'}>十三、在react中使用react-redux+RTK,实现计数器</NavLink>
+        <NavLink to={'/home/use_memo'}>十四、useMemo计算钩子缓存功能，避免不必要的计算</NavLink>
         <Outlet/>
 
     </div>

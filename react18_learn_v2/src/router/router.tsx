@@ -20,6 +20,7 @@ const UsingEffect = lazy(() => import("@/components/use_effect/UsingEffect.tsx")
 const UseSingleRedux = lazy(() => import("@/components/redux/UseSingleRedux.tsx"));
 const UseReducer = lazy(() => import("@/components/use_reducer/UseReducer.tsx"));
 const ReactRedux = lazy(() => import("@/components/react_redux/ReactRedux.tsx"));
+const UsingMemo = lazy(() => import("@/components/use_memo/UsingMemo.tsx"));
 
 
 /**
@@ -104,7 +105,11 @@ const routes = [
             {
                 path: 'react_redux',
                 element: lazyLoad(ReactRedux)
-            }
+            },
+            {
+                path: 'use_memo',
+                element: lazyLoad(UsingMemo)
+            },
 
         ]
 
