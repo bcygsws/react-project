@@ -1,0 +1,32 @@
+/*home组件样式*/
+.home-container {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+.app-logo {
+  pointer-events: none;
+}
+
+// 参考:https://blog.csdn.net/weixin_41192489/article/details/126028971
+// prefers-reduced-motion 判断是否关闭不必要的动画？no-preference表示表示系统没有通知任何首选项；reduced表示已经通知
+@media(prefers-reduced-motion: no-preference) {
+  .app-logo {
+    /*动画名称 动画函数 持续时间 在动画挺值前的播放次数*/
+    animation: app-logo-float ease-in-out 3s infinite;
+  }
+
+}
+
+@keyframes app-logo-float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

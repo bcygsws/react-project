@@ -1,4 +1,4 @@
-import {combineReducers, configureStore} from '@reduxjs/toolkit';
+import {Action, combineReducers, configureStore, ThunkAction} from '@reduxjs/toolkit';
 import counterReducer from "@/store/modules/counterStore.tsx";
 import channelReducer from "@/store/modules/channelStore.tsx";
 import {persistStore, persistReducer} from 'redux-persist';
@@ -38,3 +38,15 @@ const store = configureStore({
 
 export const persistor = persistStore(store);
 export default store;
+
+// 从store本身推断出RootState和AppDispatch类型
+// 参考文档：https://cn.redux.js.org/tutorials/typescript-quick-start
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
+export type AppThunk<ReturnType = void> = ThunkAction<
+    ReturnType,
+    RootState,
+    unknown,
+    Action<string>
+>

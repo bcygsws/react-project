@@ -1,11 +1,18 @@
 import {createSlice} from "@reduxjs/toolkit";
 import axios from 'axios';
+import {AppDispatch} from "@/store";
+
+export interface ListState {
+    list: Array<{ id: number, name: string }>
+}
+
+const initialState: ListState = {
+    list: []
+}
 
 const channelStore = createSlice({
     name: 'channel',// 用以生成action的type,比如：setChannel这个action，它的type就是：channel/setChannel
-    initialState: {
-        list: []
-    },
+    initialState,
     reducers: {
         setChannel(state, action) {
             state.list = action.payload;
@@ -18,7 +25,7 @@ const {setChannel} = channelStore.actions;
 // 当涉及异步数据时，要对导出的action进行二次封装
 const fetchList = () => {
     const URL = "http://geek.itheima.net/v1_0/channels";
-    return async (dispatch: any) => {
+    return async (dispatch: AppDispatch) => {
         const res = await axios.get(URL);
         /*原数据：data:{channels:[]},axios自带res.data,所以是res.data.data.channels*/
         console.log("res.data===", res.data);

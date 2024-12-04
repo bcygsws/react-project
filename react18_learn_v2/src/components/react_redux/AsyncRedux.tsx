@@ -1,6 +1,6 @@
 import {useEffect} from "react";
-import {useDispatch, useSelector} from "react-redux";
 import {fetchList} from "@/store/modules/channelStore.tsx";
+import {useAppDispatch, useAppSelector} from "@/hooks/hook";
 
 export interface IChannel {
     id: number;
@@ -8,12 +8,12 @@ export interface IChannel {
 }
 
 const AsyncRedux = () => {
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     useEffect(() => {
         dispatch(fetchList());// 它是一个Promise对象
         console.log('dispatch结果：', dispatch(fetchList()));
     }, [dispatch]);
-    const {list} = useSelector((state: any) => state.channels);
+    const {list} = useAppSelector((state: any) => state.channels);
     return (
         <div>
             <h6>AsyncRedux,异步操作，使用react-redux+RTK</h6>

@@ -2,13 +2,19 @@
  * @desc:导出reducer和actions
  *
  * */
-import {createSlice} from "@reduxjs/toolkit";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+
+export interface CountState {
+    count: number
+}
+
+const initialState: CountState = {
+    count: 0
+};
 
 const counterStore = createSlice({
     name: 'countStore',// 命名空间 name/reducers中方法名,构成action的type值
-    initialState: {
-        count: 0
-    },
+    initialState,
     reducers: {
         add: (state) => {
             // RTK内置了immer,打破了Redux实现统一状态管理时，reducer函数状态不可变的问题
@@ -17,7 +23,7 @@ const counterStore = createSlice({
         dec: (state) => {
             state.count--;
         },
-        multiInc: (state, action) => {
+        multiInc: (state, action: PayloadAction<number>) => {
             state.count += action.payload;
         }
 

@@ -1,7 +1,7 @@
-import {useDispatch, useSelector} from "react-redux";
 import {add, dec, multiInc} from "@/store/modules/counterStore.tsx";
 import AsyncRedux from "@/components/react_redux/AsyncRedux";
 import ReduxPersist from "@/components/react_redux/ReduxPersist";
+import {useAppDispatch, useAppSelector} from "@/hooks/hook";
 
 
 /**
@@ -76,13 +76,15 @@ import ReduxPersist from "@/components/react_redux/ReduxPersist";
  *
  * 四、类型断言
  * 参考：https://cn.redux.js.org/tutorials/typescript-quick-start
+ * 练习案例：https://codesandbox.io/p/sandbox/github/reduxjs/redux/tree/master/examples/counter-ts?file=%2Fsrc%2Ffeatures%2Fcounter%2FCounter.module.css%3A66%2C22&from-embed
+ * 练习案例2:https://juejin.cn/post/7127123553719173151
  *
  *
  * */
 const ReactRedux = () => {
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     // 注：当前state状态, state.counter是reducer的key，不是createSlice里的name值
-    const {count} = useSelector((state: any) => state.counter);
+    const {count} = useAppSelector((state: any) => state.counter);
     return (
         <div>
             <h6>十三、使用更简洁的为react使用的react-redux+RTK</h6>

@@ -1,0 +1,21 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.app-container {
+  .header {
+    background-color: pink;
+    text-align: center;
+    height: 50px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+
+    > a {
+      margin: 0 20px;
+      cursor: pointer;
+    }
+  }
+}
