@@ -4,7 +4,7 @@ import '@/styles/home.scss';
 function Home() {
     return (
         <div className={'home-container'}>
-            <img src="../../public/vite.svg" width="200" alt="" className={'app-logo'}/>
+            <img src="/vite.svg" alt="" className={'app-logo'}/>
             <Counter/>
 
         </div>

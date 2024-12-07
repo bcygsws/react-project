@@ -6,6 +6,8 @@
 }
 
 .app-logo {
+  width: 150px;
+  /*设置元素是否对鼠标事件作出反应，默认是auto;会做出反应，比如：点击a链接，会跳转；但是，设置为none,意味着链接不会跳转了*/
   pointer-events: none;
 }
 
@@ -13,8 +15,8 @@
 // prefers-reduced-motion 判断是否关闭不必要的动画？no-preference表示表示系统没有通知任何首选项；reduced表示已经通知
 @media(prefers-reduced-motion: no-preference) {
   .app-logo {
-    /*动画名称 动画函数 持续时间 在动画挺值前的播放次数*/
-    animation: app-logo-float ease-in-out 3s infinite;
+    /*动画名称 持续时间 动画函数  在动画播放停止前的播放次数*/
+    animation: app-logo-float 3s ease-in-out infinite;
   }
 
 }

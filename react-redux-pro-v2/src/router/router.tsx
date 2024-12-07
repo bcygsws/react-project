@@ -1,6 +1,7 @@
 import {Navigate} from "react-router-dom";
 import Home from "@/pages/Home.tsx";
 import {FunctionComponent, lazy, Suspense} from "react";
+import NoMatch from "@/components/no-match/NoMatch.tsx";
 
 const About = lazy(() => import('@/pages/About.tsx'))
 
@@ -25,6 +26,10 @@ const routes = [
     {
         path: '/about',
         element: lazyLoad(About)
+    },
+    {
+        path: '*',
+        element: <NoMatch/>
     }
 ]
 export default routes;
