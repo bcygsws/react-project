@@ -10,7 +10,7 @@ import fetchCount from "@/store/modules/counterAPI.tsx";
 
 // 处理异步函数fetchCount，创建异步action
 /**
- *@createAsyncThunk的参数
+ *@createAsyncThunk的参数说明：
  * 1.typePrefix: action type的前缀，默认为""，如果为空，则action type为counter/fetchCount
  * 2.payloadCreator: 异步函数，返回值是action的payload，默认为异步函数，返回promise对象，
  * 如果返回值是promise对象，则自动处理promise对象的状态，并返回结果
@@ -41,6 +41,8 @@ const counterStore = createSlice({
             state.count += action.payload;
         }
     },
+    // 1.同reducers中的一样，方法名是actions;incrementAsync是createAsyncThunk创建的异步action
+    // 2.一个带有builder参数的链式写法
     extraReducers: (builder) => {// 用于处理在其他地方定义的actions
         builder.addCase(incrementAsync.pending, (state) => {
             state.status = 'loading';
