@@ -3,7 +3,7 @@
  * 参考文档：https://blog.csdn.net/qq_38951259/article/details/140242950
  * provider中value值发生变化， 会导致Consumer组件重新渲染，但是Provider组件不会重新渲染
  *
- * 1.主要是在接收方式上的分野
+ * 1.两种方式的区别在于主在传递对象的接收方式上
  * 1.1 更简洁的方式const {theme, setTheme} =useContext(GrandContext)
  * value传递的对象，通过useContext(GrandContext)拿到
  *

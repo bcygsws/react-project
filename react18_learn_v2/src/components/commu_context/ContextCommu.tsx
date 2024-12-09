@@ -17,7 +17,7 @@ import Son from "@/components/commu_context/Son";
  *
  * */
 
-import GrandContext from './Context';
+import GrandContext from './Context.tsx';
 import {Test1} from "@/components/commu_context/Test1";
 
 const ContextCommu = () => {
