@@ -22,6 +22,7 @@ const UseReducer = lazy(() => import("@/components/use_reducer/UseReducer.tsx"))
 const ReactRedux = lazy(() => import("@/components/react_redux/ReactRedux.tsx"));
 const UsingMemo = lazy(() => import("@/components/use_memo/UsingMemo.tsx"));
 const MyMemo = lazy(() => import("@/components/memo/Memo.tsx"));
+const UseZustand = lazy(() => import("@/components/zustand/UseZustand.tsx"));
 
 
 /**
@@ -114,6 +115,10 @@ const routes = [
             {
                 path: 'memo',
                 element: lazyLoad(MyMemo)
+            },
+            {
+                path: 'zustand',
+                element: lazyLoad(UseZustand)
             }
 
         ]
