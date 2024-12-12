@@ -23,7 +23,43 @@ button {
   margin: 0 auto;
   background-color: pink;
   text-align: center;
-  >button{
-    margin:  10px;
+
+  > button {
+    margin: 10px;
   }
+}
+
+/*UsingCallback的使用*/
+.input-container {
+  border: none;
+  width: 150px;
+  height: 40px;
+}
+
+.callback-container {
+  .son {
+    text-align: center;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+
+    > button {
+      border: none;
+      width: 40px;
+      height: 40px;
+      margin: 0;
+      padding: 5px;
+      /*左上 右上 右下 左下，圆角*/
+      border-radius: 0 5px 5px 0;
+      background-color: black;
+      color: white;
+    }
+
+    .count {
+      margin: 0 20px;
+    }
+  }
+
+
 }

@@ -19,6 +19,7 @@ function HomeView() {
         <NavLink to={'/home/use_memo'}>十四、useMemo计算钩子缓存功能，避免不必要的计算</NavLink>
         <NavLink to={'/home/memo'}>十五、memo(callback)实现性能优化</NavLink>
         <NavLink to={'/home/zustand'}>十六、比redux更加简明的状态管理工具zustand</NavLink>
+        <NavLink to={'/home/using_callback'}>十七、useCallback性能优化</NavLink>
         <Outlet/>
 
     </div>
