@@ -24,6 +24,8 @@ const UsingMemo = lazy(() => import("@/components/use_memo/UsingMemo.tsx"));
 const MyMemo = lazy(() => import("@/components/memo/Memo.tsx"));
 const UseZustand = lazy(() => import("@/components/zustand/UseZustand.tsx"));
 const UsingCallback = lazy(() => import("@/components/use_callback/UsingCallback.tsx"));
+const Forward = lazy(() => import("@/components/forward_ref/Forward.tsx"));
+const UsingImperativeHandle = lazy(() => import("@/components/use_imperative_handle/UsingImperativeHandle.tsx"));
 
 
 /**
@@ -124,6 +126,14 @@ const routes = [
             {
                 path: 'using_callback',
                 element: lazyLoad(UsingCallback)
+            },
+            {
+                path: 'use_ref_forward_ref',
+                element: lazyLoad(Forward)
+            },
+            {
+                path: 'use_imperative_handle',
+                element: lazyLoad(UsingImperativeHandle)
             }
 
         ]

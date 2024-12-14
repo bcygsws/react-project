@@ -20,6 +20,8 @@ function HomeView() {
         <NavLink to={'/home/memo'}>十五、memo(callback)实现性能优化</NavLink>
         <NavLink to={'/home/zustand'}>十六、比redux更加简明的状态管理工具zustand</NavLink>
         <NavLink to={'/home/using_callback'}>十七、useCallback性能优化</NavLink>
+        <NavLink to={'/home/use_ref_forward_ref'}>十八、useRef和forwardRef的使用</NavLink>
+        <NavLink to={'/home/use_imperative_handle'}>十九、useImperativeHandle暴露方法给父组件使用</NavLink>
         <Outlet/>
 
     </div>
