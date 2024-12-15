@@ -22,6 +22,8 @@ function HomeView() {
         <NavLink to={'/home/using_callback'}>十七、useCallback性能优化</NavLink>
         <NavLink to={'/home/use_ref_forward_ref'}>十八、useRef和forwardRef的使用</NavLink>
         <NavLink to={'/home/use_imperative_handle'}>十九、useImperativeHandle暴露方法给父组件使用</NavLink>
+        <NavLink to={'/home/class_com'}>二十、react18中写类组件</NavLink>
+        <NavLink to={'/home/class_com_comm'}>二十一、react18中类组件通信</NavLink>
         <Outlet/>
 
     </div>

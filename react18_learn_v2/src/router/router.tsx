@@ -26,6 +26,8 @@ const UseZustand = lazy(() => import("@/components/zustand/UseZustand.tsx"));
 const UsingCallback = lazy(() => import("@/components/use_callback/UsingCallback.tsx"));
 const Forward = lazy(() => import("@/components/forward_ref/Forward.tsx"));
 const UsingImperativeHandle = lazy(() => import("@/components/use_imperative_handle/UsingImperativeHandle.tsx"));
+const ClassCom = lazy(() => import("@/components/class_component/ClassCom.tsx"));
+const GrandCommu = lazy(() => import("@/components/class_com_commu/GrandCommu.tsx"));
 
 
 /**
@@ -134,6 +136,14 @@ const routes = [
             {
                 path: 'use_imperative_handle',
                 element: lazyLoad(UsingImperativeHandle)
+            },
+            {
+                path: "class_com",
+                element: lazyLoad(ClassCom)
+            },
+            {
+                path: "class_com_comm",
+                element: lazyLoad(GrandCommu)
             }
 
         ]
