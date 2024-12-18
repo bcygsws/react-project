@@ -1,6 +1,6 @@
 import useStore from "@/components/zustand/store";
 import {useEffect} from "react";
-import {IChannel} from "@/components/zustand/store/modules/createChannelStore";
+import {IChannel} from "@/components/zustand/store/modules/useChannelStore";
 
 /**
  * @desc:zustand使用场景
@@ -44,11 +44,6 @@ import {IChannel} from "@/components/zustand/store/modules/createChannelStore";
  * const {count,increment,modify,channelList,getChannelList}=useStore();
  * 注：如果只需要渲染count值，这种局部订阅，也可以给useStore传参
  * const count=useStore((state)=>state.count);
- *
- *
- *
- *
- *
  *
  * */
 
