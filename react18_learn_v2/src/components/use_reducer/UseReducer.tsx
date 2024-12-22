@@ -89,12 +89,12 @@ const UseReducer = () => {
         // const [state, dispatch] = useReducer(reducer, initialState);
     const [state, dispatch] = useReducer(reducer, initialState);
 
-    // @ts-ignore
     return <div>
         <h6>十二、useReducer自带钩子实现状态管理</h6>
         <button onClick={() => dispatch({type: "INC"})}>+</button>
         <span>{state['num']}</span>
         <button onClick={() => dispatch({type: "DEC"})}>-</button>
+        <button onClick={() => dispatch({type: "CHANGE", payload: 10})}>+10</button>
     </div>
 }
 export default UseReducer;
