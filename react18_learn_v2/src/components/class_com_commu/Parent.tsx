@@ -9,7 +9,7 @@ class Parent extends Component {
             fun: props.fun,
             msg: '我是parent组件数据',
             mid: '',// 过渡数据，接收son传递过来的数据
-        }
+        };
     }
 
     // 子组件向父组件传值，不符合单向数据流原则；父组件先传递个方法给子组件
