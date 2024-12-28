@@ -21,13 +21,15 @@ class Son extends Component {
             <h6>我是Son组件</h6>
             {/*父组件传递的数据，红色；祖父组件传递数据，紫色*/}
             <p style={{color: 'red'}}>{this.state.msg}</p>
-            <button onClick={() => this.state.fun('我是祖父组件传给son组件的数据')}>son组件调用祖父组件fun方法
+            <button onClick={() => this.state.fun('我是son组件的数据传给祖父组件的数据')}>son组件调用祖父组件fun方法
             </button>
-            <hr/>
+            <br/>
             {/*向兄弟组件传递数据*/}
             <button onClick={this.toParent}>向兄弟组件Son1传递数据</button>
+            <hr/>
         </div>
     }
 
 }
+
 export default Son;

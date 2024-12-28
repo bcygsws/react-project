@@ -3,6 +3,8 @@ import {Component} from "react";
 class Son1 extends Component {
     /**
      * @desc:生命周期钩子getDerivedStateFromProps(props,state)
+     * 注：derive 得到，取得；derive from 从xxx衍生出，起源于
+     *
      * 1.作用：将父组件传递的props,实时赋值给state状态
      *
      * 2.说明：它是一个静态方法，它接受两个参数，第一个参数是
