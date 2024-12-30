@@ -7,6 +7,8 @@ import {forwardRef, Ref, useImperativeHandle, useRef, useState} from "react";
  *
  * 注意事项：
  * 1.useImperativeHandle要结合forwardRef使用,原因是这个钩子的第一个参数就是ref
+ * 功能类似vue3中，<script setup> defineExpose({})
+ *
  * 2.工作流程：
  * 2.1 useRef钩子创建ref
  * 2.2 forwardRef(function(props,ref){}),将ref传递给子组件
@@ -43,9 +45,12 @@ const Son = forwardRef((props, ref: Ref<void> | undefined) => {
 
     }
     // 5.将子组件focus方法暴露给父组件
+    // 注：必须监听count变量，否则，每次点击按钮，count只会在第一次执行时，+1;之后，点击按钮时，count不会改变了
+    // 每次count变化，重新向父组件暴露方法（当前count+1）
     useImperativeHandle(ref, () => {
         return {inc, focus}
-    }, []);
+    // }, []);
+    }, [count]);
     return <>
         <div>count值：{count}</div>
         <input ref={myRef} type="text"/>

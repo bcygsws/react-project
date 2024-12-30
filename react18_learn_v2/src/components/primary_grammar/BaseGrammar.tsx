@@ -53,12 +53,13 @@ const BaseGrammar = () => {
             <h3>一、这是jsx或者tsx基本语法</h3>
             {/*变量渲染*/}
             <p>{'你好啊~~~~~~~'}</p>
-            {/*五种获取时间戳的方式*/}
+            {/*四种获取时间戳的方式*/}
             <h6>{new Date().getTime()}</h6>
             <h6>{new Date().valueOf()}</h6>
             <h6>{Date.now()}</h6>
             <h6>{Number(new Date())}</h6>
-            <h6>{Date.parse(new Date().toString())}</h6>
+            {/*Date.parse('日期') 解析一个日期字符串，返回从1970.1.1开始的毫秒数 */}
+            <h6>{Date.parse(new Date().toLocaleString())}</h6>
             {/*当前时间*/}
             <h6>{new Date().toLocaleString()}</h6>
             {/*匹配哪种模式,分支结构渲染*/}

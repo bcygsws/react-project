@@ -1,4 +1,24 @@
-import {forwardRef, LegacyRef, Ref, useRef} from "react";
+import {forwardRef, LegacyRef, useRef} from "react";
+/**
+ * @desc：十八、forwardRef和useRef的使用
+ * 场景：react18推荐使用函数式组件
+ * 当为函数式组件中，使用ref，会报警告：函数组件不能被赋予refs？
+ *
+ * 解决：
+ * 使用forwardRef创建要绑定ref的子组件
+ *
+ * const Son=forwardRef((props,ref:LegacyRef<HTMLInputElement>))=>{
+ *     return <>
+ *         <input ref={ref} type="text"/>
+ *     </>
+ *
+ * })
+ *
+ *
+ *
+ *
+ *
+ * */
 
 // const Son = ({ref}) => {
 //     return <>
@@ -33,7 +53,7 @@ const Son = forwardRef((props, ref: LegacyRef<HTMLInputElement>) => {
     </>
 })
 const Forward = () => {
-    const showRef: Ref<HTMLInputElement>|undefined = useRef(null);
+    const showRef: LegacyRef<HTMLInputElement> | undefined = useRef(null);
     // console.log("showRef===", showRef); // showRef=== {current:null}
     const showRefHandler = () => {
         console.log("showRef.current===", showRef.current);// showRef.current=== <input type="text"/>
