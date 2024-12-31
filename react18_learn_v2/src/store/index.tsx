@@ -15,6 +15,29 @@ import storage from 'redux-persist/lib/storage';
 
 /**
  * @desc:配置redux-persist之后
+ * 配置好react-redux+RTK可以管理状态之后，再配置redux-persist实现持久化的步骤
+ * 1.store需要传入persistStore,得到persistor也要导出，给main文件
+ * <Provider store={store}>
+ *   <PersistGate loading={null} persistor={persistor}>
+ *   </PersistGate>
+ * </Provider>
+ *
+ * 2.创建store,configStore传入的reducer是合并后的persistedReducer
+ *
+ * 3.persistedReducer由persistReducer函数返回的
+ * const persistedReducer = persistReducer(persistConfig, reducers);
+ *
+ * 4.persistConfig配置对象，以指明持久化的键名和存储方式：key和localStorage,以及
+ * whitelist和blacklist，白名单和黑名单，白名单中的reducer会被持久化，黑名单中的reducer不会被持久化
+ *
+ * 5.reducers 由combineReducers函数返回的
+ * 伪代码
+ * const reducers = combineReducers({
+ *     counter: counterReducer,
+ *     channels: channelReducer
+ * })
+ *
+ *
  *
  * */
 

@@ -30,7 +30,7 @@ const counterStore = createSlice({
     }
 });
 
-// 从store中解构出actions：add、increment
+// 从store中解构出actions：add、increment方法
 const {add, dec, multiInc} = counterStore.actions;
 const counterReducer = counterStore.reducer;
 export {
