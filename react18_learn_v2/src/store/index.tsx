@@ -27,7 +27,7 @@ import storage from 'redux-persist/lib/storage';
  * 3.persistedReducer由persistReducer函数返回的
  * const persistedReducer = persistReducer(persistConfig, reducers);
  *
- * 4.persistConfig配置对象，以指明持久化的键名和存储方式：key和localStorage,以及
+ * 4.persistConfig配置对象，以指明持久化的键名和存储方式：key和storage,以及
  * whitelist和blacklist，白名单和黑名单，白名单中的reducer会被持久化，黑名单中的reducer不会被持久化
  *
  * 5.reducers 由combineReducers函数返回的
