@@ -22,7 +22,8 @@ function reducer(state: any, action: IAction) {
             return state;
     }
 }
-
+// 参数：reducer函数，return new state
+// 参数：preloadedState,initial state，reducer函数的初始化状态
 const store = Redux.legacy_createStore(reducer, 0);
 export {
     store
