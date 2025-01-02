@@ -6,6 +6,7 @@ import {useSearchParams} from "react-router-dom";
  *
  * */
 const SearchParams = () => {
+    // []变量名，可以任意取，但满足xyz---setXyz 这样成对出现
     const [params, setParams] = useSearchParams();
     return (
         <div>
