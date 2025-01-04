@@ -2,8 +2,6 @@ import {useSearchParams} from "react-router-dom";
 
 /**
  * @desc：查询参数的获取
- *
- *
  * */
 const SearchParams = () => {
     // []变量名，可以任意取，但满足xyz---setXyz 这样成对出现
