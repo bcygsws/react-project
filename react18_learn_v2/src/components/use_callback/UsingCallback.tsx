@@ -42,7 +42,7 @@ import {memo, useCallback, useState} from "react";
 // }
 
 // 注2：参数是函数，函数类型仍然是对象类型；所以memo，没有起到性能提升的作用；UsingCallback中的val值改变，组件Input仍然重新渲染了
-// 解决：实现优化的方法，传参使用useCallback钩子处理,将changeHandle函数，使用useCallback来得到
+// 解决：实现优化的方法，传参的方法，使用useCallback钩子来创建；例如：传给子组件的changeHandle函数，使用useCallback来得到
 const Input = memo(({change}: { change: (a: any) => void }) => {
     console.log("memo子组件渲染了");
     return (<>

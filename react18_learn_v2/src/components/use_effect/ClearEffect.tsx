@@ -4,8 +4,6 @@
  * 里的代码，就不应该再执行了；但是，在【1.没有清除副作用】的实例中，虽然子组件被卸载了，但是定时器还在执行
  *
  * 解决：这时，就需要使用返回闭包的形式，return() => {}，清除副作用，在useEffect里，返回一个函数，这个函数会在组件卸载时执行，
- *
- *
  * */
 import {useEffect, useState} from "react";
 
@@ -30,7 +28,7 @@ const Son = () => {
 
         // 2.清除副作用
         const timer = setInterval(() => {
-            setCount(count + 1);
+            // setCount(count + 1);
             console.log("清除副作用");
         }, 1000);
         // 闭包，清除副作用
