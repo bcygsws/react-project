@@ -1,11 +1,13 @@
+import {useEffect, useState} from "react";
+
 /**
  * @desc:清除副作用
  * 场景：子组件中，useEffect监视钩子内，有一个定时器执行某个操作；我们想象，当子组件被卸载了，那么useEffect钩子
  * 里的代码，就不应该再执行了；但是，在【1.没有清除副作用】的实例中，虽然子组件被卸载了，但是定时器还在执行
  *
+ *
  * 解决：这时，就需要使用返回闭包的形式，return() => {}，清除副作用，在useEffect里，返回一个函数，这个函数会在组件卸载时执行，
  * */
-import {useEffect, useState} from "react";
 
 const ClearEffect = () => {
     const [flag, setFlag] = useState(true);
