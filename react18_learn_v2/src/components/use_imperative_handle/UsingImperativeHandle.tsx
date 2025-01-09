@@ -47,6 +47,13 @@ const Son = forwardRef((props, ref: Ref<void> | undefined) => {
     // 5.将子组件focus方法暴露给父组件
     // 注：必须监听count变量，否则，每次点击按钮，count只会在第一次执行时，+1;之后，点击按钮时，count不会改变了
     // 每次count变化，重新向父组件暴露方法（当前count+1）
+    /**
+     * @param {*} ref,forwardRef(function(props,ref){})传入，forwardRef为了在函数组件使用ref,而引入的高级组件
+     * @param {function} cb, 该函数返回需要暴露给父组件的函数名称
+     * @param {number} [],关联依赖，count每次变化时，来传递最新的inc和focus方法
+     *
+     *
+     * */
     useImperativeHandle(ref, () => {
         return {inc, focus}
     // }, []);
