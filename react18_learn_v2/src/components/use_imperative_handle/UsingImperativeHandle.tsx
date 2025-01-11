@@ -24,8 +24,6 @@ import {forwardRef, Ref, useImperativeHandle, useRef, useState} from "react";
  * b. 第二个参数：子组件暴露给父组件的方法
  * c. 第三个参数：是依赖项，依赖项不传,例如：[]，则每次渲染，都会执行
  *
- *
- *
  * */
 const Son = forwardRef((props, ref: Ref<void> | undefined) => {
     const [count, setCount] = useState(0);
