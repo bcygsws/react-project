@@ -9,6 +9,10 @@ import React from 'react';
  * 3.则可以通过inputRef.current（等价于e.target）获取到dom元素对象，例如：inputRef.current.value
  * 注：inputRef.current.value自然也能拿到实时的value值
  *
+ * 注：两组等式：根据需要灵活选用
+ * e.target=myRef.current
+ * e.target.value=myRef.current.value
+ *git
  * */
 
 function UsingRef() {
