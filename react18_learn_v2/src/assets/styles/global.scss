@@ -63,3 +63,19 @@ button {
 
 
 }
+
+/*Snapshot样式*/
+.snapshot {
+  .news-list {
+    width: 200px;
+    height: 200px;
+    border: 5px solid #cccccc;
+    /*等价于overflow: auto;*/
+    overflow: scroll;
+
+    li {
+      list-style: none;
+      font-size: 14px;
+    }
+  }
+}

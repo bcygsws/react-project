@@ -24,6 +24,7 @@ function HomeView() {
         <NavLink to={'/home/use_imperative_handle'}>十九、useImperativeHandle暴露方法给父组件使用</NavLink>
         <NavLink to={'/home/class_com'}>二十、react18中写类组件</NavLink>
         <NavLink to={'/home/class_com_comm'}>二十一、react18中类组件通信</NavLink>
+        <NavLink to={'/home/class_life'}>二十二、react18中类组件生命周期钩子的使用场景</NavLink>
         <Outlet/>
 
     </div>
