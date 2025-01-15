@@ -14,7 +14,6 @@ export interface IChannel {
 
 // 语法：inc:()=>set({count: 100})
 // 语法：dec:()=>set(state=>({count: state.count - 1}))
-
 // 2.get()：用于读取state中的数据，返回值是state对象
 const useChannelStore = (set: any, get: any) => {
     return {
