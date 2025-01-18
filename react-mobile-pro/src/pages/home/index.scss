@@ -1,0 +1,19 @@
+/*HomeView组件样式*/
+.home-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+
+  .header {
+    width: 100%;
+    height: 50px;
+    background-color: pink;
+  }
+
+  .content {
+    flex: 1;
+    background-color: seagreen;
+  }
+
+}
