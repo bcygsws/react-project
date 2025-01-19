@@ -29,7 +29,7 @@ import {IChannel} from "@/components/zustand/store/modules/useChannelStore";
  * }
  *
  *
- * 
+ *
  * 2.创建index.tsx；将所有的钩子，组合成一个useStore，并暴露出去
  * const useStore=create(
  *   (...a)=>{

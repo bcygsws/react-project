@@ -13,6 +13,4 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
  * 2.建议在项目中增加下面的 babel 配置，这样可以达到最大兼容性，为 iOS Safari >= 10 和 Chrome >= 49
  * 参考: .babelrc
  *
- *
- *
  * */

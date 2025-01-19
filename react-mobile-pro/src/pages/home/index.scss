@@ -8,12 +8,41 @@
   .header {
     width: 100%;
     height: 50px;
-    background-color: pink;
+    /* background-color: pink;*/
   }
 
   .content {
     flex: 1;
-    background-color: seagreen;
+    /*  background-color: seagreen;*/
+  }
+
+}
+
+/*tabs标签页样式*/
+.adm-tabs, .tabs {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  .adm-tabs-header {
+    border-bottom-width: 0;
+
+    .adm-tabs-tab-list {
+      .adm-tabs-tab-wrapper {
+        .adm-tabs-tab {
+          padding: 12px 0;
+        }
+      }
+    }
+  }
+
+  .adm-tabs-content {
+    padding: 0;
+    width: 100%;
+    height: calc(100% - 50px);
+
   }
 
 }
