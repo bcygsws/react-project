@@ -2,6 +2,7 @@ import {Tabs} from 'antd-mobile';
 import './index.scss';
 import {getTabList} from "@/apis/header.tsx";
 import {useEffect, useState} from "react";
+import ListItem from "@/pages/home/item/index.tsx";
 
 export interface IChannel {
     id: number;
@@ -24,22 +25,22 @@ const HomeView = () => {
     }, [])
     return (<div className="home-container">
         {/*顶部滑动条*/}
-        <div className="header">
+            {/*defaultActiveKey属性，设置为默认'0'，也即"推荐"频道选中*/}
             <Tabs
                 className="tabs"
+                defaultActiveKey={'0'}
             >
                 {
                     channel?.map((item) => {
                         return <Tabs.Tab title={item.name} key={item.id}>
-                            {item.name}
+                            {/*列表内容区*/}
+                            <div className="content">
+                                <ListItem id={item.id + ''}/>
+                            </div>
                         </Tabs.Tab>
                     })
                 }
             </Tabs>
-        </div>
-        {/*列表内容区*/
-        }
-        <div className="content"></div>
     </div>)
 }
 export default HomeView;

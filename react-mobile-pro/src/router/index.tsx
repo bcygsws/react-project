@@ -8,7 +8,7 @@ const routes = [
         element: <HomeView/>
     },
     {
-        path: "/detail",
+        path: "/details",
         element: <Detail/>
     }];
 const router = createBrowserRouter(routes);
