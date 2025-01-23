@@ -26,7 +26,7 @@ export interface IDetail {
 }
 
 const Detail = () => {
-    // 获取路由查询参数id /articles?id=fdasgaagggadf
+    // 获取路由查询参数id /articles?id=fdasgaagggd
     const [params] = useSearchParams();
     // console.log(params);
     console.log(params.get('id'));// 编程式导航路由，文章详情id
