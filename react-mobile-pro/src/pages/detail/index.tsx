@@ -7,7 +7,6 @@ import './index.scss';
 /**
  * @desc:根据文章id：art_id,请求文章详情数据
  *
- *
  * */
 export interface IDetail {
     art_id: string;
@@ -61,6 +60,6 @@ const Detail = () => {
             <div className="content" dangerouslySetInnerHTML={{__html: detail?.content ?? ''}}>
             </div>
         </div>
-    )
+  )
 }
 export default Detail;

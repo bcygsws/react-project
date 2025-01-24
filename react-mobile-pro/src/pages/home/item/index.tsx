@@ -1,8 +1,6 @@
 import {useEffect, useState} from "react";
 import {getCommentListById} from "@/apis/content.tsx";
 import {Image, InfiniteScroll, List} from "antd-mobile";
-// 配置
-// import {RightOutline} from "antd-mobile-icons";
 import {useNavigate} from "react-router-dom";
 
 /**
@@ -110,7 +108,6 @@ const ListItem = ({id}: { id: string } = {id: '0'}) => {
 
                                                />
                                            }
-                            // extra={<RightOutline fontSize={18} color="#ccc"/>}
                                            description={item.pubdate}
                                            onClick={() => goToDetails(item.art_id)}
                         >
@@ -120,7 +117,7 @@ const ListItem = ({id}: { id: string } = {id: '0'}) => {
                 }
 
             </List>
-            {/*无限滚动插件*/}
+            {/*无限滚动插件，threshold: 阈值；定义滚动条距离视口底部触发'加载中……'下拉刷新的最小高度值*/}
             <InfiniteScroll loadMore={loadMore} hasMore={hasMore} threshold={10}/>
         </>
     )

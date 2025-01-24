@@ -22,25 +22,27 @@ const HomeView = () => {
         }
 
         getChannels();
-    }, [])
+    }, []);
     return (<div className="home-container">
-        {/*顶部滑动条*/}
+        <div className="tabContainer">
+
+            {/*顶部滑动条*/}
             {/*defaultActiveKey属性，设置为默认'0'，也即"推荐"频道选中*/}
             <Tabs
-                className="tabs"
                 defaultActiveKey={'0'}
             >
                 {
                     channel?.map((item) => {
                         return <Tabs.Tab title={item.name} key={item.id}>
                             {/*列表内容区*/}
-                            <div className="content">
+                            <div className="listContainer">
                                 <ListItem id={item.id + ''}/>
                             </div>
                         </Tabs.Tab>
                     })
                 }
             </Tabs>
+        </div>
     </div>)
 }
 export default HomeView;
