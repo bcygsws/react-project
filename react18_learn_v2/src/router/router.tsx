@@ -35,7 +35,6 @@ const ClassLife = lazy(() => import("@/components/class_life/ClassLife.tsx"));
  * @desc:路由配置
  * ts文件都进必须写成tsx后缀，否则在路由配置过程中，报错：
  *  can use namespace HomeView as a type
- *
  *  参考：https://blog.csdn.net/jiang7701037/article/details/131505912?spm=1001.2101.3001.6650.13&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-13-131505912-blog-131836926.235%5Ev43%5Econtrol&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-13-131505912-blog-131836926.235%5Ev43%5Econtrol&utm_relevant_index=22
  *  参考1：https://blog.csdn.net/YYTX_YS/article/details/130889302?spm=1001.2101.3001.6650.7&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-7-130889302-blog-133648124.235%5Ev43%5Econtrol&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-7-130889302-blog-133648124.235%5Ev43%5Econtrol&utm_relevant_index=13
  *
