@@ -44,6 +44,8 @@ createRoot(document.getElementById('root')!).render(
  *
  * 2.路由配置两种方式：
  * https://juejin.cn/post/7246977137361289272
+ * react-router v6
+ * https://juejin.cn/post/7398747326091952137
  *
  * 3.react-router-dom使用指南（最新V6.0.1）
  * https://zhuanlan.zhihu.com/p/431389907
