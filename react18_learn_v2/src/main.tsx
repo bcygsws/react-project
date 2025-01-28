@@ -57,7 +57,7 @@ createRoot(document.getElementById('root')!).render(
  * <Route path="teams/:teamId" element={<Team />} />
  * <Route path="teams/new" element={<NewTeamForm />} />
  * 如上的两个路径，将会匹配 teams/new 。
- * 路径的正则匹配已被移除。
+ * 路径的正则匹配已被移除
  *
  * 4.使用vite构建项目
  * npm版本7+以后，需要增加一个额外的 --
