@@ -1,5 +1,6 @@
 import './index.scss';
-import {SearchBar, Tabs} from "antd-mobile";
+import {SearchBar} from "antd-mobile";
+import {NavLink, Outlet} from "react-router-dom";
 
 const Home = () => {
     return (<div className="home-container">
@@ -7,29 +8,26 @@ const Home = () => {
         <div className="tabbar">
             {/*点菜、评价、商家tabs*/}
             <div className="left">
-                <Tabs>
-                    <Tabs.Tab title='点菜' key='fruits'>
-                        菠萝
-                    </Tabs.Tab>
-                    <Tabs.Tab title='评价' key='vegetables'>
-                        西红柿
-                    </Tabs.Tab>
-                    <Tabs.Tab title='商家' key='animals'>
-                        蚂蚁
-                    </Tabs.Tab>
-                </Tabs>
+                <NavLink to="/" style={({isActive}) => ({
+                    fontWeight: isActive ? 700 : 400,
+                    borderBottom: isActive ? '2px solid orange' : 'none'
+                })}>点菜</NavLink>
+                <NavLink to="/comment" style={({isActive}) => ({
+                    fontWeight: isActive ? 700 : 400,
+                    borderBottom: isActive ? '2px solid orange' : 'none'
+                })}>评价</NavLink>
+                <NavLink to="/merchant" style={({isActive}) => ({
+                    fontWeight: isActive ? 700 : 400,
+                    borderBottom: isActive ? '2px solid orange' : 'none'
+                })}>商家</NavLink>
 
             </div>
             {/*检索*/}
             <div className="right">
-                <SearchBar placeholder="搜索"/>
+                <SearchBar placeholder="搜索" style={{'--height': '16px'}}/>
             </div>
         </div>
-        <div className="bot">
-            <div className="bot-left">a左右</div>
-            <div className="bot-right">ddfdd</div>
-        </div>
-
+        <Outlet/>
     </div>)
 }
 export default Home;

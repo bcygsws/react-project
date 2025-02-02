@@ -8,10 +8,11 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "server": "json-server server/data.json --port 3056"
+    "serve": "json-server server/data.json --port 3056"
   },
   "dependencies": {
     "antd-mobile": "^5.38.1",
+    "axios": "^1.7.9",
     "json-server": "^1.0.0-beta.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

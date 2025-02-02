@@ -1,7 +1,13 @@
 import {FunctionComponent, lazy, Suspense} from "react";
 
-const Home = lazy(() => import('@/pages/home/index.tsx'));
+import Home from '@/pages/home/index.tsx';
+import {Navigate} from "react-router-dom";
+
 const Main = lazy(() => import('@/pages/main/index.tsx'));
+const Order = lazy(() => import('@/components/order/index.tsx'));
+const Comment = lazy(() => import('@/components/comment/index.tsx'));
+const Category = lazy(() => import('@/components/category/index.tsx'));
+const Merchant = lazy(() => import('@/components/merchant/index.tsx'));
 
 function lazyLoad(Com: FunctionComponent) {
     return <>
@@ -14,7 +20,25 @@ function lazyLoad(Com: FunctionComponent) {
 const routes = [
     {
         path: '/',
-        element: lazyLoad(Home)
+        element: <Home/>,
+        children: [
+            {
+                index: true,// index路径下，不能再写子路由
+                element: lazyLoad(Order)
+            },
+            {
+                path: ':id',
+                element: lazyLoad(Category)
+            },
+            {
+                path: 'comment',
+                element: lazyLoad(Comment)
+            },
+            {
+                path: 'merchant',
+                element: lazyLoad(Merchant)
+            }
+        ]
     },
     {
         path: '/main',
