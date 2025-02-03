@@ -1,14 +1,23 @@
 import './index.scss';
 import {SearchBar} from "antd-mobile";
-import {NavLink, Outlet} from "react-router-dom";
+import {NavLink, Outlet, useLocation, useNavigate} from "react-router-dom";
+import {useEffect} from "react";
 
 const Home = () => {
+    const location = useLocation();
+    console.log(location);
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (location.pathname === '/') {
+            navigate('/order');
+        }
+    }, [location]);
     return (<div className="home-container">
         {/*头部标签栏*/}
         <div className="tabbar">
             {/*点菜、评价、商家tabs*/}
             <div className="left">
-                <NavLink to="/" style={({isActive}) => ({
+                <NavLink to="/order" style={({isActive}) => ({
                     fontWeight: isActive ? 700 : 400,
                     borderBottom: isActive ? '2px solid orange' : 'none'
                 })}>点菜</NavLink>

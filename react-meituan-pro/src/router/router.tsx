@@ -23,13 +23,17 @@ const routes = [
         element: <Home/>,
         children: [
             {
-                index: true,// index路径下，不能再写子路由
-                element: lazyLoad(Order)
+                // index: true,// index路径下，不能再写子路由
+                path: 'order',
+                element: lazyLoad(Order),
+                children: [
+                    {
+                        path: ':id',
+                        element: lazyLoad(Category)
+                    }
+                ]
             },
-            {
-                path: ':id',
-                element: lazyLoad(Category)
-            },
+
             {
                 path: 'comment',
                 element: lazyLoad(Comment)

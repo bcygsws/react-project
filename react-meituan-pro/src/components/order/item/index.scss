@@ -1,8 +1,8 @@
 .bot {
   width: 100%;
-  flex: 1;
   display: flex;
   flex-flow: row nowrap;
+  flex: 1;
 
   .bot-left {
     width: 80px;
@@ -10,6 +10,7 @@
 
     > a {
       display: block;
+      width: 80px;
       height: 40px;
       line-height: 40px;
       text-align: center;
@@ -19,6 +20,7 @@
 
   .bot-right {
     flex: 1;
+    position: relative;
 
 
   }

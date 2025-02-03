@@ -30,6 +30,13 @@ const getFoodListAPI = () => {
         url: 'takeaway'
     })
 }
+const getOrderObjAPI = (id: string) => {
+    return $http.request({
+        url: `takeaway/${id}`
+    })
+
+}
 export {
-    getFoodListAPI
+    getFoodListAPI,
+    getOrderObjAPI
 }

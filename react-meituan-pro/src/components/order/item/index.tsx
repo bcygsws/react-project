@@ -7,12 +7,15 @@ const Item = ({list}) => {
         <div className="bot">
             <div className="bot-left">
                 {
-                    list.map((item) => (
-                        <NavLink to={`/${item.id}`} key={item.id}
-                                 style={({isActive})=>({backgroundColor: isActive ? '#eeeeee' : '#666666'})}>
+                    list.map((item) => {
+                        return (<NavLink to={`/order/${item.id}`} key={item.id}
+                                         style={({isActive}) => ({
+                                             backgroundColor: isActive ? '#ffffff' : '#eeeeee',
+                                             color: isActive ? '#444444' : '#666666'
+                                         })}>
                             {item.name}
-                        </NavLink>
-                    ))
+                        </NavLink>)
+                    })
                 }
             </div>
             <div className="bot-right"><Outlet/></div>

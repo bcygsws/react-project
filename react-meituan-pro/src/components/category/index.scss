@@ -1,0 +1,117 @@
+.cat-container {
+  .content {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    .title {
+      font-size: 16px;
+      padding: 5px;
+      color: #1a1a1a;
+    }
+
+    .list {
+      width: 100%;
+      min-height: 150px;
+      padding: 5px;
+      margin: 10px 0;
+      box-sizing: border-box;
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-around;
+
+      > img {
+        border-radius: 10px;
+        padding: 5px;
+        margin-right: 5px;
+        box-sizing: border-box;
+      }
+
+      .right {
+        flex: 1;
+
+        .goods-top {
+
+          .goods-title {
+            font: normal 700 16px 'Microsoft YaHei UI';
+            margin-bottom: 10px;
+          }
+
+          .goods-detail {
+            display: flex;
+            flex-flow: row nowrap;
+            align-items: center;
+            justify-content: space-between;
+            margin: 5px 0;
+
+            .goods-unit {
+              width: 35px;
+              font-size: 12px;
+              border-radius: 5px;
+              background-color: #eeeeee;
+              text-align: center;
+            }
+
+            .goods-detail-text {
+              max-width: 130px;
+              overflow: hidden; // 超出部分隐藏
+              white-space: nowrap; // 强制一行显示
+              text-overflow: ellipsis; // 溢出文本显示为省略号
+            }
+          }
+
+          .goods-tag {
+            padding: 0 5px;
+            margin: 10px 0;
+            font-size: 12px;
+            color: darkorange;
+            background-color: #eeeeee;
+            border-radius: 5px;
+          }
+
+          .goods-sales-volume {
+            display: flex;
+            flex-flow: row nowrap;
+            align-items: center;
+            color: #99a2aa;
+            margin: 10px 0;
+
+            > span:first-child {
+              margin-right: 10px;
+            }
+          }
+        }
+
+        .goods-price {
+          display: flex;
+          flex-flow: row nowrap;
+          justify-content: space-between;
+          align-items: center;
+          padding-right: 10px;
+          margin-top: 10px;
+
+          > span {
+            color: red;
+            font-size: 14px;
+          }
+
+          .icon-plus {
+            background-color: orange;
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 50%;
+          }
+        }
+
+
+      }
+    }
+  }
+}
