@@ -6,28 +6,28 @@ import './index.scss';
 const Category = () => {
     // 接收根据id请求到的数据
     const [cat, setCat] = useState<Partial<IOrder>>({});
-    const params = useParams();
-    // console.log('id===', params.id);
+    const {id} = useParams();
+    console.log('id===', id);
     // 根据id,请求当前分类下的数据
     useEffect(() => {
         async function getOrder() {
-            if (params.id) {
-                const res = await getOrderObjAPI(params.id);
-                console.log(res);
+            if (id) {
+                const res = await getOrderObjAPI(id);
+                console.log("res===",res);
                 setCat({foods: undefined, id: "", name: "", tag: "", ...res});
 
             }
         }
 
         getOrder();
-    }, [params.id]);
+    }, [id]);
 
     return (
         <div className="cat-container">
             <div className="content">
                 <div className="title">{cat.name}</div>
                 {cat.foods?.map(item => (
-                    <div className="list">
+                    <div className="list" key={item.id}>
                         <img src={item.picture} width="95" height="95" alt=""/>
                         <div className="right">
                             <div className="goods-top">

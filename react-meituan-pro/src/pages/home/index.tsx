@@ -2,14 +2,23 @@ import './index.scss';
 import {SearchBar} from "antd-mobile";
 import {NavLink, Outlet, useLocation, useNavigate} from "react-router-dom";
 import {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {getInitialId} from "@/store/modules/list.tsx";
 
 const Home = () => {
+    const dispatch: any = useDispatch();
     const location = useLocation();
     console.log(location);
     const navigate = useNavigate();
     useEffect(() => {
-        if (location.pathname === '/') {
-            navigate('/order');
+        dispatch(getInitialId());
+    }, []);
+
+    const {init_id} = useSelector(state => state.default);
+    console.log('init_id=======', init_id);
+    useEffect(() => {
+        if (location.pathname === '/' || location.pathname === '/order') {
+            navigate(`/order/${init_id}`);
         }
     }, [location]);
     return (<div className="home-container">
