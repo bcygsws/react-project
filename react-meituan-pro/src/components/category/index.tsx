@@ -7,7 +7,7 @@ const Category = () => {
     // 接收根据id请求到的数据
     const [cat, setCat] = useState<Partial<IOrder>>({});
     const {id} = useParams();
-    console.log('id===', id);
+    // console.log('id===', id);
     // 根据id,请求当前分类下的数据
     useEffect(() => {
         async function getOrder() {

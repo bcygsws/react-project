@@ -17,9 +17,9 @@ const reducer = orderStore.reducer;
 const getInitialId = () => {
     return async (dispatch) => {
         const res = await getFoodListAPI();
-        console.log("res ==========", res);
         const {id} = res?.find((item, index) => (index === 0));
-        dispatch(getId(id))
+        console.log("id dispatch", id);
+        dispatch(getId(id));
     }
 }
 export {

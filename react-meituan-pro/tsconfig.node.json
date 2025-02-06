@@ -7,11 +7,8 @@
     ],
     "module": "ESNext",
     "skipLibCheck": true,
-    /* Bundler mode */
-    /* "moduleResolution": "bundler",*/
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
-    /*配置路径联想*/
     "baseUrl": ".",
     "paths": {
       "@/*": [
@@ -22,7 +19,6 @@
     "isolatedModules": true,
     "moduleDetection": "force",
     "noEmit": true,
-    /* Linting */
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
