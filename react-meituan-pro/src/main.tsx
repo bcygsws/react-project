@@ -6,7 +6,6 @@ import {BrowserRouter} from "react-router-dom";
 import {Provider} from "react-redux";
 import {PersistGate} from "redux-persist/integration/react";
 import persistor, {store} from "@/store";
-import 'babel-polyfill';
 
 // createRoot(document.getElementById('root')!).render(
 //   <StrictMode>

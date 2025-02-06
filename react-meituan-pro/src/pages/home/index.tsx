@@ -28,15 +28,15 @@ const Home = () => {
             <div className="left">
                 <NavLink to="/order" style={({isActive}) => ({
                     fontWeight: isActive ? 700 : 400,
-                    borderBottom: isActive ? '2px solid orange' : 'none'
+                    borderBottom: isActive ? '2px solid #FFD433' : 'none'
                 })}>点菜</NavLink>
                 <NavLink to="/comment" style={({isActive}) => ({
                     fontWeight: isActive ? 700 : 400,
-                    borderBottom: isActive ? '2px solid orange' : 'none'
+                    borderBottom: isActive ? '2px solid #FFD433' : 'none'
                 })}>评价</NavLink>
                 <NavLink to="/merchant" style={({isActive}) => ({
                     fontWeight: isActive ? 700 : 400,
-                    borderBottom: isActive ? '2px solid orange' : 'none'
+                    borderBottom: isActive ? '2px solid #FFD433' : 'none'
                 })}>商家</NavLink>
 
             </div>
