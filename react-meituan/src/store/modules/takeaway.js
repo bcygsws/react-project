@@ -1,4 +1,6 @@
-import {createSlice} from '@reduxjs/toolkit';
+import {
+	createSlice
+} from '@reduxjs/toolkit';
 import axios from "axios";
 
 const createStore = createSlice({
@@ -6,7 +8,7 @@ const createStore = createSlice({
 	initialState: {
 		foodsList: [],
 		activeIndex: 0, // Menu组件中动态类样式选中状态变量
-		cartList: []// 购物车数据列表
+		cartList: [] // 购物车数据列表
 	},
 	reducers: {
 		setFood: (state, action) => {
@@ -17,6 +19,7 @@ const createStore = createSlice({
 		},
 		setCartList: (state, action) => {
 			// find找到一个元素，cartList中id和动态传入的对象中的id匹配，将count+1即可；否则：就是购物车列表中没有这件商品，push到cartList中
+			// count为新增属性,表示当前条目的数量
 			const item = state.cartList.find(val => {
 				return val.id === action.payload.id;
 			});
@@ -39,7 +42,7 @@ const createStore = createSlice({
 				state.cartList = state.cartList.filter(val => val.id !== action.payload)
 			}
 		},
-		clearAll: (state) => {// 清空购物车
+		clearAll: (state) => { // 清空购物车
 			state.cartList = [];
 
 		}
@@ -48,7 +51,14 @@ const createStore = createSlice({
 // 获取reducer函数
 const reducer = createStore.reducer;
 // 获取action,并封装成支持异步的getFoodList()方法
-const {setFood, setIndex, setCartList, increment, decrement, clearAll} = createStore.actions;
+const {
+	setFood,
+	setIndex,
+	setCartList,
+	increment,
+	decrement,
+	clearAll
+} = createStore.actions;
 
 // 处理异步的action
 function getFoodList() {
@@ -60,5 +70,12 @@ function getFoodList() {
 	}
 }
 
-export {getFoodList, setIndex, setCartList, increment, decrement, clearAll};
+export {
+	getFoodList,
+	setIndex,
+	setCartList,
+	increment,
+	decrement,
+	clearAll
+};
 export default reducer;

@@ -23,6 +23,7 @@ export interface IFood {
     picture: string
     tag: string
     unit: string
+    count?: number // 购物车中商品数量
 }
 
 const getFoodListAPI = () => {
