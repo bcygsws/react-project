@@ -3,7 +3,7 @@ import {FunctionComponent, lazy, Suspense} from "react";
 import Home from '@/pages/home/index.tsx';
 
 const Main = lazy(() => import('@/pages/main/index.tsx'));
-const Order = lazy(() => import('@/components/order/index.tsx'));
+const Order = lazy(() => import('@/components/menu/index.tsx'));
 const Comment = lazy(() => import('@/components/comment/index.tsx'));
 const Takeout = lazy(() => import('@/components/takeout/index.tsx'));
 const Merchant = lazy(() => import('@/components/merchant/index.tsx'));

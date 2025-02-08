@@ -4,7 +4,6 @@ import {NavLink, Outlet, useLocation, useNavigate} from "react-router-dom";
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {getInitialId} from "@/store/modules/list.tsx";
-import ShoppingCart from "@/components/shopping_cart";
 
 const Home = () => {
     const dispatch: any = useDispatch();
@@ -47,8 +46,6 @@ const Home = () => {
             </div>
         </div>
         <Outlet/>
-        {/*弹出的购物车列表*/}
-        <ShoppingCart/>
     </div>)
 }
 export default Home;

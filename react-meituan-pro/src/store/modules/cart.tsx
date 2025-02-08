@@ -2,20 +2,15 @@ import {createSlice} from "@reduxjs/toolkit";
 
 /**
  * @desc:购物车相关状态
- * flag:指示购物车的激活状态
- *
+ * cartList：购物车列表
  *
  * */
 const cartStore = createSlice({
     name: 'cart',
     initialState: {
-        flag: false,
         cartList: []// 购物车列表数据
     },
     reducers: {
-        changeFlag(state) {
-            state.flag = !state.flag;
-        },
         // 分类列表中，点选物品，添加至购物车中
         setCartList(state, action) {
             const item = state.cartList.find(val => val.id === action.payload.id);
@@ -27,22 +22,31 @@ const cartStore = createSlice({
         },
         // 购物车列表增加物品数量
         increment(state, action) {
-
+            const item = state.cartList.find(val => val.id === action.payload);
+            item.count++;
         },
         // 购物车列表减少物品数量
         decrement(state, action) {
+            const item = state.cartList.find(val => val.id === action.payload);
+            item.count--;
+            if (item.count === 0) {
+                state.cartList = state.cartList.filter(val => val.id !== action.payload);
+            }
 
         },
         // 清空购物车
-        clearAll(state, action) {
+        clearAll(state) {
+            state.cartList = [];
 
         }
     }
 })
-const {changeFlag, setCartList} = cartStore.actions;
+const {setCartList, increment, decrement, clearAll} = cartStore.actions;
 const reducer = cartStore.reducer;
 export {
-    changeFlag,
-    setCartList
+    setCartList,
+    increment,
+    decrement,
+    clearAll
 }
 export default reducer;

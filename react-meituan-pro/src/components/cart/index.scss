@@ -1,6 +1,100 @@
+.nav-container {
+  width: 90%;
+  position: absolute;
+  bottom: 5px;
+  left: 5%;
+  right: 5%;
+  z-index: 9999;
+  height: 50px;
+  display: flex;
+  flex-flow: row nowrap;
+  background-color: #1a1a1a;
+  border-radius: 20px;
+
+  .nav-left {
+    width: 20%;
+    border-radius: 20px 0 0 20px;
+    position: relative;
+
+    .icon, .icon-active {
+      width: 40px;
+      height: 40px;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      position: absolute;
+      top: -30%;
+      left: 30%;
+      z-index: 10000;
+    }
+
+    .icon {
+      background-image: url("https://s1.imagehub.cc/images/2024/06/12/a9f35ee5f0b5bb65409ef4ee7d97cafd.th.png");
+    }
+
+    .icon-active {
+      background-image: url("https://s1.imagehub.cc/images/2024/06/12/6b65e5c2aa8ec188049ed3272a28959d.th.png");
+
+      .count {
+        width: 16px;
+        height: 16px;
+        line-height: 16px;
+        text-align: center;
+        border-radius: 50%;
+        color: #ffffff;
+        background-color: red;
+        font-size: 12px;
+        position: absolute;
+        right: -4px;
+        bottom: 0;
+      }
+    }
+  }
+
+  .nav-right {
+    width: 20%;
+    line-height: 50px;
+    border-radius: 0 20px 20px 0;
+    color: #ffffff;
+    text-align: center;
+  }
+
+  .active {
+    background-color: $color;
+    font-size: 16px;
+    color: #1a1a1a;
+  }
+
+  .nav-middle {
+    flex: 1;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+
+    .total {
+      height: 30px;
+      line-height: 30px;
+      font-size: 14px;
+      color: #ffffff;
+
+      > span {
+        font-size: 18px;
+      }
+    }
+
+    .carry-fee {
+      flex: 1;
+      color: #888c98;
+      font-size: 12px;
+    }
+  }
+}
+
+/*购物车列表样式*/
+
 .shopping-container {
   width: 100%;
-  height: 350px;
+  height: 300px;
   display: flex;
   flex-flow: column nowrap;
   border-radius: 10px 10px 0 0;
@@ -9,6 +103,14 @@
   position: absolute;
   bottom: 0;
   z-index: 8888;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 70px;
+    border-top: 1px solid #cccccc;
+  }
 
   .title {
     display: flex;
@@ -31,6 +133,7 @@
     box-sizing: border-box;
     overflow-y: scroll;
     overflow-x: hidden;
+
 
     .list {
       display: flex;

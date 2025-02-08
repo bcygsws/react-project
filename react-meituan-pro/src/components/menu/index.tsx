@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {getFoodListAPI, IOrder} from "@/apis/order.tsx";
 import {NavLink, Outlet} from "react-router-dom";
-import NavBar from "@/components/navbar";
+import NavBar from "@/components/cart/index.tsx";
 import './index.scss';
 
 
@@ -11,7 +11,7 @@ const Order = () => {
     useEffect(() => {
         async function getOrder() {
             const res = await getFoodListAPI();
-            console.log("res  init",res);
+            console.log("res  init", res);
             setList([...res]);
         }
 
