@@ -1,7 +1,7 @@
 import './index.scss';
 import {useDispatch, useSelector} from "react-redux";
 import classNames from 'classnames';
-import {useEffect, useMemo, useState} from "react";
+import {useEffect, useState} from "react";
 import {clearAll, decrement, increment} from "@/store/modules/cart.tsx";
 
 const NavBar = () => {
@@ -19,7 +19,7 @@ const NavBar = () => {
     // const total = useMemo(() => {
     //     return cartList.reduce((sum, cur) => sum + cur.count * cur.price, 0);
     // }, [cartList]);
-    const total = cartList.reduce((sum, cur) => sum + cur.count * cur.price, 0);
+    const total = cartList.reduce((sum, cur) => sum + (cur.count * cur.price), 0);
     /**
      * @desc:清空购物车方法clear
      *
@@ -43,7 +43,8 @@ const NavBar = () => {
             }
             </div>
             <div className="nav-middle">
-                <div className="total">￥<span>{total}</span></div>
+                {/*注：不可缺少；total求值完成后；number数字的方法toFixed(2) 最终结果保留小数点后两位*/}
+                <div className="total">￥<span>{total.toFixed(2)}</span></div>
                 <div className="carry-fee">预估另需配送费:￥2</div>
             </div>
             <div className={classNames('nav-right' as any, {'active': flag} as any)}>{flag ? '结算' : '￥10起送'}</div>

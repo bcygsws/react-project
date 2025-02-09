@@ -2,7 +2,6 @@ import {useParams} from "react-router-dom";
 import {getOrderObjAPI, IOrder} from "@/apis/order.tsx";
 import {useEffect, useState} from "react";
 import './index.scss';
-import {useDispatch} from "react-redux";
 import FoodItem from "@/components/takeout/item/index.tsx";
 
 const Takeout = () => {
@@ -22,15 +21,12 @@ const Takeout = () => {
 
         getOrder();
     }, [id]);
-    const dispatch = useDispatch();
-
     return (
         <div className="cat-container">
             <div className="content">
                 <div className="title">{order.name}</div>
-                {
-                    order.foods?.map(item => (<FoodItem list={item} key={item.id}/>))
-                }
+                {/*list={item}每一件物品对象绑定到FoodItem上，渲染外卖列表*/}
+                {order.foods?.map(item => (<FoodItem list={item} key={item.id}/>))}
             </div>
         </div>
     )

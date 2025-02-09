@@ -17,7 +17,7 @@ const cartStore = createSlice({
             if (item) {
                 item.count++;
             } else {
-                state.cartList.push(action.payload);
+                state.cartList.push(action.payload);// 每个item中添加的默认count是1，而不是0
             }
         },
         // 购物车列表增加物品数量

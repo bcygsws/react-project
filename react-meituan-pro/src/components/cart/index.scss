@@ -1,19 +1,17 @@
 .nav-container {
-  width: 90%;
+  width: 100%;
   position: absolute;
-  bottom: 5px;
-  left: 5%;
-  right: 5%;
+  bottom: 0;
+  left: 0;
+  right: 0;
   z-index: 9999;
   height: 50px;
   display: flex;
   flex-flow: row nowrap;
   background-color: #1a1a1a;
-  border-radius: 20px;
 
   .nav-left {
     width: 20%;
-    border-radius: 20px 0 0 20px;
     position: relative;
 
     .icon, .icon-active {
@@ -54,7 +52,6 @@
   .nav-right {
     width: 20%;
     line-height: 50px;
-    border-radius: 0 20px 20px 0;
     color: #ffffff;
     text-align: center;
   }
