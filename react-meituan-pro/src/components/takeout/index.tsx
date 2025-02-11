@@ -1,3 +1,4 @@
+"use strict"
 import {useParams} from "react-router-dom";
 import {getOrderObjAPI, IOrder} from "@/apis/order.tsx";
 import {useEffect, useState} from "react";

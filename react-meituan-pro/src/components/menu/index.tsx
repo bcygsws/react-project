@@ -9,13 +9,18 @@ const Order = () => {
     const [list, setList] = useState<IOrder[]>([]);
     // 请求数据，注入Item子组件
     useEffect(() => {
+
         async function getOrder() {
-            const res = await getFoodListAPI();
-            console.log("res  init", res);
-            setList([...res]);
+          try{
+              const res = await getFoodListAPI();
+              console.log("res  init", res);
+              setList([...res]);
+          }catch (e){
+              console.log("出现错误："+e);
+          }
         }
 
-        getOrder();
+        getOrder().catch(console.error);
 
     }, []);
     return (

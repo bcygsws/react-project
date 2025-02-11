@@ -3,6 +3,7 @@ import {createSlice} from "@reduxjs/toolkit";
 /**
  * @desc:购物车相关状态
  * cartList：购物车列表
+ * 注1：cartList是全局维护的状态后，cartList.length，也是响应式的了，不用再使用useMemo等钩子维护
  *
  * */
 const cartStore = createSlice({
@@ -30,6 +31,7 @@ const cartStore = createSlice({
             const item = state.cartList.find(val => val.id === action.payload);
             item.count--;
             if (item.count === 0) {
+                // 过滤掉当前action.payload(id值)，保留不包含当前id值的那些购物车对象数组的元素
                 state.cartList = state.cartList.filter(val => val.id !== action.payload);
             }
 
