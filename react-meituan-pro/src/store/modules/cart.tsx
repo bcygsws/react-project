@@ -1,7 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
 
 /**
- * @desc:购物车相关状态
+ * @desc:购物车状态管理
  * cartList：购物车列表
  * 注1：cartList是全局维护的状态后，cartList.length，也是响应式的了，不用再使用useMemo等钩子维护
  *
