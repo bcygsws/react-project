@@ -14,7 +14,7 @@ const Home = () => {
         dispatch(getInitialId());
     }, []);
 
-    const {init_id} = useSelector(state => state.default);
+    const {init_id} = useSelector(state => state._list);
     console.log('init_id=======', init_id);
     useEffect(() => {
         if (location.pathname === '/' || location.pathname === '/order') {

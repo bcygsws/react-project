@@ -10,7 +10,7 @@ const NavBar = () => {
     // 定义状态量visible：控制购物车列表的显示与隐藏
     const [visible, setVisible] = useState(false);
     const dispatch = useDispatch();
-    const {cartList} = useSelector(state => state.cart);
+    const {cartList} = useSelector(state => state._cart);
     useEffect(() => {
         setFlag(cartList.length > 0);
     }, [cartList]);

@@ -2,7 +2,7 @@ import {createSlice} from "@reduxjs/toolkit";
 import {getFoodListAPI} from "@/apis/order.tsx";
 
 const orderStore = createSlice({
-    name: "order",
+    name: "list",
     initialState: {
         init_id: '' // 初始化id存储，路由重定向时使用
     },

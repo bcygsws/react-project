@@ -1,5 +1,5 @@
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
-import defaultReducer from './modules/list.tsx';
+import listReducer from './modules/list.tsx';
 import cartReducer from './modules/cart.tsx';
 import storage from 'redux-persist/lib/storage';
 import {persistStore, persistReducer} from 'redux-persist';
@@ -14,8 +14,8 @@ import {persistStore, persistReducer} from 'redux-persist';
 
 // 组合多个reducer
 const reducers = combineReducers({
-    default: defaultReducer,
-    cart: cartReducer
+    _list: listReducer,
+    _cart: cartReducer
 })
 const persistConfig = {
     key: 'root',
