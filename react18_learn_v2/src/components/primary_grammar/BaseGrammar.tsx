@@ -1,5 +1,5 @@
-import {useState} from "react";
-
+import {useState,useEffect} from "react";
+import $http from "@/utils/http";
 /**
  * @desc:一、jsx或者tsx基本语法
  *
@@ -48,6 +48,28 @@ const list = [
 ]
 const BaseGrammar = () => {
     const [flag, setFlag] = useState(true);
+    useEffect(()=>{
+      async function getCity(){
+        // bug:和风天气接口没有处理跨域问题，测试阶段，使用前端代理处理下跨域
+            const city = await $http.get("/api/geo/v2/city/lookup",
+              {
+                    headers: {
+                        // 'Access-Control-Allow-Headers': 'Content-Type',
+                        // 'Access-Control-Allow-Origin': '*',
+                        // 'X-QW-Api-Key': 'b88d0a14a2034fe2a3abf4c6c7f1af85'
+                    },
+                    params: {
+                        key: 'b88d0a14a2034fe2a3abf4c6c7f1af85',
+                        location: '-122.084,37.421998',
+                        gzip: 'no',
+                        lang: 'zh'
+                    }
+                }
+            );
+            console.log("city==",city);
+      }
+      getCity();
+    },[])
     return (
         <div>
             <h3>一、这是jsx或者tsx基本语法</h3>
